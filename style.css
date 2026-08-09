@@ -48,3 +48,73 @@ body p:last-of-type {
     </nav>
 
     <h1>Elite Gadgets</h1>
+.hero {
+    min-height: 500px;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: white;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-tag {
+    color: #c9a227;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero-content > p:not(.hero-tag) {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+    color: #d1d5db;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: #c9a227;
+    color: #111;
+}
+
+.primary-btn:hover {
+    background: #e0bd45;
+}
+
+.secondary-btn {
+    border: 1px solid #c9a227;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #c9a227;
+    color: #111;
+}
