@@ -206,3 +206,40 @@ body p:last-of-type {
     background: #c9a227;
     color: #111;
 }
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        padding: 20px 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 450px;
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-content > p:not(.hero-tag) {
+        font-size: 16px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+}
