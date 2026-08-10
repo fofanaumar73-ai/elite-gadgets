@@ -497,3 +497,66 @@ body p:last-of-type {
     background: #111827;
     color: white;
 }
+/* ================================
+   ORDER CONFIRMATION
+================================ */
+
+.order-confirmation {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.order-confirmation h2 {
+    margin-bottom: 15px;
+    color: #111827;
+    font-size: 28px;
+}
+
+.order-confirmation p {
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.order-confirmation strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+#order-id {
+    color: #2563eb;
+}
+
+#order-details {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    text-align: left;
+}
+
+#order-details p {
+    margin: 8px 0;
+    color: #374151;
+}
+
+#order-details strong {
+    color: #111827;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .order-confirmation {
+        margin: 30px 15px;
+        padding: 30px 20px;
+    }
+
+    .order-confirmation h2 {
+        font-size: 24px;
+    }
+}
