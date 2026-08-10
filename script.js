@@ -1,3 +1,10 @@
+const SUPABASE_URL = "https://qimgbjtotjmhsczhfylu.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_JTNZLbqNhUk6PQ14D6hQzg_TUgWYbkm";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 console.log("Elite Gadgets is ready!");
 
 const productButtons = document.querySelectorAll(".product-btn");
