@@ -42,17 +42,14 @@ function updateCart() {
     let total = 0;
     let totalQuantity = 0;
 
-
     cart.forEach(function(item, index) {
 
         total += item.price * item.quantity;
         totalQuantity += item.quantity;
 
-
         const cartItem = document.createElement("div");
 
         cartItem.className = "cart-item";
-
 
         cartItem.innerHTML = `
             <div>
@@ -80,7 +77,7 @@ function updateCart() {
         `;
 
 
-        // DECREASE QUANTITY
+        // Decrease quantity
 
         const decreaseButton =
             cartItem.querySelector(".decrease-btn");
@@ -102,7 +99,7 @@ function updateCart() {
         });
 
 
-        // INCREASE QUANTITY
+        // Increase quantity
 
         const increaseButton =
             cartItem.querySelector(".increase-btn");
@@ -116,7 +113,7 @@ function updateCart() {
         });
 
 
-        // REMOVE PRODUCT
+        // Remove product
 
         const removeButton =
             cartItem.querySelector(".remove-btn");
@@ -135,17 +132,16 @@ function updateCart() {
     });
 
 
-    // TOTAL PRICE
+    // Update total
 
     cartTotal.textContent =
         total.toLocaleString();
 
 
-    // CART COUNT
+    // Update cart count
 
     cartCount.textContent =
         totalQuantity;
-
 }
 
 
@@ -164,8 +160,6 @@ productButtons.forEach(function(button) {
         const productPrice =
             Number(button.dataset.price);
 
-
-        // Check whether product already exists
 
         const existingProduct =
             cart.find(function(item) {
@@ -252,13 +246,6 @@ const placeOrderButton =
     document.getElementById("place-order-btn");
 
 
-// ===============================
-// PLACE ORDER
-// ===============================
-
-const placeOrderButton =
-    document.getElementById("place-order-btn");
-
 placeOrderButton.addEventListener("click", function() {
 
     const customerName =
@@ -271,7 +258,7 @@ placeOrderButton.addEventListener("click", function() {
         document.getElementById("customer-address").value.trim();
 
 
-    // CHECK CUSTOMER DETAILS
+    // Check customer details
 
     if (
         customerName === "" ||
@@ -287,24 +274,25 @@ placeOrderButton.addEventListener("click", function() {
     }
 
 
-    // CREATE ORDER ID
+    // Create Order ID
 
     const orderId =
         "EG-" + Math.floor(100000 + Math.random() * 900000);
 
 
-    // CALCULATE TOTAL
+    // Calculate order total
 
     let orderTotal = 0;
 
     cart.forEach(function(item) {
 
-        orderTotal += item.price * item.quantity;
+        orderTotal +=
+            item.price * item.quantity;
 
     });
 
 
-    // CREATE ORDER DETAILS
+    // Create order items
 
     let orderItems = "";
 
@@ -314,20 +302,22 @@ placeOrderButton.addEventListener("click", function() {
             <p>
                 <strong>${item.name}</strong>
                 × ${item.quantity}
-                — ₦${(item.price * item.quantity).toLocaleString()}
+                — ₦${(
+                    item.price * item.quantity
+                ).toLocaleString()}
             </p>
         `;
 
     });
 
 
-    // SHOW ORDER ID
+    // Show Order ID
 
     document.getElementById("order-id").textContent =
         orderId;
 
 
-    // SHOW ORDER DETAILS
+    // Show Order Details
 
     document.getElementById("order-details").innerHTML = `
 
@@ -358,21 +348,23 @@ placeOrderButton.addEventListener("click", function() {
     `;
 
 
-    // SHOW CONFIRMATION BOX
+    // Show confirmation
 
     const orderConfirmation =
         document.getElementById("order-confirmation");
 
-    orderConfirmation.style.display = "block";
+
+    orderConfirmation.style.display =
+        "block";
 
 
-    // HIDE CHECKOUT FORM
+    // Hide checkout form
 
     document.getElementById("checkout-form").style.display =
         "none";
 
 
-    // CLEAR CART
+    // Clear cart
 
     cart = [];
 
@@ -381,51 +373,13 @@ placeOrderButton.addEventListener("click", function() {
     updateCart();
 
 
-    // SCROLL TO CONFIRMATION
+    // Scroll to confirmation
 
     orderConfirmation.scrollIntoView({
 
         behavior: "smooth"
 
     });
-
-});
-
-    const customerName =
-        document.getElementById("customer-name").value.trim();
-
-
-    const customerPhone =
-        document.getElementById("customer-phone").value.trim();
-
-
-    const customerAddress =
-        document.getElementById("customer-address").value.trim();
-
-
-    // CHECK CUSTOMER DETAILS
-
-    if (
-        customerName === "" ||
-        customerPhone === "" ||
-        customerAddress === ""
-    ) {
-
-        alert(
-            "Please fill in all your details before placing your order."
-        );
-
-        return;
-    }
-
-
-    // ORDER RECEIVED
-
-    alert(
-        "Thank you, " +
-        customerName +
-        "! Your order has been received."
-    );
 
 });
 
