@@ -435,12 +435,14 @@ body p:last-of-type {
     text-decoration: underline;
 }
 .checkout-form {
+    display: none;
     max-width: 800px;
     margin: 30px auto 0;
     padding: 30px;
     background: white;
     border-radius: 12px;
     border: 1px solid #eeeeee;
+}
 }
 
 .checkout-form h2 {
