@@ -2,227 +2,389 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Elite Gadgets | Premium Tech</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo">Elite Gadgets</div>
 
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#products">Shop</a>
-            <a href="#">iPhones</a>
-            <a href="#">Samsung</a>
-            <a href="#">Accessories</a>
-            <a href="#">Contact</a>
-            <a href="#cart" class="cart-link">
-                🛒 Cart <span id="cart-count">0</span>
+<!-- ===============================
+     NAVIGATION
+================================ -->
+
+<nav>
+
+    <div class="logo">
+        Elite Gadgets
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#">Home</a>
+
+        <a href="#products">
+            Shop
+        </a>
+
+        <a href="#products">
+            iPhones
+        </a>
+
+        <a href="#products">
+            Samsung
+        </a>
+
+        <a href="#products">
+            Accessories
+        </a>
+
+        <a href="#cart">
+            Contact
+        </a>
+
+        <a href="#cart" class="cart-link">
+            🛒 Cart
+            <span id="cart-count">0</span>
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ===============================
+     HERO SECTION
+================================ -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="hero-tag">
+            PREMIUM TECH. TRUSTED SERVICE.
+        </p>
+
+        <h1>
+            Upgrade Your World.
+        </h1>
+
+        <p>
+            Discover premium smartphones, gadgets and accessories
+            carefully selected for you.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#products"
+                class="btn primary-btn"
+            >
+                Shop Now
             </a>
-        </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <p class="hero-tag">PREMIUM TECH. TRUSTED SERVICE.</p>
-
-            <h1>Upgrade Your World.</h1>
-
-            <p>
-                Discover premium smartphones, gadgets and accessories
-                carefully selected for you.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#products" class="btn primary-btn">Shop Now</a>
-                <a href="#" class="btn secondary-btn">Contact Us</a>
-            </div>
+            <a
+                href="https://wa.me/2349072084278"
+                class="btn secondary-btn"
+                target="_blank"
+            >
+                Contact Us
+            </a>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- PRODUCTS SECTION -->
-    <section class="products" id="products">
 
-        <div class="section-title">
-            <p>OUR COLLECTION</p>
-            <h2>Featured Gadgets</h2>
-        </div>
+<!-- ===============================
+     PRODUCTS SECTION
+================================ -->
 
-        <div class="product-grid">
+<section
+    class="products"
+    id="products"
+>
 
-            <!-- iPhone -->
-            <div class="product-card">
+    <div class="section-title">
 
-                <div class="product-image">
-                    <img src="images/iphone-17-pro.jpg" alt="iPhone 17 Pro">
-                </div>
+        <p>
+            OUR COLLECTION
+        </p>
 
-                <h3>iPhone 17 Pro</h3>
+        <h2>
+            Featured Gadgets
+        </h2>
 
-                <p>
-                    Premium performance. Beautifully designed.
-                </p>
+    </div>
 
-                <h4>₦1,250,000</h4>
 
-                <a href="#"
-                   class="product-btn"
-                   data-product="iPhone 17 Pro"
-                   data-price="1250000">
-                    View Product
-                </a>
+    <div class="product-grid">
+
+
+        <!-- ===============================
+             iPHONE
+        ================================= -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="images/iphone-17-pro.jpg"
+                    alt="iPhone 17 Pro"
+                >
 
             </div>
-
-
-            <!-- Samsung -->
-            <div class="product-card">
-
-                <div class="product-image">
-                    📱
-                </div>
-
-                <h3>Samsung Galaxy S24</h3>
-
-                <p>
-                    Powerful performance with an incredible display.
-                </p>
-
-                <h4>₦950,000</h4>
-
-                <a href="#"
-                   class="product-btn"
-                   data-product="Samsung Galaxy S24"
-                   data-price="950000">
-                    View Product
-                </a>
-
-            </div>
-
-
-            <!-- AirPods -->
-            <div class="product-card">
-
-                <div class="product-image">
-                    🎧
-                </div>
-
-                <h3>AirPods Pro</h3>
-
-                <p>
-                    Immersive sound with premium noise cancellation.
-                </p>
-
-                <h4>₦350,000</h4>
-
-                <a href="#"
-                   class="product-btn"
-                   data-product="AirPods Pro"
-                   data-price="350000">
-                    View Product
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CART SECTION -->
-    <section class="cart-section" id="cart">
-
-        <div class="section-title">
-            <p>YOUR SHOPPING CART</p>
-            <h2>Cart</h2>
-        </div>
-
-        <div id="cart-items">
-
-            <p class="empty-cart">
-                Your cart is currently empty.
-            </p>
-
-        </div>
-
-        <div class="cart-summary">
 
             <h3>
-                Total: ₦<span id="cart-total">0</span>
+                iPhone 17 Pro
             </h3>
 
-            <button id="checkout-btn">
-                Proceed to Checkout
-            </button>
-<div class="checkout-form" id="checkout-form">
+            <p>
+                Premium performance. Beautifully designed.
+            </p>
 
-    <h2>Complete Your Order</h2>
+            <h4>
+                ₦1,250,000
+            </h4>
 
-    <label for="customer-name">Full Name</label>
-    <input
-        type="text"
-        id="customer-name"
-        placeholder="Enter your full name"
-    >
+            <a
+                href="#cart"
+                class="product-btn"
+                data-product="iPhone 17 Pro"
+                data-price="1250000"
+            >
+                Add to Cart
+            </a>
 
-    <label for="customer-phone">Phone Number</label>
-    <input
-        type="tel"
-        id="customer-phone"
-        placeholder="Enter your phone number"
-    >
-
-    <label for="customer-address">Delivery Address</label>
-    <textarea
-        id="customer-address"
-        placeholder="Enter your delivery address"
-    ></textarea>
-
-    <button id="place-order-btn">
-        Place Order
-    </button>
-<div id="order-confirmation" class="order-confirmation">
-
-    <h2>🎉 Order Confirmed!</h2>
-
-    <p>
-        Thank you for your order.
-    </p>
-
-    <p>
-        Order ID:
-        <strong id="order-id"></strong>
-    </p>
-
-    <div id="order-details"></div>
-
-</div>
-</div>
         </div>
 
-    </section>
 
 
-    <script src="script.js"></script>
+        <!-- ===============================
+             SAMSUNG
+        ================================= -->
 
-</body>
-<!-- Floating Contact Buttons -->
+        <div class="product-card">
+
+            <div class="product-image">
+                📱
+            </div>
+
+            <h3>
+                Samsung Galaxy S24
+            </h3>
+
+            <p>
+                Powerful performance with an incredible display.
+            </p>
+
+            <h4>
+                ₦950,000
+            </h4>
+
+            <a
+                href="#cart"
+                class="product-btn"
+                data-product="Samsung Galaxy S24"
+                data-price="950000"
+            >
+                Add to Cart
+            </a>
+
+        </div>
+
+
+
+        <!-- ===============================
+             AIRPODS
+        ================================= -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <h3>
+                AirPods Pro
+            </h3>
+
+            <p>
+                Immersive sound with premium noise cancellation.
+            </p>
+
+            <h4>
+                ₦350,000
+            </h4>
+
+            <a
+                href="#cart"
+                class="product-btn"
+                data-product="AirPods Pro"
+                data-price="350000"
+            >
+                Add to Cart
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ===============================
+     CART SECTION
+================================ -->
+
+<section
+    class="cart-section"
+    id="cart"
+>
+
+    <div class="section-title">
+
+        <p>
+            YOUR SHOPPING CART
+        </p>
+
+        <h2>
+            Cart
+        </h2>
+
+    </div>
+
+
+    <div id="cart-items">
+
+        <p class="empty-cart">
+            Your cart is currently empty.
+        </p>
+
+    </div>
+
+
+    <div class="cart-summary">
+
+        <h3>
+            Total: ₦<span id="cart-total">0</span>
+        </h3>
+
+        <button id="checkout-btn">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+
+
+    <!-- ===============================
+         CHECKOUT FORM
+    ================================= -->
+
+    <div
+        class="checkout-form"
+        id="checkout-form"
+    >
+
+        <h2>
+            Complete Your Order
+        </h2>
+
+
+        <label for="customer-name">
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="customer-name"
+            placeholder="Enter your full name"
+        >
+
+
+        <label for="customer-phone">
+            Phone Number
+        </label>
+
+        <input
+            type="tel"
+            id="customer-phone"
+            placeholder="Enter your phone number"
+        >
+
+
+        <label for="customer-address">
+            Delivery Address
+        </label>
+
+        <textarea
+            id="customer-address"
+            placeholder="Enter your delivery address"
+        ></textarea>
+
+
+        <button id="place-order-btn">
+            Place Order
+        </button>
+
+    </div>
+
+
+
+    <!-- ===============================
+         ORDER CONFIRMATION
+    ================================= -->
+
+    <div
+        class="order-confirmation"
+        style="display: none;"
+    >
+
+        <h2>
+            🎉 Order Confirmed!
+        </h2>
+
+        <p>
+            Thank you for your order.
+        </p>
+
+        <p>
+            Order ID:
+            <strong id="order-id"></strong>
+        </p>
+
+        <div id="order-details"></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===============================
+     FLOATING CONTACT BUTTONS
+================================ -->
 
 <div class="floating-contact">
 
+
     <!-- WhatsApp -->
+
     <a
         href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
         class="whatsapp-float"
@@ -232,7 +394,9 @@
         💬
     </a>
 
+
     <!-- Email -->
+
     <a
         href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
         class="email-float"
@@ -242,4 +406,15 @@
     </a>
 
 </div>
+
+
+
+<!-- ===============================
+     JAVASCRIPT
+================================ -->
+
+<script src="script.js"></script>
+
+</body>
+
 </html>
