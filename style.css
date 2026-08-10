@@ -226,7 +226,15 @@ body p:last-of-type {
     nav {
         flex-direction: column;
         padding: 20px 15px;
-    }
+    }.cart-item {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+.quantity-controls {
+    justify-content: center;
+}
 
     .nav-links {
         gap: 12px;
