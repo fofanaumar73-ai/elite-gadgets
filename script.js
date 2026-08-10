@@ -4,7 +4,7 @@ const productButtons = document.querySelectorAll(".product-btn");
 const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
-
+const checkoutButton = document.getElementById("checkout-btn");
 // Load saved cart from the browser
 let cart = JSON.parse(localStorage.getItem("eliteGadgetsCart")) || [];
 
@@ -184,3 +184,15 @@ productButtons.forEach(function(button) {
 
 // Display saved cart when page loads
 updateCart();
+checkoutButton.addEventListener("click", function() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty. Please add a product first.");
+
+        return;
+    }
+
+    alert("Checkout is ready! We will build the order process next.");
+
+});
