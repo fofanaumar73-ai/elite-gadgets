@@ -1,3 +1,4 @@
+```javascript
 console.log("Elite Gadgets is ready!");
 
 const productButtons = document.querySelectorAll(".product-btn");
@@ -42,17 +43,14 @@ function updateCart() {
     let total = 0;
     let totalQuantity = 0;
 
-
     cart.forEach(function(item, index) {
 
         total += item.price * item.quantity;
         totalQuantity += item.quantity;
 
-
         const cartItem = document.createElement("div");
 
         cartItem.className = "cart-item";
-
 
         cartItem.innerHTML = `
             <div>
@@ -149,7 +147,6 @@ function updateCart() {
 }
 
 
-
 // ===============================
 // ADD PRODUCT TO CART
 // ===============================
@@ -199,16 +196,20 @@ productButtons.forEach(function(button) {
 
         // Scroll to cart
 
-        document.getElementById("cart").scrollIntoView({
+        const cartSection =
+            document.getElementById("cart");
 
-            behavior: "smooth"
+        if (cartSection) {
 
-        });
+            cartSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
 
     });
 
 });
-
 
 
 // ===============================
@@ -235,13 +236,10 @@ checkoutButton.addEventListener("click", function() {
 
 
     checkoutForm.scrollIntoView({
-
         behavior: "smooth"
-
     });
 
 });
-
 
 
 // ===============================
@@ -282,16 +280,164 @@ placeOrderButton.addEventListener("click", function() {
     }
 
 
-    // ORDER RECEIVED
+    // CALCULATE ORDER TOTAL
 
-    alert(
-        "Thank you, " +
-        customerName +
-        "! Your order has been received."
+    let orderTotal = 0;
+
+    cart.forEach(function(item) {
+
+        orderTotal += item.price * item.quantity;
+
+    });
+
+
+    // GENERATE ORDER ID
+
+    const orderId =
+        "EG-" +
+        Date.now().toString().slice(-8);
+
+
+    // CREATE ORDER OBJECT
+
+    const order = {
+
+        orderId: orderId,
+
+        customerName: customerName,
+
+        customerPhone: customerPhone,
+
+        customerAddress: customerAddress,
+
+        items: [...cart],
+
+        total: orderTotal,
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    // SAVE ORDER LOCALLY
+
+    localStorage.setItem(
+        "eliteGadgetsLastOrder",
+        JSON.stringify(order)
     );
 
-});
 
+    // DISPLAY ORDER ID
+
+    const orderIdElement =
+        document.getElementById("order-id");
+
+    if (orderIdElement) {
+
+        orderIdElement.textContent =
+            orderId;
+
+    }
+
+
+    // DISPLAY ORDER DETAILS
+
+    const orderDetails =
+        document.getElementById("order-details");
+
+
+    if (orderDetails) {
+
+        orderDetails.innerHTML = `
+
+            <p>
+                <strong>Customer:</strong>
+                ${customerName}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                ${customerPhone}
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                ${customerAddress}
+            </p>
+
+            <hr>
+
+            <h3>Order Items</h3>
+
+            ${cart.map(function(item) {
+
+                return `
+                    <p>
+                        ${item.name}
+                        × ${item.quantity}
+                        — ₦${(
+                            item.price * item.quantity
+                        ).toLocaleString()}
+                    </p>
+                `;
+
+            }).join("")}
+
+            <hr>
+
+            <p>
+                <strong>Total:</strong>
+                ₦${orderTotal.toLocaleString()}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                ${order.date}
+            </p>
+        `;
+
+    }
+
+
+    // HIDE CHECKOUT FORM
+
+    const checkoutForm =
+        document.getElementById("checkout-form");
+
+    checkoutForm.style.display = "none";
+
+
+    // SHOW ORDER CONFIRMATION
+
+    const orderConfirmation =
+        document.querySelector(".order-confirmation");
+
+
+    if (orderConfirmation) {
+
+        orderConfirmation.style.display = "block";
+
+        orderConfirmation.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    // CLEAR CART
+
+    cart = [];
+
+    updateCart();
+
+
+    // CLEAR CUSTOMER FORM
+
+    document.getElementById("customer-name").value = "";
+    document.getElementById("customer-phone").value = "";
+    document.getElementById("customer-address").value = "";
+
+});
 
 
 // ===============================
@@ -299,3 +445,4 @@ placeOrderButton.addEventListener("click", function() {
 // ===============================
 
 updateCart();
+```
