@@ -728,3 +728,73 @@ h1 {
         font-size: 22px;
     }
 }
+/* =================================
+   ORDER CONFIRMATION
+================================= */
+
+.order-confirmation {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 45px 35px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.10);
+    text-align: center;
+}
+
+.order-confirmation h2 {
+    margin-bottom: 15px;
+    color: #111827;
+    font-size: 30px;
+}
+
+.order-confirmation > p {
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+#order-id {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 14px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    color: #c9a227;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#order-details {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    text-align: left;
+}
+
+#order-details p {
+    margin: 8px 0;
+    color: #374151;
+}
+
+#order-details strong {
+    color: #111827;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .order-confirmation {
+        margin: 30px 15px;
+        padding: 35px 20px;
+    }
+
+    .order-confirmation h2 {
+        font-size: 25px;
+    }
+
+}
