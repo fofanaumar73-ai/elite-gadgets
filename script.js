@@ -438,20 +438,7 @@ placeOrderButton.addEventListener("click", async function() {
 
 });
 
-const placeOrderButton =
-    document.getElementById("place-order-btn");
 
-
-placeOrderButton.addEventListener("click", function() {
-
-    const customerName =
-        document.getElementById("customer-name").value.trim();
-
-    const customerPhone =
-        document.getElementById("customer-phone").value.trim();
-
-    const customerAddress =
-        document.getElementById("customer-address").value.trim();
 
 
     // Check customer details
