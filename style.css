@@ -1,6 +1,12 @@
-* {html {
+/* =================================
+   GLOBAL RESET
+================================= */
+
+html {
     scroll-behavior: smooth;
 }
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,6 +19,48 @@ body {
     text-align: center;
 }
 
+
+/* =================================
+   NAVIGATION
+================================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: #111827;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c9a227;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c9a227;
+}
+
+
+/* =================================
+   GENERAL HEADING
+================================= */
+
 h1 {
     background: #111;
     color: #fff;
@@ -20,36 +68,11 @@ h1 {
     font-size: 38px;
 }
 
-body p:first-of-type {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 30px;
-    color: #c9a227;
-}
 
-body p:last-of-type {
-    max-width: 650px;
-    margin: 15px auto;
-    padding: 0 20px 40px;
-    font-size: 17px;
-    color: #555;
-}
-<body>
+/* =================================
+   HERO SECTION
+================================= */
 
-    <nav>
-        <div class="logo">Elite Gadgets</div>
-
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">iPhones</a>
-            <a href="#">Samsung</a>
-            <a href="#">Accessories</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
-
-    <h1>Elite Gadgets</h1>
 .hero {
     min-height: 500px;
     padding: 80px 20px;
@@ -74,6 +97,8 @@ body p:last-of-type {
 }
 
 .hero h1 {
+    background: transparent;
+    padding: 0;
     font-size: 60px;
     margin-bottom: 20px;
     color: white;
@@ -84,7 +109,13 @@ body p:last-of-type {
     margin: 0 auto 30px;
     font-size: 18px;
     color: #d1d5db;
+    line-height: 1.6;
 }
+
+
+/* =================================
+   HERO BUTTONS
+================================= */
 
 .hero-buttons {
     display: flex;
@@ -103,8 +134,12 @@ body p:last-of-type {
 }
 
 .primary-btn {
+    position: relative;
+    overflow: hidden;
     background: #c9a227;
     color: #111;
+    box-shadow: 0 8px 20px rgba(201, 162, 39, 0.35);
+    animation: floatButton 2.5s ease-in-out infinite;
 }
 
 .primary-btn:hover {
@@ -118,6 +153,26 @@ body p:last-of-type {
     box-shadow: 0 8px 20px rgba(201, 162, 39, 0.20);
 }
 
+.secondary-btn:hover {
+    background: #c9a227;
+    color: #111;
+}
+
+
+/* =================================
+   BUTTON ANIMATIONS
+================================= */
+
+@keyframes floatButton {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
 @keyframes floatContact {
     0%, 100% {
         transform: translateY(0);
@@ -128,11 +183,41 @@ body p:last-of-type {
     }
 }
 
-.secondary-btn:hover {
-    background: #c9a227;
-    color: #111;
+
+/* Moving reflection */
+
+.primary-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shine 2.5s infinite;
 }
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    60%, 100% {
+        left: 130%;
+    }
 }
+
+
+/* =================================
+   PRODUCTS
+================================= */
+
 .products {
     padding: 80px 20px;
     background: #ffffff;
@@ -187,6 +272,15 @@ body p:last-of-type {
     background: #eeeeee;
     border-radius: 10px;
     margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
 }
 
 .product-card h3 {
@@ -215,117 +309,19 @@ body p:last-of-type {
     padding: 12px 22px;
     border-radius: 6px;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .product-btn:hover {
     background: #c9a227;
     color: #111;
 }
-@media (max-width: 768px) .checkout-form {
-    padding: 20px;
-}{
 
-    nav {
-        flex-direction: column;
-        padding: 20px 15px;
-    }
 
-    .cart-item {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-    }
+/* =================================
+   CART
+================================= */
 
-    .quantity-controls {
-        justify-content: center;
-    }
-
-}
-
-    .nav-links {
-        gap: 12px;
-    }
-
-    .nav-links a {
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 450px;
-        padding: 60px 20px;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
-
-    .hero-content > p:not(.hero-tag) {
-        font-size: 16px;
-    }
-
-    .product-grid {
-        grid-template-columns: 1fr;
-        max-width: 450px;
-    }
-
-    .section-title h2 {
-        font-size: 30px;
-    }
-}
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    border-radius: 10px;
-}
-.primary-btn {
-    position: relative;
-    overflow: hidden;
-    background: #c9a227;
-    color: #111;
-    box-shadow: 0 8px 20px rgba(201, 162, 39, 0.35);
-    animation: floatButton 2.5s ease-in-out infinite;
-}
-
-/* Floating effect */
-@keyframes floatButton {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
-}
-
-/* Moving reflection */
-.primary-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.65),
-        transparent
-    );
-    transform: skewX(-20deg);
-    animation: shine 2.5s infinite;
-}
-
-@keyframes shine {
-    0% {
-        left: -100%;
-    }
-
-    60%, 100% {
-        left: 130%;
-    }
-}
 .cart-section {
     padding: 80px 20px;
     background: #f5f5f5;
@@ -344,36 +340,6 @@ body p:last-of-type {
     border-radius: 10px;
 }
 
-.cart-summary {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 25px;
-    background: white;
-    border-radius: 10px;
-    text-align: right;
-}
-
-.cart-summary h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-#checkout-btn {
-    border: none;
-    padding: 14px 25px;
-    background: #c9a227;
-    color: #111;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#checkout-btn:hover {
-    background: #111827;
-    color: white;
-}
 .cart-item {
     background: white;
     padding: 20px;
@@ -434,6 +400,48 @@ body p:last-of-type {
 .remove-btn:hover {
     text-decoration: underline;
 }
+
+
+/* =================================
+   CART SUMMARY
+================================= */
+
+.cart-summary {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    text-align: right;
+}
+
+.cart-summary h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#checkout-btn {
+    border: none;
+    padding: 14px 25px;
+    background: #c9a227;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#checkout-btn:hover {
+    background: #111827;
+    color: white;
+}
+
+
+/* =================================
+   CHECKOUT FORM
+================================= */
+
 .checkout-form {
     display: none;
     max-width: 800px;
@@ -442,7 +450,6 @@ body p:last-of-type {
     background: white;
     border-radius: 12px;
     border: 1px solid #eeeeee;
-}
 }
 
 .checkout-form h2 {
@@ -497,9 +504,11 @@ body p:last-of-type {
     background: #111827;
     color: white;
 }
-/* ================================
+
+
+/* =================================
    ORDER CONFIRMATION
-================================ */
+================================= */
 
 .order-confirmation {
     max-width: 600px;
@@ -549,8 +558,65 @@ body p:last-of-type {
     color: #111827;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
+
+/* =================================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 450px;
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-content > p:not(.hero-tag) {
+        font-size: 16px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .quantity-controls {
+        justify-content: center;
+    }
+
+    .checkout-form {
+        padding: 20px;
+    }
+
     .order-confirmation {
         margin: 30px 15px;
         padding: 30px 20px;
@@ -558,5 +624,51 @@ body p:last-of-type {
 
     .order-confirmation h2 {
         font-size: 24px;
+    }
+}
+
+
+/* =================================
+   SMALL MOBILE DEVICES
+================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-links {
+        gap: 9px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-tag {
+        font-size: 12px;
+    }
+
+    .hero-content > p:not(.hero-tag) {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .section-title h2 {
+        font-size: 26px;
     }
 }
