@@ -252,6 +252,195 @@ checkoutButton.addEventListener("click", function() {
 const placeOrderButton =
     document.getElementById("place-order-btn");
 
+placeOrderButton.addEventListener("click", async function() {
+
+    const customerName =
+        document.getElementById("customer-name").value.trim();
+
+    const customerPhone =
+        document.getElementById("customer-phone").value.trim();
+
+    const customerAddress =
+        document.getElementById("customer-address").value.trim();
+
+
+    // Check customer details
+
+    if (
+        customerName === "" ||
+        customerPhone === "" ||
+        customerAddress === ""
+    ) {
+
+        alert(
+            "Please fill in all your details before placing your order."
+        );
+
+        return;
+    }
+
+
+    // Make sure cart isn't empty
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty. Please add a product first."
+        );
+
+        return;
+    }
+
+
+    // Calculate total
+
+    let orderTotal = 0;
+
+    cart.forEach(function(item) {
+
+        orderTotal +=
+            item.price * item.quantity;
+
+    });
+
+
+    // Create Order ID
+
+    const orderId =
+        "EG-" + Math.floor(100000 + Math.random() * 900000);
+
+
+    // Save order to Supabase
+
+    const { data, error } =
+        await supabaseClient
+            .from("orders")
+            .insert([
+                {
+                    id: crypto.randomUUID(),
+                    customer_name: customerName,
+                    customer_phone: customerPhone,
+                    customer_address: customerAddress,
+                    items: cart,
+                    total: orderTotal,
+                    status: "pending"
+                }
+            ])
+            .select();
+
+
+    // Check for database error
+
+    if (error) {
+
+        console.error("Order could not be saved:", error);
+
+        alert(
+            "Sorry, we couldn't place your order. Please try again."
+        );
+
+        return;
+    }
+
+
+    console.log("Order saved successfully:", data);
+
+
+    // Create order items for confirmation
+
+    let orderItems = "";
+
+    cart.forEach(function(item) {
+
+        orderItems += `
+            <p>
+                <strong>${item.name}</strong>
+                × ${item.quantity}
+                — ₦${(
+                    item.price * item.quantity
+                ).toLocaleString()}
+            </p>
+        `;
+
+    });
+
+
+    // Show Order ID
+
+    document.getElementById("order-id").textContent =
+        orderId;
+
+
+    // Show Order Details
+
+    document.getElementById("order-details").innerHTML = `
+
+        <p>
+            <strong>Customer:</strong>
+            ${customerName}
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            ${customerPhone}
+        </p>
+
+        <p>
+            <strong>Delivery Address:</strong>
+            ${customerAddress}
+        </p>
+
+        <h3>
+            Order Items
+        </h3>
+
+        ${orderItems}
+
+        <h3>
+            Total:
+            ₦${orderTotal.toLocaleString()}
+        </h3>
+
+    `;
+
+
+    // Show confirmation
+
+    const orderConfirmation =
+        document.getElementById("order-confirmation");
+
+    orderConfirmation.style.display =
+        "block";
+
+
+    // Hide checkout form
+
+    document.getElementById("checkout-form").style.display =
+        "none";
+
+
+    // Clear cart
+
+    cart = [];
+
+    localStorage.removeItem("eliteGadgetsCart");
+
+    updateCart();
+
+
+    // Scroll to confirmation
+
+    orderConfirmation.scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+});
+
+const placeOrderButton =
+    document.getElementById("place-order-btn");
+
 
 placeOrderButton.addEventListener("click", function() {
 
