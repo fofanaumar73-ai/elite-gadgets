@@ -5,12 +5,22 @@ const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 
+// Load saved cart from the browser
 let cart = JSON.parse(localStorage.getItem("eliteGadgetsCart")) || [];
 
 function updateCart() {
+
+    // Save the current cart
+    localStorage.setItem(
+        "eliteGadgetsCart",
+        JSON.stringify(cart)
+    );
+
     cartItems.innerHTML = "";
 
+    // If cart is empty
     if (cart.length === 0) {
+
         cartItems.innerHTML = `
             <p class="empty-cart">
                 Your cart is currently empty.
@@ -19,6 +29,7 @@ function updateCart() {
 
         cartTotal.textContent = "0";
         cartCount.textContent = "0";
+
         return;
     }
 
@@ -41,11 +52,17 @@ function updateCart() {
             </div>
 
             <div class="quantity-controls">
-                <button class="quantity-btn decrease-btn">−</button>
+
+                <button class="quantity-btn decrease-btn">
+                    −
+                </button>
 
                 <span>${item.quantity}</span>
 
-                <button class="quantity-btn increase-btn">+</button>
+                <button class="quantity-btn increase-btn">
+                    +
+                </button>
+
             </div>
 
             <button class="remove-btn">
@@ -53,73 +70,117 @@ function updateCart() {
             </button>
         `;
 
+        // Decrease quantity
         const decreaseButton =
             cartItem.querySelector(".decrease-btn");
-
-        const increaseButton =
-            cartItem.querySelector(".increase-btn");
-
-        const removeButton =
-            cartItem.querySelector(".remove-btn");
 
         decreaseButton.addEventListener("click", function() {
 
             if (item.quantity > 1) {
+
                 item.quantity--;
+
             } else {
+
                 cart.splice(index, 1);
+
             }
 
             updateCart();
         });
 
+
+        // Increase quantity
+        const increaseButton =
+            cartItem.querySelector(".increase-btn");
+
         increaseButton.addEventListener("click", function() {
+
             item.quantity++;
+
             updateCart();
         });
 
+
+        // Remove product
+        const removeButton =
+            cartItem.querySelector(".remove-btn");
+
         removeButton.addEventListener("click", function() {
+
             cart.splice(index, 1);
+
             updateCart();
         });
+
 
         cartItems.appendChild(cartItem);
     });
 
+
+    // Update total price
     cartTotal.textContent = total.toLocaleString();
+
+    // Update cart number
     cartCount.textContent = totalQuantity;
 }
 
 
+// Add products to cart
 productButtons.forEach(function(button) {
 
     button.addEventListener("click", function() {
 
-        const productName = button.dataset.product;
-        const productPrice = Number(button.dataset.price);
+        const productName =
+            button.dataset.product;
 
-        const existingProduct = cart.find(function(item) {
-            return item.name === productName;
-        });
+        const productPrice =
+            Number(button.dataset.price);
+
+
+        // Check if product already exists
+        const existingProduct =
+            cart.find(function(item) {
+
+                return item.name === productName;
+
+            });
+
 
         if (existingProduct) {
+
             existingProduct.quantity++;
+
         } else {
+
             cart.push({
+
                 name: productName,
+
                 price: productPrice,
+
                 quantity: 1
+
             });
+
         }
 
+
+        // Update and save cart
         updateCart();
 
+
+        // Smoothly move to cart
         document.getElementById("cart").scrollIntoView({
+
             behavior: "smooth"
+
         });
+
     });
 
 });
 
 
+// Display saved cart when page loads
 updateCart();
