@@ -252,7 +252,144 @@ const placeOrderButton =
     document.getElementById("place-order-btn");
 
 
+// ===============================
+// PLACE ORDER
+// ===============================
+
+const placeOrderButton =
+    document.getElementById("place-order-btn");
+
 placeOrderButton.addEventListener("click", function() {
+
+    const customerName =
+        document.getElementById("customer-name").value.trim();
+
+    const customerPhone =
+        document.getElementById("customer-phone").value.trim();
+
+    const customerAddress =
+        document.getElementById("customer-address").value.trim();
+
+
+    // CHECK CUSTOMER DETAILS
+
+    if (
+        customerName === "" ||
+        customerPhone === "" ||
+        customerAddress === ""
+    ) {
+
+        alert(
+            "Please fill in all your details before placing your order."
+        );
+
+        return;
+    }
+
+
+    // CREATE ORDER ID
+
+    const orderId =
+        "EG-" + Math.floor(100000 + Math.random() * 900000);
+
+
+    // CALCULATE TOTAL
+
+    let orderTotal = 0;
+
+    cart.forEach(function(item) {
+
+        orderTotal += item.price * item.quantity;
+
+    });
+
+
+    // CREATE ORDER DETAILS
+
+    let orderItems = "";
+
+    cart.forEach(function(item) {
+
+        orderItems += `
+            <p>
+                <strong>${item.name}</strong>
+                × ${item.quantity}
+                — ₦${(item.price * item.quantity).toLocaleString()}
+            </p>
+        `;
+
+    });
+
+
+    // SHOW ORDER ID
+
+    document.getElementById("order-id").textContent =
+        orderId;
+
+
+    // SHOW ORDER DETAILS
+
+    document.getElementById("order-details").innerHTML = `
+
+        <p>
+            <strong>Customer:</strong>
+            ${customerName}
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            ${customerPhone}
+        </p>
+
+        <p>
+            <strong>Delivery Address:</strong>
+            ${customerAddress}
+        </p>
+
+        <h3>Order Items</h3>
+
+        ${orderItems}
+
+        <h3>
+            Total:
+            ₦${orderTotal.toLocaleString()}
+        </h3>
+
+    `;
+
+
+    // SHOW CONFIRMATION BOX
+
+    const orderConfirmation =
+        document.getElementById("order-confirmation");
+
+    orderConfirmation.style.display = "block";
+
+
+    // HIDE CHECKOUT FORM
+
+    document.getElementById("checkout-form").style.display =
+        "none";
+
+
+    // CLEAR CART
+
+    cart = [];
+
+    localStorage.removeItem("eliteGadgetsCart");
+
+    updateCart();
+
+
+    // SCROLL TO CONFIRMATION
+
+    orderConfirmation.scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+});
 
     const customerName =
         document.getElementById("customer-name").value.trim();
