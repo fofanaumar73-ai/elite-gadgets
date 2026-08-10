@@ -432,3 +432,64 @@ body p:last-of-type {
 .remove-btn:hover {
     text-decoration: underline;
 }
+.checkout-form {
+    max-width: 800px;
+    margin: 30px auto 0;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eeeeee;
+}
+
+.checkout-form h2 {
+    margin-bottom: 25px;
+    color: #111827;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 18px;
+    font-weight: bold;
+    color: #111827;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+    border-color: #c9a227;
+}
+
+.checkout-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#place-order-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background: #c9a227;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#place-order-btn:hover {
+    background: #111827;
+    color: white;
+}
