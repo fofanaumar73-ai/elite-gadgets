@@ -1,516 +1,301 @@
-```javascript
-document.addEventListener("DOMContentLoaded", function () {
+console.log("Elite Gadgets is ready!");
 
-    console.log("Elite Gadgets is ready!");
+const productButtons = document.querySelectorAll(".product-btn");
+const cartCount = document.getElementById("cart-count");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const checkoutButton = document.getElementById("checkout-btn");
 
-    const productButtons = document.querySelectorAll(".product-btn");
-    const cartCount = document.getElementById("cart-count");
-    const cartItems = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    const checkoutButton = document.getElementById("checkout-btn");
-
-    let cart = JSON.parse(
-        localStorage.getItem("eliteGadgetsCart")
-    ) || [];
+// Load saved cart
+let cart = JSON.parse(localStorage.getItem("eliteGadgetsCart")) || [];
 
 
-    // ===============================
-    // UPDATE CART
-    // ===============================
+// ===============================
+// UPDATE CART
+// ===============================
 
-    function updateCart() {
+function updateCart() {
 
-        localStorage.setItem(
-            "eliteGadgetsCart",
-            JSON.stringify(cart)
-        );
+    // Save cart
+    localStorage.setItem(
+        "eliteGadgetsCart",
+        JSON.stringify(cart)
+    );
 
-        cartItems.innerHTML = "";
+    cartItems.innerHTML = "";
 
+    // Empty cart
+    if (cart.length === 0) {
 
-        if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <p class="empty-cart">
+                Your cart is currently empty.
+            </p>
+        `;
 
-            cartItems.innerHTML = `
-                <p class="empty-cart">
-                    Your cart is currently empty.
-                </p>
-            `;
+        cartTotal.textContent = "0";
+        cartCount.textContent = "0";
 
-            cartTotal.textContent = "0";
-            cartCount.textContent = "0";
+        return;
+    }
 
-            return;
-        }
-
-
-        let total = 0;
-        let totalQuantity = 0;
-
-
-        cart.forEach(function (item, index) {
-
-            total += item.price * item.quantity;
-            totalQuantity += item.quantity;
+    let total = 0;
+    let totalQuantity = 0;
 
 
-            const cartItem =
-                document.createElement("div");
+    cart.forEach(function(item, index) {
 
-            cartItem.className = "cart-item";
+        total += item.price * item.quantity;
+        totalQuantity += item.quantity;
 
 
-            cartItem.innerHTML = `
-                <div>
-                    <h3>${item.name}</h3>
-                    <p>₦${item.price.toLocaleString()}</p>
-                </div>
+        const cartItem = document.createElement("div");
 
-                <div class="quantity-controls">
+        cartItem.className = "cart-item";
 
-                    <button
-                        type="button"
-                        class="quantity-btn decrease-btn"
-                    >
-                        −
-                    </button>
 
-                    <span>${item.quantity}</span>
+        cartItem.innerHTML = `
+            <div>
+                <h3>${item.name}</h3>
+                <p>₦${item.price.toLocaleString()}</p>
+            </div>
 
-                    <button
-                        type="button"
-                        class="quantity-btn increase-btn"
-                    >
-                        +
-                    </button>
+            <div class="quantity-controls">
 
-                </div>
-
-                <button
-                    type="button"
-                    class="remove-btn"
-                >
-                    Remove
+                <button class="quantity-btn decrease-btn">
+                    −
                 </button>
-            `;
+
+                <span>${item.quantity}</span>
+
+                <button class="quantity-btn increase-btn">
+                    +
+                </button>
+
+            </div>
+
+            <button class="remove-btn">
+                Remove
+            </button>
+        `;
 
 
-            // DECREASE
+        // DECREASE QUANTITY
 
-            cartItem
-                .querySelector(".decrease-btn")
-                .addEventListener("click", function () {
+        const decreaseButton =
+            cartItem.querySelector(".decrease-btn");
 
-                    if (item.quantity > 1) {
+        decreaseButton.addEventListener("click", function() {
 
-                        item.quantity--;
+            if (item.quantity > 1) {
 
-                    } else {
+                item.quantity--;
 
-                        cart.splice(index, 1);
+            } else {
 
-                    }
+                cart.splice(index, 1);
 
-                    updateCart();
+            }
 
-                });
-
-
-            // INCREASE
-
-            cartItem
-                .querySelector(".increase-btn")
-                .addEventListener("click", function () {
-
-                    item.quantity++;
-
-                    updateCart();
-
-                });
-
-
-            // REMOVE
-
-            cartItem
-                .querySelector(".remove-btn")
-                .addEventListener("click", function () {
-
-                    cart.splice(index, 1);
-
-                    updateCart();
-
-                });
-
-
-            cartItems.appendChild(cartItem);
+            updateCart();
 
         });
 
 
-        cartTotal.textContent =
-            total.toLocaleString();
+        // INCREASE QUANTITY
 
-        cartCount.textContent =
-            totalQuantity;
+        const increaseButton =
+            cartItem.querySelector(".increase-btn");
 
-    }
+        increaseButton.addEventListener("click", function() {
 
-
-
-    // ===============================
-    // ADD PRODUCT TO CART
-    // ===============================
-
-    productButtons.forEach(function (button) {
-
-        button.addEventListener("click", function (event) {
-
-            event.preventDefault();
-
-
-            const productName =
-                button.getAttribute("data-product");
-
-
-            const productPrice =
-                Number(
-                    button.getAttribute("data-price")
-                );
-
-
-            if (!productName || !productPrice) {
-
-                console.error(
-                    "Product name or price is missing."
-                );
-
-                return;
-            }
-
-
-            const existingProduct =
-                cart.find(function (item) {
-
-                    return item.name === productName;
-
-                });
-
-
-            if (existingProduct) {
-
-                existingProduct.quantity++;
-
-            } else {
-
-                cart.push({
-
-                    name: productName,
-
-                    price: productPrice,
-
-                    quantity: 1
-
-                });
-
-            }
-
+            item.quantity++;
 
             updateCart();
 
-
-            const cartSection =
-                document.getElementById("cart");
+        });
 
 
-            if (cartSection) {
+        // REMOVE PRODUCT
 
-                cartSection.scrollIntoView({
-                    behavior: "smooth"
-                });
+        const removeButton =
+            cartItem.querySelector(".remove-btn");
 
-            }
+        removeButton.addEventListener("click", function() {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        });
+
+
+        cartItems.appendChild(cartItem);
+
+    });
+
+
+    // TOTAL PRICE
+
+    cartTotal.textContent =
+        total.toLocaleString();
+
+
+    // CART COUNT
+
+    cartCount.textContent =
+        totalQuantity;
+
+}
+
+
+
+// ===============================
+// ADD PRODUCT TO CART
+// ===============================
+
+productButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const productName =
+            button.dataset.product;
+
+        const productPrice =
+            Number(button.dataset.price);
+
+
+        // Check whether product already exists
+
+        const existingProduct =
+            cart.find(function(item) {
+
+                return item.name === productName;
+
+            });
+
+
+        if (existingProduct) {
+
+            existingProduct.quantity++;
+
+        } else {
+
+            cart.push({
+
+                name: productName,
+
+                price: productPrice,
+
+                quantity: 1
+
+            });
+
+        }
+
+
+        updateCart();
+
+
+        // Scroll to cart
+
+        document.getElementById("cart").scrollIntoView({
+
+            behavior: "smooth"
 
         });
 
     });
 
+});
 
 
-    // ===============================
-    // CHECKOUT
-    // ===============================
 
-    if (checkoutButton) {
+// ===============================
+// CHECKOUT
+// ===============================
 
-        checkoutButton.addEventListener(
-            "click",
-            function () {
+checkoutButton.addEventListener("click", function() {
 
-                if (cart.length === 0) {
+    if (cart.length === 0) {
 
-                    alert(
-                        "Your cart is empty. Please add a product first."
-                    );
-
-                    return;
-                }
-
-
-                const checkoutForm =
-                    document.getElementById(
-                        "checkout-form"
-                    );
-
-
-                if (checkoutForm) {
-
-                    checkoutForm.style.display =
-                        "block";
-
-                    checkoutForm.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
+        alert(
+            "Your cart is empty. Please add a product first."
         );
 
+        return;
     }
 
 
+    const checkoutForm =
+        document.getElementById("checkout-form");
 
-    // ===============================
-    // PLACE ORDER
-    // ===============================
 
-    const placeOrderButton =
-        document.getElementById(
-            "place-order-btn"
-        );
+    checkoutForm.style.display = "block";
 
 
-    if (placeOrderButton) {
+    checkoutForm.scrollIntoView({
 
-        placeOrderButton.addEventListener(
-            "click",
-            function () {
+        behavior: "smooth"
 
-                const customerName =
-                    document
-                        .getElementById("customer-name")
-                        .value
-                        .trim();
-
-
-                const customerPhone =
-                    document
-                        .getElementById("customer-phone")
-                        .value
-                        .trim();
-
-
-                const customerAddress =
-                    document
-                        .getElementById("customer-address")
-                        .value
-                        .trim();
-
-
-                if (
-                    customerName === "" ||
-                    customerPhone === "" ||
-                    customerAddress === ""
-                ) {
-
-                    alert(
-                        "Please fill in all your details before placing your order."
-                    );
-
-                    return;
-                }
-
-
-                let orderTotal = 0;
-
-
-                cart.forEach(function (item) {
-
-                    orderTotal +=
-                        item.price *
-                        item.quantity;
-
-                });
-
-
-                const orderId =
-                    "EG-" +
-                    Date.now()
-                        .toString()
-                        .slice(-8);
-
-
-                const order = {
-
-                    orderId: orderId,
-
-                    customerName: customerName,
-
-                    customerPhone: customerPhone,
-
-                    customerAddress: customerAddress,
-
-                    items: [...cart],
-
-                    total: orderTotal,
-
-                    date: new Date().toLocaleString()
-
-                };
-
-
-                localStorage.setItem(
-                    "eliteGadgetsLastOrder",
-                    JSON.stringify(order)
-                );
-
-
-                const orderIdElement =
-                    document.getElementById(
-                        "order-id"
-                    );
-
-
-                if (orderIdElement) {
-
-                    orderIdElement.textContent =
-                        orderId;
-
-                }
-
-
-                const orderDetails =
-                    document.getElementById(
-                        "order-details"
-                    );
-
-
-                if (orderDetails) {
-
-                    orderDetails.innerHTML = `
-
-                        <p>
-                            <strong>Customer:</strong>
-                            ${customerName}
-                        </p>
-
-                        <p>
-                            <strong>Phone:</strong>
-                            ${customerPhone}
-                        </p>
-
-                        <p>
-                            <strong>Address:</strong>
-                            ${customerAddress}
-                        </p>
-
-                        <hr>
-
-                        <h3>Order Items</h3>
-
-                        ${cart.map(function (item) {
-
-                            return `
-                                <p>
-                                    ${item.name}
-                                    × ${item.quantity}
-                                    — ₦${(
-                                        item.price *
-                                        item.quantity
-                                    ).toLocaleString()}
-                                </p>
-                            `;
-
-                        }).join("")}
-
-                        <hr>
-
-                        <p>
-                            <strong>Total:</strong>
-                            ₦${orderTotal.toLocaleString()}
-                        </p>
-
-                        <p>
-                            <strong>Date:</strong>
-                            ${order.date}
-                        </p>
-
-                    `;
-
-                }
-
-
-                const checkoutForm =
-                    document.getElementById(
-                        "checkout-form"
-                    );
-
-
-                if (checkoutForm) {
-
-                    checkoutForm.style.display =
-                        "none";
-
-                }
-
-
-                const orderConfirmation =
-                    document.querySelector(
-                        ".order-confirmation"
-                    );
-
-
-                if (orderConfirmation) {
-
-                    orderConfirmation.style.display =
-                        "block";
-
-                    orderConfirmation.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-
-                cart = [];
-
-                updateCart();
-
-
-                document.getElementById(
-                    "customer-name"
-                ).value = "";
-
-
-                document.getElementById(
-                    "customer-phone"
-                ).value = "";
-
-
-                document.getElementById(
-                    "customer-address"
-                ).value = "";
-
-            }
-        );
-
-    }
-
-
-    // ===============================
-    // LOAD CART
-    // ===============================
-
-    updateCart();
+    });
 
 });
-```
+
+
+
+// ===============================
+// PLACE ORDER
+// ===============================
+
+const placeOrderButton =
+    document.getElementById("place-order-btn");
+
+
+placeOrderButton.addEventListener("click", function() {
+
+    const customerName =
+        document.getElementById("customer-name").value.trim();
+
+
+    const customerPhone =
+        document.getElementById("customer-phone").value.trim();
+
+
+    const customerAddress =
+        document.getElementById("customer-address").value.trim();
+
+
+    // CHECK CUSTOMER DETAILS
+
+    if (
+        customerName === "" ||
+        customerPhone === "" ||
+        customerAddress === ""
+    ) {
+
+        alert(
+            "Please fill in all your details before placing your order."
+        );
+
+        return;
+    }
+
+
+    // ORDER RECEIVED
+
+    alert(
+        "Thank you, " +
+        customerName +
+        "! Your order has been received."
+    );
+
+});
+
+
+
+// ===============================
+// LOAD CART WHEN PAGE OPENS
+// ===============================
+
+updateCart();
