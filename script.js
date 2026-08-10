@@ -5,7 +5,7 @@ const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("eliteGadgetsCart")) || [];
 
 function updateCart() {
     cartItems.innerHTML = "";
