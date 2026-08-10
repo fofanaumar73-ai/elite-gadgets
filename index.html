@@ -11,108 +11,169 @@
 </head>
 
 <body>
-<body>
 
     <nav>
         <div class="logo">Elite Gadgets</div>
 
-       <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">iPhones</a>
-    <a href="#">Samsung</a>
-    <a href="#">Accessories</a>
-    <a href="#">Contact</a>
-    <a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a>
-</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#products">Shop</a>
+            <a href="#">iPhones</a>
+            <a href="#">Samsung</a>
+            <a href="#">Accessories</a>
+            <a href="#">Contact</a>
+            <a href="#cart" class="cart-link">
+                🛒 Cart <span id="cart-count">0</span>
+            </a>
+        </div>
     </nav>
 
-    
-    <h1>Elite Gadgets</h1>
+    <!-- HERO SECTION -->
+    <section class="hero">
 
-    <p>Premium Tech. Trusted Service.</p>
+        <div class="hero-content">
 
-    <p>
-       <section class="hero">
+            <p class="hero-tag">PREMIUM TECH. TRUSTED SERVICE.</p>
 
-    <div class="hero-content">
-        <p class="hero-tag">PREMIUM TECH. TRUSTED SERVICE.</p>
+            <h1>Upgrade Your World.</h1>
 
-        <h1>Upgrade Your World.</h1>
+            <p>
+                Discover premium smartphones, gadgets and accessories
+                carefully selected for you.
+            </p>
 
-        <p>
-            Discover premium smartphones, gadgets and accessories
-            carefully selected for you.
-        </p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn primary-btn">Shop Now</a>
+                <a href="#" class="btn secondary-btn">Contact Us</a>
+            </div>
 
-        <div class="hero-buttons">
-            <a href="#products" class="btn primary-btn">Shop Now</a>
-            <a href="#" class="btn secondary-btn">Contact Us</a>
-        </div>
-    </div>
-
-</section><section class="products" id="products">
-
-    <div class="section-title">
-        <p>OUR COLLECTION</p>
-        <h2>Featured Gadgets</h2>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card">
-            <div class="product-image">📱</div>
-            <h3>iPhone 17 Pro</h3>
-            <p>Premium performance. Beautifully designed.</p>
-            <h4>₦1,250,000</h4>
-            <a href="#" class="product-btn" data-product="iPhone 17 Pro" data-price="1250000">
-    View Product
-</a><a href="#" class="product-btn" data-product="Samsung Galaxy S24" data-price="950000">
-    View Product
-</a><a href="#" class="product-btn" data-product="AirPods Pro" data-price="350000">
-    View Product
-</a>
         </div>
 
-        <div class="product-card">
-            <div class="product-image">
-    <img src="images/iphone-17-pro.jpg" alt="iPhone 17 Pro">
-</div>
-            <h3>Samsung Galaxy S24</h3>
-            <p>Powerful performance with an incredible display.</p>
-            <h4>₦950,000</h4>
-            <a href="#" class="product-btn">View Product</a>
+    </section>
+
+
+    <!-- PRODUCTS SECTION -->
+    <section class="products" id="products">
+
+        <div class="section-title">
+            <p>OUR COLLECTION</p>
+            <h2>Featured Gadgets</h2>
         </div>
 
-        <div class="product-card">
-            <div class="product-image">🎧</div>
-            <h3>AirPods Pro</h3>
-            <p>Immersive sound with premium noise cancellation.</p>
-            <h4>₦350,000</h4>
-            <a href="#" class="product-btn">View Product</a>
+        <div class="product-grid">
+
+            <!-- iPhone -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="images/iphone-17-pro.jpg" alt="iPhone 17 Pro">
+                </div>
+
+                <h3>iPhone 17 Pro</h3>
+
+                <p>
+                    Premium performance. Beautifully designed.
+                </p>
+
+                <h4>₦1,250,000</h4>
+
+                <a href="#"
+                   class="product-btn"
+                   data-product="iPhone 17 Pro"
+                   data-price="1250000">
+                    View Product
+                </a>
+
+            </div>
+
+
+            <!-- Samsung -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    📱
+                </div>
+
+                <h3>Samsung Galaxy S24</h3>
+
+                <p>
+                    Powerful performance with an incredible display.
+                </p>
+
+                <h4>₦950,000</h4>
+
+                <a href="#"
+                   class="product-btn"
+                   data-product="Samsung Galaxy S24"
+                   data-price="950000">
+                    View Product
+                </a>
+
+            </div>
+
+
+            <!-- AirPods -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    🎧
+                </div>
+
+                <h3>AirPods Pro</h3>
+
+                <p>
+                    Immersive sound with premium noise cancellation.
+                </p>
+
+                <h4>₦350,000</h4>
+
+                <a href="#"
+                   class="product-btn"
+                   data-product="AirPods Pro"
+                   data-price="350000">
+                    View Product
+                </a>
+
+            </div>
+
         </div>
 
-    </div>
+    </section>
 
-</section><section class="cart-section" id="cart">
 
-    <div class="section-title">
-        <p>YOUR SHOPPING CART</p>
-        <h2>Cart</h2>
-    </div>
+    <!-- CART SECTION -->
+    <section class="cart-section" id="cart">
 
-    <div id="cart-items">
-        <p class="empty-cart">Your cart is currently empty.</p>
-    </div>
+        <div class="section-title">
+            <p>YOUR SHOPPING CART</p>
+            <h2>Cart</h2>
+        </div>
 
-    <div class="cart-summary">
-        <h3>Total: ₦<span id="cart-total">0</span></h3>
-        <button id="checkout-btn">Proceed to Checkout</button>
-    </div>
+        <div id="cart-items">
 
-</section>
-    </p>
-<script src="script.js"></script>
+            <p class="empty-cart">
+                Your cart is currently empty.
+            </p>
+
+        </div>
+
+        <div class="cart-summary">
+
+            <h3>
+                Total: ₦<span id="cart-total">0</span>
+            </h3>
+
+            <button id="checkout-btn">
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
