@@ -114,11 +114,24 @@ body p:last-of-type {
 .secondary-btn {
     border: 1px solid #c9a227;
     color: white;
+    animation: floatContact 2.5s ease-in-out infinite;
+    box-shadow: 0 8px 20px rgba(201, 162, 39, 0.20);
+}
+
+@keyframes floatContact {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .secondary-btn:hover {
     background: #c9a227;
     color: #111;
+}
 }
 .products {
     padding: 80px 20px;
