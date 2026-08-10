@@ -193,6 +193,23 @@ checkoutButton.addEventListener("click", function() {
         return;
     }
 
+    const checkoutForm = document.getElementById("checkout-form");
+
+    checkoutForm.style.display = "block";
+
+    checkoutForm.scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty. Please add a product first.");
+
+        return;
+    }
+
     alert("Checkout is ready! We will build the order process next.");
 
 });
