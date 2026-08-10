@@ -672,3 +672,59 @@ h1 {
         font-size: 26px;
     }
 }
+/* =================================
+   FLOATING CONTACT BUTTONS
+================================= */
+
+.floating-contact {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.floating-contact a {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.20);
+    transition: 0.3s ease;
+}
+
+.whatsapp-float {
+    background: #25D366;
+    color: white;
+}
+
+.email-float {
+    background: #111827;
+    color: white;
+}
+
+.floating-contact a:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .floating-contact {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .floating-contact a {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+}
