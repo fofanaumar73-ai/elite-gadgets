@@ -221,7 +221,9 @@ body p:last-of-type {
     background: #c9a227;
     color: #111;
 }
-@media (max-width: 768px) {
+@media (max-width: 768px) .checkout-form {
+    padding: 20px;
+}{
 
     nav {
         flex-direction: column;
