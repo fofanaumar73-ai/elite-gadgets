@@ -798,3 +798,39 @@ h1 {
     }
 
 }
+.order-confirmation {
+    display: none;
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 35px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.order-confirmation h2 {
+    color: #c9a227;
+    margin-bottom: 15px;
+}
+
+.order-confirmation p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.order-confirmation strong {
+    color: #111827;
+}
+
+#order-details {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eeeeee;
+    text-align: left;
+}
+
+#order-details p {
+    margin: 8px 0;
+}
