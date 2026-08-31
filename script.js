@@ -457,18 +457,20 @@ placeOrderButton.addEventListener(
         // CHECK DATABASE ERROR
         // ===============================
 
-        if (error) {
+if (error) {
 
-            console.error(
-                "Order could not be saved:",
-                error
-            );
+    console.error(
+        "Order could not be saved:",
+        error
+    );
 
-            alert(
-                "Sorry, we couldn't place your order. Please try again."
-            );
+    alert(
+        "Supabase Error: " +
+        error.message
+    );
 
-            return;
+    return;
+}
         }
 
 
