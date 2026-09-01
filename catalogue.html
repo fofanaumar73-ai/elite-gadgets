@@ -12,15 +12,17 @@
 
     <meta
         name="description"
-        content="Elite Gadgets device details."
+        content="Elite Gadgets — Premium smartphones, gadgets and trusted technology services."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0b0f"
     >
 
     <title>
-        Device Details | Elite Gadgets
+        Elite Gadgets | Premium Tech
     </title>
-
-
-    <!-- MAIN WEBSITE CSS -->
 
     <link
         rel="stylesheet"
@@ -28,286 +30,110 @@
     >
 
 
-    <!-- PAGE-SPECIFIC CSS -->
-
     <style>
 
         /* =====================================
-           DETAILS PAGE
+           FEATURED PRODUCT IMAGE GALLERY
         ===================================== */
 
-        .details-page {
-
-            width: min(
-                calc(100% - 30px),
-                1150px
-            );
-
-            margin: auto;
-
-            padding:
-                130px 0
-                90px;
-
-        }
-
-
-        /* =====================================
-           HEADER
-        ===================================== */
-
-        .details-header {
-
-            text-align: center;
-
-            max-width: 760px;
-
-            margin:
-                0 auto
-                45px;
-
-        }
-
-
-        .details-header h1 {
-
-            font-size:
-                clamp(
-                    2.7rem,
-                    7vw,
-                    5.5rem
-                );
-
-            line-height: .95;
-
-            letter-spacing: -4px;
-
-            margin:
-                12px 0
-                18px;
-
-        }
-
-
-        .details-header p {
-
-            color: #a5a5ad;
-
-            line-height: 1.7;
-
-        }
-
-
-        /* =====================================
-           IMAGE GALLERY
-        ===================================== */
-
-        .details-gallery {
-
+        .product-image-gallery {
             display: grid;
-
-            grid-template-columns:
-                2fr 1fr;
-
-            grid-template-rows:
-                1fr 1fr;
-
-            gap: 5px;
-
-            height: 600px;
-
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            height: 390px;
+            overflow: hidden;
             background: #0b0b0f;
-
-            border-radius: 26px;
-
-            overflow: hidden;
-
-            margin-bottom: 45px;
-
         }
 
-
-        .details-image {
-
+        .featured-image {
+            min-width: 0;
+            min-height: 0;
             overflow: hidden;
-
             background: #111116;
-
         }
 
-
-        .details-image:first-child {
-
-            grid-row:
-                1 / 3;
-
+        .featured-image.large {
+            grid-row: 1 / 3;
         }
 
-
-        .details-image img {
-
+        .featured-image img {
             width: 100%;
-
             height: 100%;
-
             object-fit: cover;
-
             display: block;
-
+            transition: transform 0.4s ease;
         }
 
+        .product-card:hover .featured-image img {
+            transform: scale(1.04);
+        }
 
-        /* IMAGE PLACEHOLDER */
-
-        .image-space {
-
+        .product-placeholder {
             width: 100%;
-
             height: 100%;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             color: #777780;
-
-            font-size: .7rem;
-
+            font-size: 0.7rem;
             letter-spacing: 2px;
-
         }
 
+        .learn-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
         /* =====================================
-           DETAILS GRID
+           FLOATING LEARN MORE BUTTON
         ===================================== */
 
-        .details-content {
+        .floating-learn-more {
+            position: fixed;
+            right: 24px;
+            bottom: 28px;
+            z-index: 1000;
 
-            display: grid;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
-            grid-template-columns:
-                1fr 1fr;
+            padding: 13px 20px;
 
-            gap: 18px;
+            background: #ffffff;
+            color: #08080b;
 
-        }
+            border-radius: 999px;
 
-
-        .details-box {
-
-            padding: 30px;
-
-            border:
-                1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    .08
-                );
-
-            border-radius: 22px;
-
-            background: #141419;
-
-        }
-
-
-        .details-box.full {
-
-            grid-column:
-                1 / -1;
-
-        }
-
-
-        .details-box h2 {
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .details-box p {
-
-            color: #a5a5ad;
-
-            line-height: 1.75;
-
-        }
-
-
-        .detail-label {
-
-            color: #777780;
-
-            font-size: .68rem;
-
+            font-size: 0.75rem;
             font-weight: 800;
+            letter-spacing: 1px;
 
-            letter-spacing: 2px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 
-            margin-bottom: 9px;
-
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
-
-        /* =====================================
-           BUTTONS
-        ===================================== */
-
-        .details-actions {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 12px;
-
-            flex-wrap: wrap;
-
-            margin-top: 35px;
-
+        .floating-learn-more:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
         }
 
+        @media (max-width: 600px) {
 
-        /* =====================================
-           MOBILE
-        ===================================== */
-
-        @media (max-width: 700px) {
-
-            .details-gallery {
-
-                height: 430px;
-
+            .product-image-gallery {
+                height: 330px;
             }
 
-
-            .details-content {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .details-box.full {
-
-                grid-column:
-                    auto;
-
-            }
-
-
-            .details-header h1 {
-
-                letter-spacing:
-                    -2px;
-
+            .floating-learn-more {
+                right: 15px;
+                bottom: 18px;
+                padding: 12px 16px;
+                font-size: 0.68rem;
             }
 
         }
@@ -320,53 +146,53 @@
 <body>
 
 
-    <!-- =====================================
+    <!-- ===============================
          HEADER
-    ===================================== -->
+    ================================= -->
 
     <header class="site-header">
 
         <nav class="navbar">
 
-
             <a
-                href="index.html"
+                href="#home"
                 class="logo"
             >
                 Elite Gadgets
             </a>
 
 
-            <div class="nav-links">
+            <div
+                class="nav-links"
+                id="nav-links"
+            >
 
-                <a href="index.html">
+                <a href="#home">
                     Home
                 </a>
 
-                <a href="catalogue.html">
-                    Collection
-                </a>
-
-                <a href="index.html#about">
+                <a href="#about">
                     About
                 </a>
 
-                <a href="index.html#why-us">
+                <a href="#collection">
+                    Collection
+                </a>
+
+                <a href="#why-us">
                     Why Us
                 </a>
 
-                <a href="index.html#faq">
+                <a href="#faq">
                     FAQ
                 </a>
 
-                <a href="index.html#contact">
+                <a href="#contact">
                     Contact
                 </a>
 
             </div>
 
-
-            <!-- WHATSAPP -->
 
             <a
                 href="https://wa.me/2349072084278"
@@ -377,956 +203,915 @@
             </a>
 
 
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+            >
+                ☰
+            </button>
+
         </nav>
 
     </header>
 
 
 
-    <!-- =====================================
-         MAIN DETAILS PAGE
-    ===================================== -->
+    <!-- ===============================
+         HERO
+    ================================= -->
 
-    <main class="details-page">
+    <main>
 
+        <section
+            class="hero"
+            id="home"
+        >
 
-        <!-- =================================
-             DEVICE HEADER
-        ================================= -->
+            <div class="hero-content">
 
-        <div class="details-header">
-
-
-            <p
-                class="eyebrow"
-                id="device-brand"
-            >
-                APPLE
-            </p>
+                <p class="eyebrow">
+                    PREMIUM TECH. TRUSTED SERVICE.
+                </p>
 
 
-            <h1
-                id="device-name"
-            >
-                iPhone 17 Pro
-            </h1>
+                <h1>
+                    Technology
+                    <span>Worth Having.</span>
+                </h1>
 
 
-            <p
-                id="device-description"
-            >
-                <!--
-                    INSERT SHORT DESCRIPTION HERE
-                -->
-            </p>
+                <p class="hero-description">
+
+                    Discover carefully selected smartphones
+                    and premium gadgets from a brand built
+                    around quality, trust and exceptional service.
+
+                </p>
 
 
-        </div>
+                <div class="hero-actions">
+
+                    <a
+                        href="#collection"
+                        class="btn btn-primary"
+                    >
+                        Explore Collection
+                    </a>
 
 
+                    <a
+                        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
+                        class="btn btn-outline"
+                        target="_blank"
+                    >
+                        Chat With Us
+                    </a>
 
-        <!-- =================================
-             THREE IMAGE SPACES
-        ================================= -->
-
-        <div class="details-gallery">
-
-
-            <!-- IMAGE 1 -->
-
-            <div class="details-image">
-
-                <img
-                    id="image-1"
-                    src=""
-                    alt="Device image"
-                >
-
-                <div
-                    class="image-space"
-                    id="image-placeholder-1"
-                >
-                    INSERT IMAGE 1
                 </div>
 
             </div>
 
 
+            <div class="hero-visual">
 
-            <!-- IMAGE 2 -->
+                <div class="hero-glow"></div>
 
-            <div class="details-image">
+                <div class="hero-phone">
 
-                <div
-                    class="image-space"
-                    id="image-space-2"
-                >
-                    INSERT IMAGE 2
+                    <div class="phone-camera"></div>
+
+                    <div class="phone-screen">
+
+                        <span>
+                            ELITE
+                        </span>
+
+                        <strong>
+                            GADGETS
+                        </strong>
+
+                    </div>
+
                 </div>
 
             </div>
 
-
-
-            <!-- IMAGE 3 -->
-
-            <div class="details-image">
-
-                <div
-                    class="image-space"
-                    id="image-space-3"
-                >
-                    INSERT IMAGE 3
-                </div>
-
-            </div>
-
-
-        </div>
+        </section>
 
 
 
-        <!-- =================================
-             DEVICE INFORMATION
+        <!-- ===============================
+             ABOUT
         ================================= -->
 
-        <section class="details-content">
+        <section
+            class="section about-section"
+            id="about"
+        >
 
+            <div class="section-heading">
 
-            <!-- ABOUT -->
-
-            <div class="details-box full">
-
-
-                <p class="detail-label">
-                    ABOUT THIS DEVICE
+                <p class="eyebrow">
+                    ABOUT ELITE GADGETS
                 </p>
-
 
                 <h2>
-                    About
+                    More Than Just
+                    <span>Technology.</span>
                 </h2>
 
+            </div>
 
-                <p id="about">
-                    INSERT FULL DEVICE DESCRIPTION HERE
+
+            <div class="about-grid">
+
+                <div class="about-text">
+
+                    <p>
+
+                        Elite Gadgets is a modern technology
+                        brand focused on bringing premium
+                        smartphones and gadgets closer to
+                        people who value quality.
+
+                    </p>
+
+
+                    <p>
+
+                        Every device showcased on our platform
+                        is presented with clear information
+                        so you can explore your options and
+                        contact us directly for enquiries.
+
+                    </p>
+
+
+                    <a
+                        href="#contact"
+                        class="text-link"
+                    >
+                        Learn More About Us →
+                    </a>
+
+                </div>
+
+
+                <div class="about-stats">
+
+                    <div class="stat-card">
+
+                        <strong>
+                            Premium
+                        </strong>
+
+                        <span>
+                            Device Selection
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <strong>
+                            Trusted
+                        </strong>
+
+                        <span>
+                            Customer Service
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <strong>
+                            Direct
+                        </strong>
+
+                        <span>
+                            Customer Support
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <strong>
+                            Quality
+                        </strong>
+
+                        <span>
+                            First Approach
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             COLLECTION
+        ================================= -->
+
+        <section
+            class="section collection-section"
+            id="collection"
+        >
+
+            <div class="section-heading centered">
+
+                <p class="eyebrow">
+                    OUR COLLECTION
                 </p>
+
+                <h2>
+                    Featured
+                    <span>Devices.</span>
+                </h2>
+
+                <p>
+                    Explore selected devices from Elite Gadgets.
+                    View more images and complete product details
+                    through our collection.
+                </p>
+
+            </div>
+
+
+            <div class="category-buttons">
+
+                <button
+                    class="category-btn active"
+                    type="button"
+                >
+                    All
+                </button>
+
+                <button
+                    class="category-btn"
+                    type="button"
+                >
+                    iPhone
+                </button>
+
+                <button
+                    class="category-btn"
+                    type="button"
+                >
+                    Samsung
+                </button>
+
+                <button
+                    class="category-btn"
+                    type="button"
+                >
+                    Accessories
+                </button>
+
+            </div>
+
+
+            <div class="product-grid">
+
+
+                <!-- ===============================
+                     IPHONE 17 PRO
+                ================================= -->
+
+                <article class="product-card">
+
+                    <div class="product-image-gallery">
+
+                        <div class="featured-image large">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
+
+                        <div class="featured-image">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
+
+                        <div class="featured-image">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <p class="product-brand">
+                            APPLE
+                        </p>
+
+                        <h3>
+                            iPhone 17 Pro
+                        </h3>
+
+                        <p>
+                            A premium iPhone experience
+                            focused on powerful performance,
+                            advanced photography and refined design.
+                        </p>
+
+                        <a
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
+                        >
+                            LEARN MORE →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ===============================
+                     IPHONE 16
+                ================================= -->
+
+                <article class="product-card">
+
+                    <div class="product-image-gallery">
+
+                        <div class="featured-image large">
+                            <div class="product-placeholder">
+                                IPHONE 16
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <p class="product-brand">
+                            APPLE
+                        </p>
+
+                        <h3>
+                            iPhone 16
+                        </h3>
+
+                        <p>
+                            A modern iPhone built for
+                            everyday performance, photography
+                            and a smooth premium experience.
+                        </p>
+
+                        <a
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
+                        >
+                            LEARN MORE →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ===============================
+                     IPHONE 15 PRO
+                ================================= -->
+
+                <article class="product-card">
+
+                    <div class="product-image-gallery">
+
+                        <div class="featured-image large">
+                            <div class="product-placeholder">
+                                IPHONE 15 PRO
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <p class="product-brand">
+                            APPLE
+                        </p>
+
+                        <h3>
+                            iPhone 15 Pro
+                        </h3>
+
+                        <p>
+                            A premium Pro model designed
+                            around strong performance,
+                            camera capability and durability.
+                        </p>
+
+                        <a
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
+                        >
+                            LEARN MORE →
+                        </a>
+
+                    </div>
+
+                </article>
 
 
             </div>
 
 
+            <!-- =================================
+                 FLOATING LEARN MORE
+            ================================= -->
 
-            <!-- CAMERA -->
-
-            <div class="details-box">
-
-
-                <p class="detail-label">
-                    CAMERA
-                </p>
-
-
-                <h2>
-                    Camera
-                </h2>
-
-
-                <p id="camera">
-                    INSERT CAMERA DETAILS HERE
-                </p>
-
-
-            </div>
-
-
-
-            <!-- DURABILITY -->
-
-            <div class="details-box">
-
-
-                <p class="detail-label">
-                    DURABILITY
-                </p>
-
-
-                <h2>
-                    Durability
-                </h2>
-
-
-                <p id="durability">
-                    INSERT HOW STRONG THE DEVICE IS HERE
-                </p>
-
-
-            </div>
-
-
-
-            <!-- STORAGE -->
-
-            <div class="details-box">
-
-
-                <p class="detail-label">
-                    STORAGE
-                </p>
-
-
-                <h2>
-                    Storage
-                </h2>
-
-
-                <p id="storage">
-                    INSERT STORAGE OPTIONS HERE
-                </p>
-
-
-            </div>
-
-
-
-            <!-- BATTERY -->
-
-            <div class="details-box">
-
-
-                <p class="detail-label">
-                    BATTERY
-                </p>
-
-
-                <h2>
-                    Battery
-                </h2>
-
-
-                <p id="battery">
-                    INSERT BATTERY DETAILS HERE
-                </p>
-
-
-            </div>
-
-
-
-            <!-- OTHER IMPORTANT DETAILS -->
-
-            <div class="details-box full">
-
-
-                <p class="detail-label">
-                    IMPORTANT DETAILS
-                </p>
-
-
-                <h2>
-                    Why this device?
-                </h2>
-
-
-                <p id="features">
-                    INSERT OTHER IMPORTANT DETAILS HERE
-                </p>
-
-
-            </div>
+            <a
+                href="catalogue.html"
+                class="floating-learn-more"
+                aria-label="Explore the full Elite Gadgets collection"
+            >
+                LEARN MORE
+                <span>→</span>
+            </a>
 
 
         </section>
 
 
 
-        <!-- =================================
-             ACTION BUTTONS
+        <!-- ===============================
+             WHY US
         ================================= -->
 
-        <div class="details-actions">
+        <section
+            class="section why-section"
+            id="why-us"
+        >
+
+            <div class="section-heading centered">
+
+                <p class="eyebrow">
+                    WHY ELITE GADGETS
+                </p>
+
+                <h2>
+                    Built Around
+                    <span>Trust.</span>
+                </h2>
+
+            </div>
 
 
-            <!-- WHATSAPP -->
+            <div class="features-grid">
 
-            <a
-                href="https://wa.me/2349072084278"
-                class="btn btn-primary"
-                target="_blank"
-            >
-                Ask on WhatsApp
-            </a>
+                <div class="feature-card">
 
+                    <div class="feature-number">
+                        01
+                    </div>
 
-            <!-- EMAIL -->
+                    <h3>
+                        Carefully Selected
+                    </h3>
 
-            <a
-                href="mailto:fofanaabdullah70@gmail.com"
-                class="btn btn-outline"
-            >
-                Email Us
-            </a>
+                    <p>
+                        We focus on presenting quality
+                        smartphones and gadgets worth
+                        considering.
+                    </p>
 
-
-            <!-- BACK -->
-
-            <a
-                href="catalogue.html"
-                class="btn btn-outline"
-            >
-                Back to Collection
-            </a>
+                </div>
 
 
-        </div>
+                <div class="feature-card">
 
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Clear Information
+                    </h3>
+
+                    <p>
+                        Explore device details and
+                        specifications before making
+                        an enquiry.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Direct Support
+                    </h3>
+
+                    <p>
+                        Speak directly with Elite Gadgets
+                        through WhatsApp or email.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Customer First
+                    </h3>
+
+                    <p>
+                        Our goal is to make discovering
+                        your next device simple and reliable.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             FAQ
+        ================================= -->
+
+        <section
+            class="section faq-section"
+            id="faq"
+        >
+
+            <div class="section-heading centered">
+
+                <p class="eyebrow">
+                    FREQUENTLY ASKED QUESTIONS
+                </p>
+
+                <h2>
+                    Questions?
+                    <span>We've Got Answers.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="faq-container">
+
+                <details>
+
+                    <summary>
+                        Do you sell the phones displayed?
+                    </summary>
+
+                    <p>
+                        The website is designed as a digital
+                        showroom. Contact Elite Gadgets directly
+                        to confirm availability and purchasing
+                        information for any device.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        How can I enquire about a phone?
+                    </summary>
+
+                    <p>
+                        You can contact us directly through
+                        WhatsApp or email. Simply mention the
+                        device you're interested in.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Do you display prices online?
+                    </summary>
+
+                    <p>
+                        Prices are not displayed publicly.
+                        Contact Elite Gadgets for current
+                        availability and pricing information.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Can I view more pictures of a device?
+                    </summary>
+
+                    <p>
+                        Yes. Device pages will provide detailed
+                        images and information as our collection
+                        grows.
+                    </p>
+
+                </details>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             CONTACT
+        ================================= -->
+
+        <section
+            class="contact-section"
+            id="contact"
+        >
+
+            <div class="contact-content">
+
+                <p class="eyebrow">
+                    GET IN TOUCH
+                </p>
+
+
+                <h2>
+                    Found Something
+                    <span>You Like?</span>
+                </h2>
+
+
+                <p>
+
+                    Talk to Elite Gadgets directly.
+                    We're ready to answer your questions
+                    and help you find the right device.
+
+                </p>
+
+
+                <div class="contact-actions">
+
+                    <a
+                        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
+                        class="btn btn-primary"
+                        target="_blank"
+                    >
+                        WhatsApp Us
+                    </a>
+
+
+                    <a
+                        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
+                        class="btn btn-outline"
+                    >
+                        Email Us
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
 
 
-    <!-- =====================================
+    <!-- ===============================
          FOOTER
-    ===================================== -->
+    ================================= -->
 
     <footer class="site-footer">
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="#home"
+                    class="logo"
+                >
+                    Elite Gadgets
+                </a>
+
+                <p>
+                    Premium Tech. Trusted Service.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#collection">
+                    Collection
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Legal
+                </h4>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms & Conditions
+                </a>
+
+                <a href="#">
+                    Cookie Policy
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a
+                    href="https://wa.me/2349072084278"
+                    target="_blank"
+                >
+                    WhatsApp
+                </a>
+
+                <a
+                    href="mailto:fofanaabdullah70@gmail.com"
+                >
+                    Email
+                </a>
+
+            </div>
+
+        </div>
 
 
         <div class="footer-bottom">
 
-
             <p>
-                © 2026 Elite Gadgets.
-                All rights reserved.
+                © 2026 Elite Gadgets. All rights reserved.
             </p>
 
-
             <p>
-                Premium Tech.
-                Trusted Service.
+                Premium Tech. Trusted Service.
             </p>
-
 
         </div>
-
 
     </footer>
 
 
 
-    <!-- =====================================
-         PRODUCT DATABASE
-    ===================================== -->
+    <!-- ===============================
+         FLOATING CONTACT BUTTONS
+    ================================= -->
+
+    <a
+        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat with Elite Gadgets on WhatsApp"
+    >
+        💬
+    </a>
+
+
+    <a
+        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
+        class="email-float"
+        aria-label="Email Elite Gadgets"
+    >
+        ✉️
+    </a>
+
+
+
+    <!-- ===============================
+         JAVASCRIPT
+    ================================= -->
 
     <script>
 
+        const menuToggle =
+            document.getElementById("menu-toggle");
 
-        /*
-        =====================================================
-        ELITE GADGETS PRODUCT INFORMATION
+        const navLinks =
+            document.getElementById("nav-links");
 
-        THIS IS WHERE WE WILL PUT THE DETAILS
-        FOR EACH DEVICE.
 
-        DO NOT WORRY ABOUT FILLING EVERYTHING NOW.
+        menuToggle.addEventListener(
+            "click",
+            function() {
 
-        WE WILL ADD THE REAL INFORMATION LATER.
-        =====================================================
-        */
-
-
-        const products = {
-
-
-            /* =================================
-               IPHONE 17 PRO
-            ================================= */
-
-            "iphone-17-pro": {
-
-
-                brand:
-                    "APPLE",
-
-
-                name:
-                    "iPhone 17 Pro",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "image/iphone-17-pro.jpg",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT FULL DEVICE DESCRIPTION HERE",
-
-
-                camera:
-                    "INSERT CAMERA DETAILS HERE",
-
-
-                durability:
-                    "INSERT DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "INSERT STORAGE OPTIONS HERE",
-
-
-                battery:
-                    "INSERT BATTERY DETAILS HERE",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT DETAILS HERE"
-
-            },
-
-
-
-            /* =================================
-               IPHONE 16
-            ================================= */
-
-            "iphone-16": {
-
-
-                brand:
-                    "APPLE",
-
-
-                name:
-                    "iPhone 16",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT FULL DEVICE DESCRIPTION HERE",
-
-
-                camera:
-                    "INSERT CAMERA DETAILS HERE",
-
-
-                durability:
-                    "INSERT DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "INSERT STORAGE OPTIONS HERE",
-
-
-                battery:
-                    "INSERT BATTERY DETAILS HERE",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT DETAILS HERE"
-
-            },
-
-
-
-            /* =================================
-               IPHONE 15 PRO
-            ================================= */
-
-            "iphone-15-pro": {
-
-
-                brand:
-                    "APPLE",
-
-
-                name:
-                    "iPhone 15 Pro",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT FULL DEVICE DESCRIPTION HERE",
-
-
-                camera:
-                    "INSERT CAMERA DETAILS HERE",
-
-
-                durability:
-                    "INSERT DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "INSERT STORAGE OPTIONS HERE",
-
-
-                battery:
-                    "INSERT BATTERY DETAILS HERE",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT DETAILS HERE"
-
-            },
-
-
-
-            /* =================================
-               SAMSUNG S26 ULTRA
-            ================================= */
-
-            "samsung-s26-ultra": {
-
-
-                brand:
-                    "SAMSUNG",
-
-
-                name:
-                    "Galaxy S26 Ultra",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT FULL DEVICE DESCRIPTION HERE",
-
-
-                camera:
-                    "INSERT CAMERA DETAILS HERE",
-
-
-                durability:
-                    "INSERT DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "INSERT STORAGE OPTIONS HERE",
-
-
-                battery:
-                    "INSERT BATTERY DETAILS HERE",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT DETAILS HERE"
-
-            },
-
-
-
-            /* =================================
-               JBL
-            ================================= */
-
-            "jbl-speakers": {
-
-
-                brand:
-                    "JBL",
-
-
-                name:
-                    "JBL Speakers",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT SPEAKER DESCRIPTION HERE",
-
-
-                camera:
-                    "N/A",
-
-
-                durability:
-                    "INSERT SPEAKER DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "N/A",
-
-
-                battery:
-                    "INSERT BATTERY DETAILS HERE",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT SPEAKER DETAILS HERE"
-
-            },
-
-
-
-            /* =================================
-               PLAYSTATION
-            ================================= */
-
-            "playstation": {
-
-
-                brand:
-                    "SONY PLAYSTATION",
-
-
-                name:
-                    "PlayStation",
-
-
-                description:
-                    "INSERT SHORT DESCRIPTION HERE",
-
-
-                image1:
-                    "",
-
-
-                image2:
-                    "",
-
-
-                image3:
-                    "",
-
-
-                about:
-                    "INSERT PLAYSTATION DESCRIPTION HERE",
-
-
-                camera:
-                    "N/A",
-
-
-                durability:
-                    "INSERT CONSOLE DURABILITY DETAILS HERE",
-
-
-                storage:
-                    "INSERT STORAGE DETAILS HERE",
-
-
-                battery:
-                    "N/A",
-
-
-                features:
-                    "INSERT OTHER IMPORTANT PLAYSTATION DETAILS HERE"
-
-            }
-
-        };
-
-
-
-        /* =====================================
-           READ PRODUCT FROM URL
-        ===================================== */
-
-
-        const urlParams =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const productKey =
-            urlParams.get(
-                "product"
-            );
-
-
-
-        /*
-        =====================================================
-        IMPORTANT:
-
-        WE NO LONGER AUTOMATICALLY USE IPHONE 17 PRO.
-
-        IF A PRODUCT IS NOT FOUND, WE SHOW AN ERROR
-        INSTEAD OF WRONG PRODUCT INFORMATION.
-        =====================================================
-        */
-
-
-        if (
-            !productKey ||
-            !products[productKey]
-        ) {
-
-
-            document.getElementById(
-                "device-brand"
-            ).textContent =
-                "ELITE GADGETS";
-
-
-            document.getElementById(
-                "device-name"
-            ).textContent =
-                "Device Not Found";
-
-
-            document.getElementById(
-                "device-description"
-            ).textContent =
-                "The device you're looking for could not be found.";
-
-
-        } else {
-
-
-            const product =
-                products[productKey];
-
-
-
-            /* =================================
-               BASIC INFORMATION
-            ================================= */
-
-            document.getElementById(
-                "device-brand"
-            ).textContent =
-                product.brand;
-
-
-            document.getElementById(
-                "device-name"
-            ).textContent =
-                product.name;
-
-
-            document.getElementById(
-                "device-description"
-            ).textContent =
-                product.description;
-
-
-
-            /* =================================
-               DETAILS
-            ================================= */
-
-            document.getElementById(
-                "about"
-            ).textContent =
-                product.about;
-
-
-            document.getElementById(
-                "camera"
-            ).textContent =
-                product.camera;
-
-
-            document.getElementById(
-                "durability"
-            ).textContent =
-                product.durability;
-
-
-            document.getElementById(
-                "storage"
-            ).textContent =
-                product.storage;
-
-
-            document.getElementById(
-                "battery"
-            ).textContent =
-                product.battery;
-
-
-            document.getElementById(
-                "features"
-            ).textContent =
-                product.features;
-
-
-
-            /* =================================
-               IMAGE 1
-            ================================= */
-
-            const image1 =
-                document.getElementById(
-                    "image-1"
+                navLinks.classList.toggle(
+                    "active"
                 );
 
+            }
+        );
 
-            const placeholder1 =
-                document.getElementById(
-                    "image-placeholder-1"
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                    }
                 );
 
-
-            if (
-                product.image1 !== ""
-            ) {
-
-
-                image1.src =
-                    product.image1;
-
-
-                image1.style.display =
-                    "block";
-
-
-                placeholder1.style.display =
-                    "none";
-
-
-            } else {
-
-
-                image1.style.display =
-                    "none";
-
-
-                placeholder1.style.display =
-                    "flex";
-
-            }
-
-
-
-            /* =================================
-               IMAGE 2
-            ================================= */
-
-            const imageSpace2 =
-                document.getElementById(
-                    "image-space-2"
-                );
-
-
-            if (
-                product.image2 !== ""
-            ) {
-
-
-                imageSpace2.innerHTML = `
-
-                    <img
-                        src="${product.image2}"
-                        alt="${product.name}"
-                    >
-
-                `;
-
-
-            }
-
-
-
-            /* =================================
-               IMAGE 3
-            ================================= */
-
-            const imageSpace3 =
-                document.getElementById(
-                    "image-space-3"
-                );
-
-
-            if (
-                product.image3 !== ""
-            ) {
-
-
-                imageSpace3.innerHTML = `
-
-                    <img
-                        src="${product.image3}"
-                        alt="${product.name}"
-                    >
-
-                `;
-
-            }
-
-
-
-            /* =================================
-               PAGE TITLE
-            ================================= */
-
-            document.title =
-                product.name +
-                " | Elite Gadgets";
-
-        }
+            });
 
 
     </script>
