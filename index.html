@@ -29,31 +29,36 @@
         href="style.css"
     >
 
-
     <style>
 
+        /* =====================================
+           ELITE GADGETS LOGO
+        ===================================== */
 
-
-        transition:
-            transform 0.3s ease,
-            opacity 0.3s ease;
-    }
-
-    .logo-image:hover img {
-        transform: scale(1.04);
-        opacity: 0.92;
-    }
-
-    @media (max-width: 600px) {
-
-        .logo-image img {
-            width: 125px;
-            max-height: 60px;
+        .logo-image {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
         }
 
-    }
+        .logo-image img {
+            width: 150px;
+            height: auto;
+            max-height: 70px;
+            object-fit: contain;
+            display: block;
 
-    </style>
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        .logo-image:hover img {
+            transform: scale(1.04);
+            opacity: 0.92;
+        }
+
 
         /* =====================================
            FEATURED PRODUCT IMAGE GALLERY
@@ -109,6 +114,7 @@
             gap: 8px;
         }
 
+
         /* =====================================
            FLOATING LEARN MORE BUTTON
         ===================================== */
@@ -134,7 +140,8 @@
             font-weight: 800;
             letter-spacing: 1px;
 
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.35);
 
             transition:
                 transform 0.25s ease,
@@ -143,10 +150,32 @@
 
         .floating-learn-more:hover {
             transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.45);
         }
 
+
+        /* =====================================
+           FOOTER LOGO
+        ===================================== */
+
+        .footer-brand .logo-image img {
+            width: 150px;
+            max-height: 70px;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
         @media (max-width: 600px) {
+
+            .logo-image img {
+                width: 125px;
+                max-height: 60px;
+            }
 
             .product-image-gallery {
                 height: 330px;
@@ -155,8 +184,16 @@
             .floating-learn-more {
                 right: 15px;
                 bottom: 18px;
-                padding: 12px 16px;
+
+                padding:
+                    12px 16px;
+
                 font-size: 0.68rem;
+            }
+
+            .footer-brand .logo-image img {
+                width: 125px;
+                max-height: 60px;
             }
 
         }
@@ -177,17 +214,23 @@
 
         <nav class="navbar">
 
-            <a
-    href="#home"
-    class="logo logo-image"
-    aria-label="Elite Gadgets Home"
->
-    <img
-        src="image/elite-logo.png"
-        alt="Elite Gadgets"
-    >
-</a>
+            <!-- WEBSITE LOGO -->
 
+            <a
+                href="#home"
+                class="logo logo-image"
+                aria-label="Elite Gadgets Home"
+            >
+
+                <img
+                    src="image/elite-logo.png"
+                    alt="Elite Gadgets"
+                >
+
+            </a>
+
+
+            <!-- NAVIGATION -->
 
             <div
                 class="nav-links"
@@ -221,6 +264,8 @@
             </div>
 
 
+            <!-- WHATSAPP -->
+
             <a
                 href="https://wa.me/2349072084278"
                 class="nav-contact"
@@ -229,6 +274,8 @@
                 WhatsApp
             </a>
 
+
+            <!-- MOBILE MENU -->
 
             <button
                 class="menu-toggle"
@@ -476,6 +523,8 @@
             </div>
 
 
+            <!-- CATEGORY BUTTONS -->
+
             <div class="category-buttons">
 
                 <button
@@ -509,6 +558,8 @@
             </div>
 
 
+            <!-- PRODUCT GRID -->
+
             <div class="product-grid">
 
 
@@ -521,24 +572,32 @@
                     <div class="product-image-gallery">
 
                         <div class="featured-image large">
+
                             <img
                                 src="image/iphone-17-pro.jpg"
                                 alt="iPhone 17 Pro"
                             >
+
                         </div>
 
-                        <div class="featured-image">
-                            <img
-                                src="image/iphone-17-pro.jpg"
-                                alt="iPhone 17 Pro"
-                            >
-                        </div>
 
                         <div class="featured-image">
+
                             <img
                                 src="image/iphone-17-pro.jpg"
                                 alt="iPhone 17 Pro"
                             >
+
+                        </div>
+
+
+                        <div class="featured-image">
+
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+
                         </div>
 
                     </div>
@@ -559,6 +618,7 @@
                             focused on powerful performance,
                             advanced photography and refined design.
                         </p>
+
 
                         <a
                             href="catalogue.html?category=iphone"
@@ -582,21 +642,29 @@
                     <div class="product-image-gallery">
 
                         <div class="featured-image large">
+
                             <div class="product-placeholder">
                                 IPHONE 16
                             </div>
+
                         </div>
 
+
                         <div class="featured-image">
+
                             <div class="product-placeholder">
                                 IMAGE
                             </div>
+
                         </div>
 
+
                         <div class="featured-image">
+
                             <div class="product-placeholder">
                                 IMAGE
                             </div>
+
                         </div>
 
                     </div>
@@ -618,6 +686,7 @@
                             and a smooth premium experience.
                         </p>
 
+
                         <a
                             href="catalogue.html?category=iphone"
                             class="product-link learn-more-link"
@@ -632,518 +701,4 @@
 
 
                 <!-- ===============================
-                     IPHONE 15 PRO
-                ================================= -->
-
-                <article class="product-card">
-
-                    <div class="product-image-gallery">
-
-                        <div class="featured-image large">
-                            <div class="product-placeholder">
-                                IPHONE 15 PRO
-                            </div>
-                        </div>
-
-                        <div class="featured-image">
-                            <div class="product-placeholder">
-                                IMAGE
-                            </div>
-                        </div>
-
-                        <div class="featured-image">
-                            <div class="product-placeholder">
-                                IMAGE
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-info">
-
-                        <p class="product-brand">
-                            APPLE
-                        </p>
-
-                        <h3>
-                            iPhone 15 Pro
-                        </h3>
-
-                        <p>
-                            A premium Pro model designed
-                            around strong performance,
-                            camera capability and durability.
-                        </p>
-
-                        <a
-                            href="catalogue.html?category=iphone"
-                            class="product-link learn-more-link"
-                        >
-                            LEARN MORE →
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-            </div>
-
-
-            <!-- =================================
-                 FLOATING LEARN MORE
-            ================================= -->
-
-            <a
-                href="catalogue.html"
-                class="floating-learn-more"
-                aria-label="Explore the full Elite Gadgets collection"
-            >
-                LEARN MORE
-                <span>→</span>
-            </a>
-
-
-        </section>
-
-
-
-        <!-- ===============================
-             WHY US
-        ================================= -->
-
-        <section
-            class="section why-section"
-            id="why-us"
-        >
-
-            <div class="section-heading centered">
-
-                <p class="eyebrow">
-                    WHY ELITE GADGETS
-                </p>
-
-                <h2>
-                    Built Around
-                    <span>Trust.</span>
-                </h2>
-
-            </div>
-
-
-            <div class="features-grid">
-
-                <div class="feature-card">
-
-                    <div class="feature-number">
-                        01
-                    </div>
-
-                    <h3>
-                        Carefully Selected
-                    </h3>
-
-                    <p>
-                        We focus on presenting quality
-                        smartphones and gadgets worth
-                        considering.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-number">
-                        02
-                    </div>
-
-                    <h3>
-                        Clear Information
-                    </h3>
-
-                    <p>
-                        Explore device details and
-                        specifications before making
-                        an enquiry.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-number">
-                        03
-                    </div>
-
-                    <h3>
-                        Direct Support
-                    </h3>
-
-                    <p>
-                        Speak directly with Elite Gadgets
-                        through WhatsApp or email.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-number">
-                        04
-                    </div>
-
-                    <h3>
-                        Customer First
-                    </h3>
-
-                    <p>
-                        Our goal is to make discovering
-                        your next device simple and reliable.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ===============================
-             FAQ
-        ================================= -->
-
-        <section
-            class="section faq-section"
-            id="faq"
-        >
-
-            <div class="section-heading centered">
-
-                <p class="eyebrow">
-                    FREQUENTLY ASKED QUESTIONS
-                </p>
-
-                <h2>
-                    Questions?
-                    <span>We've Got Answers.</span>
-                </h2>
-
-            </div>
-
-
-            <div class="faq-container">
-
-                <details>
-
-                    <summary>
-                        Do you sell the phones displayed?
-                    </summary>
-
-                    <p>
-                        The website is designed as a digital
-                        showroom. Contact Elite Gadgets directly
-                        to confirm availability and purchasing
-                        information for any device.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        How can I enquire about a phone?
-                    </summary>
-
-                    <p>
-                        You can contact us directly through
-                        WhatsApp or email. Simply mention the
-                        device you're interested in.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Do you display prices online?
-                    </summary>
-
-                    <p>
-                        Prices are not displayed publicly.
-                        Contact Elite Gadgets for current
-                        availability and pricing information.
-                    </p>
-
-                </details>
-
-
-                <details>
-
-                    <summary>
-                        Can I view more pictures of a device?
-                    </summary>
-
-                    <p>
-                        Yes. Device pages will provide detailed
-                        images and information as our collection
-                        grows.
-                    </p>
-
-                </details>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ===============================
-             CONTACT
-        ================================= -->
-
-        <section
-            class="contact-section"
-            id="contact"
-        >
-
-            <div class="contact-content">
-
-                <p class="eyebrow">
-                    GET IN TOUCH
-                </p>
-
-
-                <h2>
-                    Found Something
-                    <span>You Like?</span>
-                </h2>
-
-
-                <p>
-
-                    Talk to Elite Gadgets directly.
-                    We're ready to answer your questions
-                    and help you find the right device.
-
-                </p>
-
-
-                <div class="contact-actions">
-
-                    <a
-                        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
-                        class="btn btn-primary"
-                        target="_blank"
-                    >
-                        WhatsApp Us
-                    </a>
-
-
-                    <a
-                        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
-                        class="btn btn-outline"
-                    >
-                        Email Us
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ===============================
-         FOOTER
-    ================================= -->
-
-    <footer class="site-footer">
-
-        <div class="footer-grid">
-
-
-            <div class="footer-brand">
-
-                <a
-                    href="#home"
-                    class="logo"
-                >
-                    Elite Gadgets
-                </a>
-
-                <p>
-                    Premium Tech. Trusted Service.
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Explore
-                </h4>
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-                <a href="#collection">
-                    Collection
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Legal
-                </h4>
-
-                <a href="#">
-                    Privacy Policy
-                </a>
-
-                <a href="#">
-                    Terms & Conditions
-                </a>
-
-                <a href="#">
-                    Cookie Policy
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Contact
-                </h4>
-
-                <a
-                    href="https://wa.me/2349072084278"
-                    target="_blank"
-                >
-                    WhatsApp
-                </a>
-
-                <a
-                    href="mailto:fofanaabdullah70@gmail.com"
-                >
-                    Email
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 Elite Gadgets. All rights reserved.
-            </p>
-
-            <p>
-                Premium Tech. Trusted Service.
-            </p>
-
-        </div>
-
-    </footer>
-
-
-
-    <!-- ===============================
-         FLOATING CONTACT BUTTONS
-    ================================= -->
-
-    <a
-        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
-        class="whatsapp-float"
-        target="_blank"
-        aria-label="Chat with Elite Gadgets on WhatsApp"
-    >
-        💬
-    </a>
-
-
-    <a
-        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
-        class="email-float"
-        aria-label="Email Elite Gadgets"
-    >
-        ✉️
-    </a>
-
-
-
-    <!-- ===============================
-         JAVASCRIPT
-    ================================= -->
-
-    <script>
-
-        const menuToggle =
-            document.getElementById("menu-toggle");
-
-        const navLinks =
-            document.getElementById("nav-links");
-
-
-        menuToggle.addEventListener(
-            "click",
-            function() {
-
-                navLinks.classList.toggle(
-                    "active"
-                );
-
-            }
-        );
-
-
-        document
-            .querySelectorAll(".nav-links a")
-            .forEach(function(link) {
-
-                link.addEventListener(
-                    "click",
-                    function() {
-
-                        navLinks.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-            });
-
-
-    </script>
-
-
-</body>
-
-</html>
+                     IP
