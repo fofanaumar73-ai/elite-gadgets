@@ -1,18 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Elite Gadgets product details.">
-    <title>Device Details | Elite Gadgets</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore detailed information about Elite Gadgets products."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0b0f"
+    >
+
+    <title>
+        Device Details | Elite Gadgets
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 
     <style>
+
+        /* =====================================
+           DETAILS PAGE
+        ===================================== */
+
         .details-page {
             width: min(calc(100% - 30px), 1150px);
             margin: auto;
             padding: 130px 0 90px;
         }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
 
         .details-header {
             text-align: center;
@@ -29,17 +63,28 @@
 
         .details-header p {
             color: #a5a5ad;
+            line-height: 1.7;
         }
+
+
+        /* =====================================
+           IMAGE GALLERY
+        ===================================== */
 
         .details-gallery {
             display: grid;
             grid-template-columns: 2fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 5px;
+
             height: 600px;
+
             background: #0b0b0f;
+
             border-radius: 26px;
+
             overflow: hidden;
+
             margin-bottom: 45px;
         }
 
@@ -61,57 +106,119 @@
 
         .image-space {
             height: 100%;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             color: #777780;
+
             letter-spacing: 2px;
+
             font-size: .7rem;
         }
 
+
+        /* =====================================
+           DETAILS CONTENT
+        ===================================== */
+
         .details-content {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 18px;
         }
 
+
         .details-box {
             padding: 30px;
+
             border: 1px solid rgba(255,255,255,.08);
+
             border-radius: 22px;
+
             background: #141419;
         }
+
 
         .details-box.full {
             grid-column: 1 / -1;
         }
 
+
         .details-box h2 {
             margin-bottom: 12px;
         }
 
+
         .details-box p {
             color: #a5a5ad;
+
             line-height: 1.75;
         }
 
+
         .detail-label {
             color: #777780;
+
             font-size: .68rem;
+
             font-weight: 800;
+
             letter-spacing: 2px;
+
             margin-bottom: 9px;
         }
 
+
+        /* =====================================
+           BUTTONS
+        ===================================== */
+
         .details-actions {
             display: flex;
+
             justify-content: center;
+
             gap: 12px;
+
             flex-wrap: wrap;
+
             margin-top: 35px;
         }
 
+
+        /* =====================================
+           DEVICE NOT FOUND
+        ===================================== */
+
+        .device-not-found {
+            text-align: center;
+
+            padding: 80px 20px;
+        }
+
+        .device-not-found h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+
+            margin-bottom: 15px;
+        }
+
+        .device-not-found p {
+            color: #a5a5ad;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
         @media (max-width: 700px) {
+
             .details-gallery {
                 height: 430px;
             }
@@ -127,241 +234,882 @@
             .details-header h1 {
                 letter-spacing: -2px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-<header class="site-header">
-    <nav class="navbar">
-        <a href="index.html" class="logo">Elite Gadgets</a>
 
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="catalogue.html">Collection</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#why-us">Why Us</a>
-            <a href="index.html#faq">FAQ</a>
-            <a href="index.html#contact">Contact</a>
-        </div>
+    <!-- =================================
+         HEADER
+    ================================= -->
 
-        <a href="https://wa.me/2349072084278" class="nav-contact" target="_blank">
-            WhatsApp
-        </a>
-    </nav>
-</header>
+    <header class="site-header">
 
-<main class="details-page">
+        <nav class="navbar">
 
-    <div class="details-header">
-        <p class="eyebrow" id="device-brand">APPLE</p>
-        <h1 id="device-name">iPhone 17 Pro</h1>
-        <p id="device-description">
-            <!-- INSERT YOUR SHORT DEVICE DESCRIPTION HERE -->
-        </p>
-    </div>
+            <a
+                href="index.html"
+                class="logo"
+            >
+                Elite Gadgets
+            </a>
 
-    <!--
-        IMAGE SPACE:
-        Replace each placeholder with the image path for this device.
-        You can add more images later without changing the layout.
-    -->
-    <div class="details-gallery">
 
-        <div class="details-image">
-            <img id="image-1" src="image/iphone-17-pro.jpg" alt="Device image">
-        </div>
+            <div class="nav-links">
 
-        <div class="details-image">
-            <div class="image-space" id="image-space-2">
-                INSERT IMAGE 2
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="catalogue.html">
+                    Collection
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="index.html#why-us">
+                    Why Us
+                </a>
+
+                <a href="index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
             </div>
-        </div>
 
-        <div class="details-image">
-            <div class="image-space" id="image-space-3">
-                INSERT IMAGE 3
+
+            <a
+                href="https://wa.me/2349072084278"
+                class="nav-contact"
+                target="_blank"
+            >
+                WhatsApp
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =================================
+         MAIN
+    ================================= -->
+
+    <main id="details-main">
+
+
+        <!-- =================================
+             DEVICE DETAILS
+        ================================= -->
+
+        <div class="details-page">
+
+
+            <div class="details-header">
+
+                <p
+                    class="eyebrow"
+                    id="device-brand"
+                >
+                    APPLE
+                </p>
+
+
+                <h1 id="device-name">
+                    iPhone 17 Pro
+                </h1>
+
+
+                <p id="device-description">
+                    Loading device information...
+                </p>
+
             </div>
+
+
+
+            <!-- =================================
+                 IMAGE GALLERY
+            ================================= -->
+
+            <div class="details-gallery">
+
+
+                <!-- IMAGE 1 -->
+
+                <div class="details-image">
+
+                    <img
+                        id="image-1"
+                        src="image/iphone-17-pro.jpg"
+                        alt="Device image"
+                    >
+
+                </div>
+
+
+                <!-- IMAGE 2 -->
+
+                <div class="details-image">
+
+                    <div
+                        class="image-space"
+                        id="image-space-2"
+                    >
+                        INSERT IMAGE 2
+                    </div>
+
+                </div>
+
+
+                <!-- IMAGE 3 -->
+
+                <div class="details-image">
+
+                    <div
+                        class="image-space"
+                        id="image-space-3"
+                    >
+                        INSERT IMAGE 3
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 DETAILS
+            ================================= -->
+
+            <section class="details-content">
+
+
+                <!-- ABOUT -->
+
+                <div class="details-box full">
+
+                    <p class="detail-label">
+                        ABOUT THIS DEVICE
+                    </p>
+
+                    <h2>
+                        About
+                    </h2>
+
+                    <p id="about">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+
+                <!-- CAMERA -->
+
+                <div class="details-box">
+
+                    <p class="detail-label">
+                        CAMERA
+                    </p>
+
+                    <h2>
+                        Camera
+                    </h2>
+
+                    <p id="camera">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+
+                <!-- DURABILITY -->
+
+                <div class="details-box">
+
+                    <p class="detail-label">
+                        DURABILITY
+                    </p>
+
+                    <h2>
+                        Durability
+                    </h2>
+
+                    <p id="durability">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+
+                <!-- STORAGE -->
+
+                <div class="details-box">
+
+                    <p class="detail-label">
+                        STORAGE
+                    </p>
+
+                    <h2>
+                        Storage
+                    </h2>
+
+                    <p id="storage">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+
+                <!-- BATTERY -->
+
+                <div class="details-box">
+
+                    <p class="detail-label">
+                        BATTERY
+                    </p>
+
+                    <h2>
+                        Battery
+                    </h2>
+
+                    <p id="battery">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+
+                <!-- IMPORTANT DETAILS -->
+
+                <div class="details-box full">
+
+                    <p class="detail-label">
+                        IMPORTANT DETAILS
+                    </p>
+
+                    <h2>
+                        Why this device?
+                    </h2>
+
+                    <p id="features">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================
+                 ACTION BUTTONS
+            ================================= -->
+
+            <div class="details-actions">
+
+
+                <a
+                    href="https://wa.me/2349072084278"
+                    class="btn btn-primary"
+                    target="_blank"
+                >
+                    Ask on WhatsApp
+                </a>
+
+
+                <a
+                    href="mailto:fofanaabdullah70@gmail.com"
+                    class="btn btn-outline"
+                >
+                    Email Us
+                </a>
+
+
+                <a
+                    href="catalogue.html"
+                    class="btn btn-outline"
+                >
+                    Back to Collection
+                </a>
+
+
+            </div>
+
+
         </div>
 
-    </div>
 
-    <section class="details-content">
+    </main>
 
-        <div class="details-box full">
-            <p class="detail-label">ABOUT THIS DEVICE</p>
-            <h2>About</h2>
-            <p id="about">
-                <!-- INSERT YOUR FULL DEVICE DESCRIPTION HERE -->
+
+
+    <!-- =================================
+         FOOTER
+    ================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Elite Gadgets. All rights reserved.
             </p>
-        </div>
 
-        <div class="details-box">
-            <p class="detail-label">CAMERA</p>
-            <h2>Camera</h2>
-            <p id="camera">
-                <!-- INSERT CAMERA DETAILS HERE -->
+            <p>
+                Premium Tech. Trusted Service.
             </p>
+
         </div>
 
-        <div class="details-box">
-            <p class="detail-label">DURABILITY</p>
-            <h2>Durability</h2>
-            <p id="durability">
-                <!-- INSERT HOW STRONG THE DEVICE IS HERE -->
-            </p>
-        </div>
+    </footer>
 
-        <div class="details-box">
-            <p class="detail-label">STORAGE</p>
-            <h2>Storage</h2>
-            <p id="storage">
-                <!-- INSERT STORAGE OPTIONS HERE -->
-            </p>
-        </div>
 
-        <div class="details-box">
-            <p class="detail-label">BATTERY</p>
-            <h2>Battery</h2>
-            <p id="battery">
-                <!-- INSERT BATTERY DETAILS HERE -->
-            </p>
-        </div>
 
-        <div class="details-box full">
-            <p class="detail-label">IMPORTANT DETAILS</p>
-            <h2>Why this device?</h2>
-            <p id="features">
-                <!-- INSERT ANY OTHER IMPORTANT SELLING POINTS HERE -->
-            </p>
-        </div>
+    <!-- =================================
+         JAVASCRIPT
+    ================================= -->
 
-    </section>
+    <script>
 
-    <div class="details-actions">
-        <a href="https://wa.me/2349072084278" class="btn btn-primary" target="_blank">
-            Ask on WhatsApp
-        </a>
-
-        <a href="mailto:fofanaabdullah70@gmail.com" class="btn btn-outline">
-            Email Us
-        </a>
-
-        <a href="catalogue.html" class="btn btn-outline">
-            Back to Collection
-        </a>
-    </div>
-
-</main>
-
-<footer class="site-footer">
-    <div class="footer-bottom">
-        <p>© 2026 Elite Gadgets. All rights reserved.</p>
-        <p>Premium Tech. Trusted Service.</p>
-    </div>
-</footer>
-
-<script>
-    /*
-      PRODUCT DETAILS AREA
-
-      This is the main space where we will eventually put
-      the details for every phone/device.
-
-      The same page can display different products.
-      We only need to change the information below.
-    */
-
-    const products = {
-
-        "iphone-17-pro": {
-            brand: "APPLE",
-            name: "iPhone 17 Pro",
-            description: "INSERT SHORT DESCRIPTION HERE",
-            image1: "image/iphone-17-pro.jpg",
-            image2: "",
-            image3: "",
-            about: "INSERT FULL DESCRIPTION HERE",
-            camera: "INSERT CAMERA DETAILS HERE",
-            durability: "INSERT DURABILITY DETAILS HERE",
-            storage: "INSERT STORAGE OPTIONS HERE",
-            battery: "INSERT BATTERY DETAILS HERE",
-            features: "INSERT OTHER IMPORTANT DETAILS HERE"
-        },
-
-        "iphone-16": {
-            brand: "APPLE",
-            name: "iPhone 16",
-            description: "INSERT SHORT DESCRIPTION HERE",
-            image1: "",
-            image2: "",
-            image3: "",
-            about: "INSERT FULL DESCRIPTION HERE",
-            camera: "INSERT CAMERA DETAILS HERE",
-            durability: "INSERT DURABILITY DETAILS HERE",
-            storage: "INSERT STORAGE OPTIONS HERE",
-            battery: "INSERT BATTERY DETAILS HERE",
-            features: "INSERT OTHER IMPORTANT DETAILS HERE"
-        },
-
-        "iphone-15-pro": {
-            brand: "APPLE",
-            name: "iPhone 15 Pro",
-            description: "INSERT SHORT DESCRIPTION HERE",
-            image1: "",
-            image2: "",
-            image3: "",
-            about: "INSERT FULL DESCRIPTION HERE",
-            camera: "INSERT CAMERA DETAILS HERE",
-            durability: "INSERT DURABILITY DETAILS HERE",
-            storage: "INSERT STORAGE OPTIONS HERE",
-            battery: "INSERT BATTERY DETAILS HERE",
-            features: "INSERT OTHER IMPORTANT DETAILS HERE"
-        }
 
         /*
-          MORE DEVICES WILL BE ADDED HERE:
+        ==================================================
+        ELITE GADGETS PRODUCT DATABASE
+        ==================================================
 
-          "iphone-11": { ... },
-          "iphone-12": { ... },
-          "samsung-s21": { ... },
-          "samsung-s26-ultra": { ... },
-          "jbl": { ... },
-          "ps5": { ... }
+        THIS IS THE MAIN AREA YOU WILL EDIT LATER.
+
+        Each product has:
+
+        brand
+        name
+        description
+        image1
+        image2
+        image3
+        about
+        camera
+        durability
+        storage
+        battery
+        features
+
+        To add another product, copy one product block
+        and give it a unique product key.
+        ==================================================
         */
-    };
 
-    const params = new URLSearchParams(window.location.search);
-    const productKey = params.get("product") || "iphone-17-pro";
-    const product = products[productKey] || products["iphone-17-pro"];
 
-    document.getElementById("device-brand").textContent = product.brand;
-    document.getElementById("device-name").textContent = product.name;
-    document.getElementById("device-description").textContent = product.description;
-    document.getElementById("about").textContent = product.about;
-    document.getElementById("camera").textContent = product.camera;
-    document.getElementById("durability").textContent = product.durability;
-    document.getElementById("storage").textContent = product.storage;
-    document.getElementById("battery").textContent = product.battery;
-    document.getElementById("features").textContent = product.features;
+        const products = {
 
-    if (product.image1) {
-        document.getElementById("image-1").src = product.image1;
-    }
 
-    if (product.image2) {
-        document.getElementById("image-space-2").innerHTML =
-            `<img src="${product.image2}" alt="${product.name}">`;
-    }
+            /* ==========================================
+               IPHONE 17 PRO
+            ========================================== */
 
-    if (product.image3) {
-        document.getElementById("image-space-3").innerHTML =
-            `<img src="${product.image3}" alt="${product.name}">`;
-    }
+            "iphone-17-pro": {
 
-    document.title = product.name + " | Elite Gadgets";
-</script>
+                brand: "APPLE",
+
+                name: "iPhone 17 Pro",
+
+                description:
+                    "A powerful Pro iPhone built for advanced photography, demanding performance and a premium everyday experience.",
+
+                image1:
+                    "image/iphone-17-pro.jpg",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "iPhone 17 Pro combines Apple's Pro performance with an advanced camera system, premium construction and a high-performance display. It is designed for users who want strong performance for photography, video, gaming and everyday use.",
+
+                camera:
+                    "48MP Pro Fusion camera system with 48MP Main, 48MP Ultra Wide and 48MP Fusion Telephoto cameras. It supports 4x optical zoom, 8x optical-quality zoom and up to 40x digital zoom.",
+
+                durability:
+                    "Built with a premium design and rated IP68 for splash, water and dust resistance. The rating does not mean the phone is drop-proof, so a protective case is still recommended.",
+
+                storage:
+                    "Available storage options include 256GB, 512GB and 1TB.",
+
+                battery:
+                    "Apple rates iPhone 17 Pro for up to 33 hours of video playback. It also supports fast charging with compatible charging equipment.",
+
+                features:
+                    "A19 Pro performance, advanced Pro camera capabilities, USB-C connectivity, Face ID and Apple's latest-generation features make it a strong choice for users who want a premium Pro smartphone."
+
+            },
+
+
+
+            /* ==========================================
+               IPHONE 16
+            ========================================== */
+
+            "iphone-16": {
+
+                brand: "APPLE",
+
+                name: "iPhone 16",
+
+                description:
+                    "A modern iPhone combining the A18 chip, advanced photography, Camera Control and a premium everyday design.",
+
+                image1:
+                    "",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "iPhone 16 is designed for everyday performance with Apple's A18 chip, a 6.1-inch Super Retina XDR display and a modern camera system. It also introduces Camera Control and the Action button.",
+
+                camera:
+                    "Advanced dual-camera system featuring a 48MP Fusion Main camera and a 12MP Ultra Wide camera. The Main camera also provides a 2x Telephoto option and the Ultra Wide camera supports macro photography.",
+
+                durability:
+                    "The aluminium design uses Ceramic Shield on the front and is rated IP68 for splash, water and dust resistance. Real-world drop resistance can vary, so protection is recommended.",
+
+                storage:
+                    "Available in 128GB, 256GB and 512GB storage configurations.",
+
+                battery:
+                    "Apple rates iPhone 16 for up to 22 hours of video playback.",
+
+                features:
+                    "A18 chip, Camera Control, Action button, Dynamic Island, USB-C connectivity, Apple Intelligence support and a 6.1-inch Super Retina XDR display."
+
+            },
+
+
+
+            /* ==========================================
+               IPHONE 15 PRO
+            ========================================== */
+
+            "iphone-15-pro": {
+
+                brand: "APPLE",
+
+                name: "iPhone 15 Pro",
+
+                description:
+                    "A titanium Pro iPhone combining powerful A17 Pro performance with a versatile professional camera system.",
+
+                image1:
+                    "",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "iPhone 15 Pro features a titanium design, Ceramic Shield front, A17 Pro chip and a 6.1-inch Super Retina XDR display. It was built for users who want strong performance, photography and gaming capabilities.",
+
+                camera:
+                    "Pro camera system with a 48MP Main camera, 12MP Ultra Wide camera and 12MP 3x Telephoto camera. It supports macro photography, Night mode and up to 15x digital zoom.",
+
+                durability:
+                    "Titanium construction with a Ceramic Shield front and IP68 splash, water and dust resistance. IP68 is not a guarantee against damage from drops or impacts.",
+
+                storage:
+                    "Available in 128GB, 256GB, 512GB and 1TB.",
+
+                battery:
+                    "Designed for all-day use with Apple's built-in rechargeable lithium-ion battery and USB-C charging.",
+
+                features:
+                    "A17 Pro chip, titanium construction, Action button, USB-C with USB 3 support, Pro camera system, ProMotion display and strong gaming performance."
+
+            },
+
+
+
+            /* ==========================================
+               SAMSUNG S26 ULTRA
+            ========================================== */
+
+            "samsung-s26-ultra": {
+
+                brand: "SAMSUNG",
+
+                name: "Galaxy S26 Ultra",
+
+                description:
+                    "Samsung's flagship Galaxy smartphone with a 200MP camera, large display, powerful processor and built-in Privacy Display.",
+
+                image1:
+                    "",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "Galaxy S26 Ultra is Samsung's flagship S-series smartphone, combining a 6.9-inch display, advanced Galaxy AI features, powerful processing and an advanced multi-camera system. It also introduces a built-in Privacy Display.",
+
+                camera:
+                    "Rear camera system includes a 200MP Wide camera, 50MP Ultra Wide camera, 50MP Telephoto camera with 5x optical zoom and 10MP Telephoto camera with 3x optical zoom. It also has a 12MP front camera.",
+
+                durability:
+                    "The phone is built as a premium flagship device with a slim 7.9mm design and weighs about 214g. For protection against everyday accidents, a quality case and screen protector are still recommended.",
+
+                storage:
+                    "Available in 256GB, 512GB and 1TB. The 1TB version comes with 16GB memory, while the 256GB and 512GB versions come with 12GB memory.",
+
+                battery:
+                    "A 5,000mAh typical battery provides up to 31 hours of video playback. Samsung also states that Super Fast Charging 3.0 can charge the device to up to 75% in around 30 minutes with compatible equipment.",
+
+                features:
+                    "6.9-inch display, built-in Privacy Display, Snapdragon 8 Elite Gen 5 for Galaxy, S Pen, Galaxy AI features, advanced cooling and a high-end camera system."
+
+            },
+
+
+
+            /* ==========================================
+               JBL SPEAKERS
+            ========================================== */
+
+            "jbl-speakers": {
+
+                brand: "JBL",
+
+                name: "JBL Speakers",
+
+                description:
+                    "Premium JBL speakers designed to deliver powerful sound, portability and enjoyable listening wherever you go.",
+
+                image1:
+                    "",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "Explore JBL's range of portable speakers for music, entertainment and everyday listening. Different models offer different combinations of sound output, portability, battery life and water or dust protection.",
+
+                camera:
+                    "Not applicable. JBL speakers are audio devices rather than smartphones.",
+
+                durability:
+                    "Durability depends on the JBL model. Many portable JBL speakers offer water and dust resistance, while selected models also provide drop protection. Check the exact model for its official protection rating.",
+
+                storage:
+                    "Not applicable. JBL portable speakers generally stream audio from connected devices rather than using phone-style internal storage.",
+
+                battery:
+                    "Battery life varies by model. Current JBL portable speakers offer different playtime ratings, ranging from compact models to larger speakers designed for extended listening.",
+
+                features:
+                    "JBL Pro Sound, Bluetooth connectivity and portable designs are common across the range. Specific features such as Auracast, powerbank functionality, app support and waterproofing depend on the model."
+
+            },
+
+
+
+            /* ==========================================
+               PLAYSTATION
+            ========================================== */
+
+            "playstation": {
+
+                brand: "SONY",
+
+                name: "PlayStation",
+
+                description:
+                    "PlayStation gaming systems designed for immersive gaming, high-quality graphics and entertainment.",
+
+                image1:
+                    "",
+
+                image2:
+                    "",
+
+                image3:
+                    "",
+
+                about:
+                    "Explore PlayStation consoles and gaming products available through Elite Gadgets. The catalogue can be expanded later to list specific generations such as PS3, PS4 and PS5 separately.",
+
+                camera:
+                    "Not applicable. PlayStation is a gaming console rather than a camera-equipped smartphone.",
+
+                durability:
+                    "PlayStation consoles are designed for home entertainment use. Keep the console properly ventilated and protected from liquid, excessive dust and physical impact.",
+
+                storage:
+                    "Storage depends on the specific PlayStation model. Current PS5 versions use a custom SSD, with storage capacity varying by edition and model.",
+
+                battery:
+                    "The console itself is powered from an electrical outlet rather than a built-in rechargeable battery.",
+
+                features:
+                    "PS5 systems use an AMD Zen 2 CPU, AMD Radeon RDNA-based graphics technology and 16GB GDDR6 memory. Features include high-speed SSD storage, 4K gaming support on compatible displays and Tempest 3D AudioTech."
+
+            }
+
+        };
+
+
+
+        /* ==========================================
+           READ PRODUCT FROM URL
+        ========================================== */
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const productKey =
+            params.get("product");
+
+
+        const product =
+            products[productKey];
+
+
+
+        /* ==========================================
+           CHECK PRODUCT
+        ========================================== */
+
+
+        if (!product) {
+
+            document.getElementById(
+                "details-main"
+            ).innerHTML = `
+
+                <div class="device-not-found">
+
+                    <p class="eyebrow">
+                        ELITE GADGETS
+                    </p>
+
+                    <h1>
+                        Device Not Found
+                    </h1>
+
+                    <p>
+                        The product you selected could
+                        not be found in our collection.
+                    </p>
+
+                    <a
+                        href="catalogue.html"
+                        class="btn btn-primary"
+                    >
+                        Back to Collection
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        else {
+
+
+            /* ==========================================
+               TEXT INFORMATION
+            ========================================== */
+
+
+            document.getElementById(
+                "device-brand"
+            ).textContent =
+                product.brand;
+
+
+            document.getElementById(
+                "device-name"
+            ).textContent =
+                product.name;
+
+
+            document.getElementById(
+                "device-description"
+            ).textContent =
+                product.description;
+
+
+            document.getElementById(
+                "about"
+            ).textContent =
+                product.about;
+
+
+            document.getElementById(
+                "camera"
+            ).textContent =
+                product.camera;
+
+
+            document.getElementById(
+                "durability"
+            ).textContent =
+                product.durability;
+
+
+            document.getElementById(
+                "storage"
+            ).textContent =
+                product.storage;
+
+
+            document.getElementById(
+                "battery"
+            ).textContent =
+                product.battery;
+
+
+            document.getElementById(
+                "features"
+            ).textContent =
+                product.features;
+
+
+
+            /* ==========================================
+               IMAGE 1
+            ========================================== */
+
+
+            const image1 =
+                document.getElementById(
+                    "image-1"
+                );
+
+
+            if (product.image1) {
+
+                image1.src =
+                    product.image1;
+
+                image1.alt =
+                    product.name;
+
+            }
+            else {
+
+                image1.style.display =
+                    "none";
+
+            }
+
+
+
+            /* ==========================================
+               IMAGE 2
+            ========================================== */
+
+
+            const imageSpace2 =
+                document.getElementById(
+                    "image-space-2"
+                );
+
+
+            if (product.image2) {
+
+                imageSpace2.innerHTML = `
+
+                    <img
+                        src="${product.image2}"
+                        alt="${product.name}"
+                    >
+
+                `;
+
+            }
+
+
+
+            /* ==========================================
+               IMAGE 3
+            ========================================== */
+
+
+            const imageSpace3 =
+                document.getElementById(
+                    "image-space-3"
+                );
+
+
+            if (product.image3) {
+
+                imageSpace3.innerHTML = `
+
+                    <img
+                        src="${product.image3}"
+                        alt="${product.name}"
+                    >
+
+                `;
+
+            }
+
+
+
+            /* ==========================================
+               PAGE TITLE
+            ========================================== */
+
+
+            document.title =
+                product.name +
+                " | Elite Gadgets";
+
+        }
+
+
+    </script>
+
 
 </body>
+
 </html>
