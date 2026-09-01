@@ -1,1 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="View detailed information, specifications and images for Elite Gadgets devices."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08080b"
+    >
+
+    <title>
+        iPhone 17 Pro | Elite Gadgets
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =====================================
+           PHONE DETAILS PAGE
+        ===================================== */
+
+        .details-page {
+
+            padding:
+                140px 20px 100px;
+
+            width:
+                min(
+                    calc(100% - 40px),
+                    1200px
+                );
+
+            margin:
+                auto;
+
+        }
+
+
+        .back-link {
+
+            display:
+                inline-block;
+
+            color:
+                #a5a5ad;
+
+            font-size:
+                0.9rem;
+
+            margin-bottom:
+                35px;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .back-link:hover {
+
+            color:
+                white;
+
+        }
+
+
+        .details-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.1fr 0.9fr;
+
+            gap:
+                70px;
+
+            align-items:
+                start;
+
+        }
+
+
+        /* =====================================
+           IMAGE GALLERY
+        ===================================== */
+
+        .main-device-image {
+
+            width:
+                100%;
+
+            height:
+                620px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius:
+                28px;
+
+            overflow:
+                hidden;
+
+            background:
+                #111116;
+
+        }
+
+
+        .main-device-image img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+
+        }
+
+
+        .thumbnail-gallery {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                12px;
+
+            margin-top:
+                12px;
+
+        }
+
+
+        .thumbnail {
+
+            height:
+                105px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius:
+                14px;
+
+            overflow:
+                hidden;
+
+            cursor:
+                pointer;
+
+            background:
+                #111116;
+
+            padding:
+                0;
+
+        }
+
+
+        .thumbnail img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+        }
+
+
+        .thumbnail.active {
+
+            border:
+                2px solid white;
+
+        }
+
+
+        /* =====================================
+           DEVICE INFORMATION
+        ===================================== */
+
+        .device-brand {
+
+            color:
+                #777780;
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                3px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .device-info h1 {
+
+            font-size:
+                clamp(
+                    2.8rem,
+                    6vw,
+                    5rem
+                );
+
+            line-height:
+                0.95;
+
+            letter-spacing:
+                -4px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .device-description {
+
+            color:
+                #a5a5ad;
+
+            font-size:
+                1rem;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .availability {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                8px 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            border-radius:
+                999px;
+
+            color:
+                #d8d8dd;
+
+            font-size:
+                0.8rem;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .availability-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                #7dff9b;
+
+        }
+
+
+        .device-actions {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                50px;
+
+        }
+
+
+        /* =====================================
+           SPECIFICATIONS
+        ===================================== */
+
+        .specifications {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.09);
+
+        }
+
+
+        .specifications h2 {
+
+            font-size:
+                1.4rem;
+
+            margin:
+                30px 0 20px;
+
+        }
+
+
+        .spec-list {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                10px;
+
+        }
+
+
+        .spec-item {
+
+            background:
+                #141419;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                14px;
+
+            padding:
+                16px;
+
+        }
+
+
+        .spec-item span {
+
+            display:
+                block;
+
+            color:
+                #777780;
+
+            font-size:
+                0.72rem;
+
+            margin-bottom:
+                4px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .spec-item strong {
+
+            font-size:
+                0.9rem;
+
+        }
+
+
+        /* =====================================
+           FEATURES
+        ===================================== */
+
+        .device-features {
+
+            margin-top:
+                100px;
+
+            padding-top:
+                80px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.09);
+
+        }
+
+
+        .device-features h2 {
+
+            font-size:
+                clamp(
+                    2rem,
+                    4vw,
+                    3.5rem
+                );
+
+            letter-spacing:
+                -2px;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .features-list {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                15px;
+
+        }
+
+
+        .feature-box {
+
+            padding:
+                28px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            background:
+                #101014;
+
+            border-radius:
+                20px;
+
+        }
+
+
+        .feature-box span {
+
+            display:
+                block;
+
+            color:
+                #777780;
+
+            font-size:
+                0.75rem;
+
+            margin-bottom:
+                18px;
+
+        }
+
+
+        .feature-box h3 {
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .feature-box p {
+
+            color:
+                #a5a5ad;
+
+            font-size:
+                0.88rem;
+
+        }
+
+
+        /* =====================================
+           ENQUIRY BANNER
+        ===================================== */
+
+        .enquiry-banner {
+
+            margin-top:
+                100px;
+
+            padding:
+                70px 30px;
+
+            text-align:
+                center;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius:
+                28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #17171d,
+                    #0c0c10
+                );
+
+        }
+
+
+        .enquiry-banner h2 {
+
+            font-size:
+                clamp(
+                    2rem,
+                    4vw,
+                    3.5rem
+                );
+
+            letter-spacing:
+                -2px;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .enquiry-banner p {
+
+            max-width:
+                600px;
+
+            margin:
+                0 auto 30px;
+
+            color:
+                #a5a5ad;
+
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 900px) {
+
+            .details-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    45px;
+
+            }
+
+
+            .main-device-image {
+
+                height:
+                    550px;
+
+            }
+
+
+            .features-list {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .details-page {
+
+                padding-top:
+                    120px;
+
+            }
+
+
+            .main-device-image {
+
+                height:
+                    430px;
+
+            }
+
+
+            .thumbnail {
+
+                height:
+                    75px;
+
+            }
+
+
+            .device-info h1 {
+
+                font-size:
+                    3rem;
+
+            }
+
+
+            .spec-list {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .features-list {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         HEADER
+    ===================================== -->
+
+    <header class="site-header">
+
+        <nav class="navbar">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                Elite Gadgets
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="index.html#collection">
+                    Collection
+                </a>
+
+                <a href="index.html#why-us">
+                    Why Us
+                </a>
+
+                <a href="index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/2349072084278"
+                class="nav-contact"
+                target="_blank"
+            >
+                WhatsApp
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================
+         PHONE DETAILS
+    ===================================== -->
+
+    <main>
+
+        <section class="details-page">
+
+
+            <a
+                href="index.html#collection"
+                class="back-link"
+            >
+                ← Back to Collection
+            </a>
+
+
+
+            <div class="details-grid">
+
+
+                <!-- =================================
+                     IMAGE GALLERY
+                ================================= -->
+
+                <div class="device-gallery">
+
+
+                    <div class="main-device-image">
+
+                        <img
+                            id="main-device-image"
+                            src="image/iphone-17-pro.jpg"
+                            alt="iPhone 17 Pro"
+                        >
+
+                    </div>
+
+
+                    <div class="thumbnail-gallery">
+
+
+                        <button
+                            class="thumbnail active"
+                            type="button"
+                            data-image="image/iphone-17-pro.jpg"
+                        >
+
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro front view"
+                            >
+
+                        </button>
+
+
+                        <button
+                            class="thumbnail"
+                            type="button"
+                            data-image="image/iphone-17-pro.jpg"
+                        >
+
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro image"
+                            >
+
+                        </button>
+
+
+                        <button
+                            class="thumbnail"
+                            type="button"
+                            data-image="image/iphone-17-pro.jpg"
+                        >
+
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro detail"
+                            >
+
+                        </button>
+
+
+                        <button
+                            class="thumbnail"
+                            type="button"
+                            data-image="image/iphone-17-pro.jpg"
+                        >
+
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro view"
+                            >
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     DEVICE INFORMATION
+                ================================= -->
+
+                <div class="device-info">
+
+
+                    <p class="device-brand">
+                        APPLE
+                    </p>
+
+
+                    <h1>
+                        iPhone 17 Pro
+                    </h1>
+
+
+                    <div class="availability">
+
+                        <span class="availability-dot"></span>
+
+                        Available
+
+                    </div>
+
+
+                    <p class="device-description">
+
+                        Experience premium performance,
+                        advanced photography and a refined
+                        smartphone experience with the
+                        iPhone 17 Pro.
+
+                    </p>
+
+
+                    <div class="device-actions">
+
+                        <a
+                            href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I'm%20interested%20in%20the%20iPhone%2017%20Pro."
+                            class="btn btn-primary"
+                            target="_blank"
+                        >
+                            Ask About This Device
+                        </a>
+
+
+                        <a
+                            href="mailto:fofanaabdullah70@gmail.com?subject=iPhone%2017%20Pro%20Enquiry"
+                            class="btn btn-outline"
+                        >
+                            Email Enquiry
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         SPECIFICATIONS
+                    ================================= -->
+
+                    <div class="specifications">
+
+                        <h2>
+                            Specifications
+                        </h2>
+
+
+                        <div class="spec-list">
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Brand
+                                </span>
+
+                                <strong>
+                                    Apple
+                                </strong>
+
+                            </div>
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Model
+                                </span>
+
+                                <strong>
+                                    iPhone 17 Pro
+                                </strong>
+
+                            </div>
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Display
+                                </span>
+
+                                <strong>
+                                    Premium OLED Display
+                                </strong>
+
+                            </div>
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Camera
+                                </span>
+
+                                <strong>
+                                    Pro Camera System
+                                </strong>
+
+                            </div>
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Storage
+                                </span>
+
+                                <strong>
+                                    Multiple Storage Options
+                                </strong>
+
+                            </div>
+
+
+                            <div class="spec-item">
+
+                                <span>
+                                    Connectivity
+                                </span>
+
+                                <strong>
+                                    5G
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 FEATURES
+            ===================================== -->
+
+            <section class="device-features">
+
+
+                <p class="eyebrow">
+                    DEVICE FEATURES
+                </p>
+
+
+                <h2>
+                    Designed For
+                    <span>More.</span>
+                </h2>
+
+
+                <div class="features-list">
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            01
+                        </span>
+
+                        <h3>
+                            Performance
+                        </h3>
+
+                        <p>
+                            Powerful hardware designed
+                            for smooth everyday use,
+                            gaming and demanding tasks.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            02
+                        </span>
+
+                        <h3>
+                            Photography
+                        </h3>
+
+                        <p>
+                            Capture detailed photos and
+                            videos with an advanced camera
+                            experience.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            03
+                        </span>
+
+                        <h3>
+                            Display
+                        </h3>
+
+                        <p>
+                            Enjoy a bright, detailed display
+                            designed for entertainment,
+                            work and everyday browsing.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            04
+                        </span>
+
+                        <h3>
+                            Design
+                        </h3>
+
+                        <p>
+                            A premium design built to combine
+                            durability, comfort and style.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            05
+                        </span>
+
+                        <h3>
+                            Connectivity
+                        </h3>
+
+                        <p>
+                            Stay connected with modern
+                            wireless and mobile connectivity.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box">
+
+                        <span>
+                            06
+                        </span>
+
+                        <h3>
+                            Experience
+                        </h3>
+
+                        <p>
+                            Built to deliver a smooth and
+                            enjoyable smartphone experience.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ENQUIRY
+            ===================================== -->
+
+            <section class="enquiry-banner">
+
+                <p class="eyebrow">
+                    INTERESTED IN THIS DEVICE?
+                </p>
+
+
+                <h2>
+                    Let's Talk.
+                </h2>
+
+
+                <p>
+                    Contact Elite Gadgets directly for
+                    availability, current pricing and
+                    purchasing information.
+                </p>
+
+
+                <div class="contact-actions">
+
+                    <a
+                        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I'm%20interested%20in%20the%20iPhone%2017%20Pro."
+                        class="btn btn-primary"
+                        target="_blank"
+                    >
+                        WhatsApp Us
+                    </a>
+
+
+                    <a
+                        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Device%20Enquiry"
+                        class="btn btn-outline"
+                    >
+                        Email Us
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo"
+                >
+                    Elite Gadgets
+                </a>
+
+                <p>
+                    Premium Tech. Trusted Service.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="index.html#collection">
+                    Collection
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Legal
+                </h4>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms & Conditions
+                </a>
+
+                <a href="#">
+                    Cookie Policy
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a
+                    href="https://wa.me/2349072084278"
+                    target="_blank"
+                >
+                    WhatsApp
+                </a>
+
+                <a
+                    href="mailto:fofanaabdullah70@gmail.com"
+                >
+                    Email
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Elite Gadgets. All rights reserved.
+            </p>
+
+            <p>
+                Premium Tech. Trusted Service.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================
+         FLOATING BUTTONS
+    ===================================== -->
+
+    <a
+        href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I%20would%20like%20to%20make%20an%20inquiry."
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat with Elite Gadgets on WhatsApp"
+    >
+        💬
+    </a>
+
+
+    <a
+        href="mailto:fofanaabdullah70@gmail.com?subject=Elite%20Gadgets%20Inquiry"
+        class="email-float"
+        aria-label="Email Elite Gadgets"
+    >
+        ✉️
+    </a>
+
+
+
+    <!-- =====================================
+         GALLERY JAVASCRIPT
+    ===================================== -->
+
+    <script>
+
+        const mainImage =
+            document.getElementById(
+                "main-device-image"
+            );
+
+
+        const thumbnails =
+            document.querySelectorAll(
+                ".thumbnail"
+            );
+
+
+        thumbnails.forEach(
+            function(thumbnail) {
+
+                thumbnail.addEventListener(
+                    "click",
+                    function() {
+
+                        const image =
+                            thumbnail.dataset.image;
+
+
+                        mainImage.src =
+                            image;
+
+
+                        thumbnails.forEach(
+                            function(item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        thumbnail.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
