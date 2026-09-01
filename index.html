@@ -29,6 +29,117 @@
         href="style.css"
     >
 
+
+    <style>
+
+        /* =====================================
+           FEATURED PRODUCT IMAGE GALLERY
+        ===================================== */
+
+        .product-image-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            height: 390px;
+            overflow: hidden;
+            background: #0b0b0f;
+        }
+
+        .featured-image {
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+            background: #111116;
+        }
+
+        .featured-image.large {
+            grid-row: 1 / 3;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .featured-image img {
+            transform: scale(1.04);
+        }
+
+        .product-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777780;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .learn-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* =====================================
+           FLOATING LEARN MORE BUTTON
+        ===================================== */
+
+        .floating-learn-more {
+            position: fixed;
+            right: 24px;
+            bottom: 28px;
+            z-index: 1000;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 13px 20px;
+
+            background: #ffffff;
+            color: #08080b;
+
+            border-radius: 999px;
+
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .floating-learn-more:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        @media (max-width: 600px) {
+
+            .product-image-gallery {
+                height: 330px;
+            }
+
+            .floating-learn-more {
+                right: 15px;
+                bottom: 18px;
+                padding: 12px 16px;
+                font-size: 0.68rem;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
@@ -325,13 +436,14 @@
                 </p>
 
                 <h2>
-                    Explore Our
+                    Featured
                     <span>Devices.</span>
                 </h2>
 
                 <p>
-                    Browse our selection of premium smartphones
-                    and discover your next device.
+                    Explore selected devices from Elite Gadgets.
+                    View more images and complete product details
+                    through our collection.
                 </p>
 
             </div>
@@ -373,20 +485,34 @@
             <div class="product-grid">
 
 
-                <!-- PHONE CARD -->
+                <!-- ===============================
+                     IPHONE 17 PRO
+                ================================= -->
 
                 <article class="product-card">
 
-                    <div class="product-image">
+                    <div class="product-image-gallery">
 
-                        <img
-                            src="image/iphone-17-pro.jpg"
-                            alt="iPhone 17 Pro"
-                        >
+                        <div class="featured-image large">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
 
-                        <span class="product-tag">
-                            Featured
-                        </span>
+                        <div class="featured-image">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
+
+                        <div class="featured-image">
+                            <img
+                                src="image/iphone-17-pro.jpg"
+                                alt="iPhone 17 Pro"
+                            >
+                        </div>
 
                     </div>
 
@@ -402,18 +528,16 @@
                         </h3>
 
                         <p>
-                            Premium performance,
-                            advanced camera technology
-                            and a refined design.
+                            A premium iPhone experience
+                            focused on powerful performance,
+                            advanced photography and refined design.
                         </p>
 
-
                         <a
-                            href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I'm%20interested%20in%20the%20iPhone%2017%20Pro."
-                            class="product-link"
-                            target="_blank"
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
                         >
-                            Ask About This Device →
+                            LEARN MORE →
                         </a>
 
                     </div>
@@ -422,15 +546,31 @@
 
 
 
-                <!-- PHONE CARD -->
+                <!-- ===============================
+                     IPHONE 16
+                ================================= -->
 
                 <article class="product-card">
 
-                    <div class="product-image product-placeholder">
+                    <div class="product-image-gallery">
 
-                        <span>
-                            SAMSUNG
-                        </span>
+                        <div class="featured-image large">
+                            <div class="product-placeholder">
+                                IPHONE 16
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
 
                     </div>
 
@@ -438,26 +578,24 @@
                     <div class="product-info">
 
                         <p class="product-brand">
-                            SAMSUNG
+                            APPLE
                         </p>
 
                         <h3>
-                            Galaxy S24
+                            iPhone 16
                         </h3>
 
                         <p>
-                            Powerful performance,
-                            stunning display and
-                            an exceptional mobile experience.
+                            A modern iPhone built for
+                            everyday performance, photography
+                            and a smooth premium experience.
                         </p>
 
-
                         <a
-                            href="https://wa.me/2349072084278?text=Hello%20Elite%20Gadgets,%20I'm%20interested%20in%20the%20Samsung%20Galaxy%20S24."
-                            class="product-link"
-                            target="_blank"
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
                         >
-                            Ask About This Device →
+                            LEARN MORE →
                         </a>
 
                     </div>
@@ -466,15 +604,31 @@
 
 
 
-                <!-- PHONE CARD -->
+                <!-- ===============================
+                     IPHONE 15 PRO
+                ================================= -->
 
                 <article class="product-card">
 
-                    <div class="product-image product-placeholder">
+                    <div class="product-image-gallery">
 
-                        <span>
-                            COMING SOON
-                        </span>
+                        <div class="featured-image large">
+                            <div class="product-placeholder">
+                                IPHONE 15 PRO
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
+
+                        <div class="featured-image">
+                            <div class="product-placeholder">
+                                IMAGE
+                            </div>
+                        </div>
 
                     </div>
 
@@ -482,32 +636,47 @@
                     <div class="product-info">
 
                         <p class="product-brand">
-                            ELITE COLLECTION
+                            APPLE
                         </p>
 
                         <h3>
-                            More Devices
+                            iPhone 15 Pro
                         </h3>
 
                         <p>
-                            More premium smartphones
-                            and gadgets will be added
-                            to our collection.
+                            A premium Pro model designed
+                            around strong performance,
+                            camera capability and durability.
                         </p>
 
-
                         <a
-                            href="#contact"
-                            class="product-link"
+                            href="catalogue.html"
+                            class="product-link learn-more-link"
                         >
-                            Contact Us →
+                            LEARN MORE →
                         </a>
 
                     </div>
 
                 </article>
+
 
             </div>
+
+
+            <!-- =================================
+                 FLOATING LEARN MORE
+            ================================= -->
+
+            <a
+                href="catalogue.html"
+                class="floating-learn-more"
+                aria-label="Explore the full Elite Gadgets collection"
+            >
+                LEARN MORE
+                <span>→</span>
+            </a>
+
 
         </section>
 
