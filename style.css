@@ -1404,133 +1404,140 @@ textarea {
 /* =========================================
    FOOTER
 ========================================= */
+/* =========================
+   ELITE GADGETS FOOTER
+========================= */
 
 .site-footer {
-
-    border-top:
-        1px solid var(--line);
-
-    padding:
-        70px 20px 25px;
-
+    background: #f5b800;
+    color: #111;
+    text-align: center;
+    padding: 50px 20px 30px;
+    margin-top: 60px;
 }
 
-
-.footer-grid {
-
-    width:
-        min(
-            100%,
-            var(--max-width)
-        );
-
-    margin:
-        auto;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1.5fr repeat(3, 1fr);
-
-    gap:
-        50px;
-
-    padding-bottom:
-        60px;
-
+.footer-content {
+    max-width: 800px;
+    margin: auto;
 }
 
-
-.footer-brand p {
-
-    color:
-        var(--muted);
-
-    margin-top:
-        12px;
-
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
-
-.footer-column {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        10px;
-
+.footer-logo img {
+    width: 140px;
+    max-height: 70px;
+    object-fit: contain;
+    display: block;
 }
 
-
-.footer-column h4 {
-
-    margin-bottom:
-        8px;
-
+.footer-content h3 {
+    font-size: 24px;
+    margin: 10px 0 15px;
 }
 
-
-.footer-column a {
-
-    color:
-        var(--muted);
-
-    font-size:
-        0.9rem;
-
-    transition:
-        0.3s ease;
-
+.footer-message {
+    max-width: 600px;
+    margin: 0 auto 25px;
+    line-height: 1.7;
+    font-size: 16px;
 }
 
-
-.footer-column a:hover {
-
-    color:
-        white;
-
+.footer-links-title {
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
+/* SOCIAL MEDIA TEXT */
 
-.footer-bottom {
-
-    width:
-        min(
-            100%,
-            var(--max-width)
-        );
-
-    margin:
-        auto;
-
-    padding-top:
-        25px;
-
-    border-top:
-        1px solid var(--line);
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    gap:
-        20px;
-
-    color:
-        #686870;
-
-    font-size:
-        0.75rem;
-
+.social-text-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
+.social-text-links a {
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.social-text-links a:hover {
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* WHATSAPP */
+
+.whatsapp-footer {
+    display: inline-block;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 18px;
+    transition: 0.3s ease;
+}
+
+.whatsapp-footer:hover {
+    transform: translateY(-3px);
+}
+
+/* EMAIL */
+
+.footer-email {
+    display: block;
+    color: #111;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer-email:hover {
+    text-decoration: underline;
+}
+
+/* TAGLINE */
+
+.footer-tagline {
+    font-weight: bold;
+    margin: 15px 0 8px;
+}
+
+/* COPYRIGHT */
+
+.footer-copy {
+    font-size: 13px;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .site-footer {
+        padding: 40px 18px 25px;
+    }
+
+    .footer-content h3 {
+        font-size: 21px;
+    }
+
+    .footer-message {
+        font-size: 14px;
+    }
+
+    .social-text-links {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+}
 
 /* =========================================
    FLOATING CONTACT BUTTONS
