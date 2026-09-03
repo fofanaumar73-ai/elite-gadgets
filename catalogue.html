@@ -2577,76 +2577,549 @@
          JAVASCRIPT
     ================================= -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
+    
 
-        const filterButtons =
-            document.querySelectorAll(".filter-button");
+<script>
+
+    /* =========================================================
+       ELITE GADGETS
+       SUPABASE DYNAMIC CATALOGUE
+       ========================================================= */
+
+
+    /* =========================================================
+       SUPABASE CONNECTION
+       ========================================================= */
+
+    const SUPABASE_URL =
+        "https://qimgbjtotjmhsczhfylu.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_JTNZLbqNhUk6PQ14D6hQzg_TUgWYbkm";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* =========================================================
+       PAGE ELEMENTS
+       ========================================================= */
+
+    const catalogueGrid =
+        document.getElementById("catalogue-grid");
+
+    const noProducts =
+        document.getElementById("no-products");
+
+    const filterButtons =
+        document.querySelectorAll(".filter-button");
+
+
+    /* =========================================================
+       ESCAPE HTML
+       ========================================================= */
+
+    function escapeHTML(value) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    /* =========================================================
+       CREATE PRODUCT IMAGE
+       ========================================================= */
+
+    function createProductImage(
+        imageURL,
+        altText,
+        className
+    ) {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "catalogue-image";
+
+        if (className) {
+            wrapper.classList.add(className);
+        }
+
+
+        /* No image uploaded */
+
+        if (!imageURL) {
+
+            const placeholder =
+                document.createElement("div");
+
+            placeholder.className =
+                "image-placeholder";
+
+            placeholder.textContent =
+                "IMAGE";
+
+            wrapper.appendChild(
+                placeholder
+            );
+
+            return wrapper;
+        }
+
+
+        const image =
+            document.createElement("img");
+
+        image.src = imageURL;
+
+        image.alt = altText;
+
+        image.loading = "lazy";
+
+
+        /* If an image cannot load */
+
+        image.onerror = function () {
+
+            wrapper.innerHTML = "";
+
+            const placeholder =
+                document.createElement("div");
+
+            placeholder.className =
+                "image-placeholder";
+
+            placeholder.textContent =
+                "IMAGE UNAVAILABLE";
+
+            wrapper.appendChild(
+                placeholder
+            );
+        };
+
+
+        wrapper.appendChild(image);
+
+        return wrapper;
+    }
+
+
+    /* =========================================================
+       CREATE PRODUCT CARD
+       ========================================================= */
+
+    function createProductCard(product) {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "catalogue-card";
+
+
+        /* Category for filtering */
+
+        card.dataset.category =
+            (
+                product.category || ""
+            )
+                .toLowerCase()
+                .trim();
+
+
+        /* Product information */
+
+        const name =
+            escapeHTML(
+                product.name
+            );
+
+        const brand =
+            escapeHTML(
+                product.brand
+            );
+
+        const description =
+            escapeHTML(
+                product.description ||
+                "Contact us for more details."
+            );
+
+
+        /* Product slug */
+
+        const slug =
+            encodeURIComponent(
+                product.slug
+            );
+
+
+        /* =====================================================
+           IMAGE GALLERY
+           ===================================================== */
+
+        const gallery =
+            document.createElement("div");
+
+        gallery.className =
+            "catalogue-image-gallery";
+
+
+        /*
+         * image1 = large image
+         * image2 = small image
+         * image3 = small image
+         */
+
+        gallery.appendChild(
+            createProductImage(
+                product.image1,
+                name,
+                "large"
+            )
+        );
+
+
+        gallery.appendChild(
+            createProductImage(
+                product.image2,
+                name,
+                ""
+            )
+        );
+
+
+        gallery.appendChild(
+            createProductImage(
+                product.image3,
+                name,
+                ""
+            )
+        );
+
+
+        /* =====================================================
+           PRODUCT INFORMATION
+           ===================================================== */
+
+        const info =
+            document.createElement("div");
+
+        info.className =
+            "catalogue-info";
+
+
+        info.innerHTML = `
+            <p class="catalogue-brand">
+                ${brand}
+            </p>
+
+            <h2>
+                ${name}
+            </h2>
+
+            <p>
+                ${description}
+            </p>
+
+            <a
+                href="phone-details.html?product=${slug}"
+                class="learn-more"
+            >
+                LEARN MORE →
+            </a>
+        `;
+
+
+        /* Add everything to card */
+
+        card.appendChild(gallery);
+
+        card.appendChild(info);
+
+
+        return card;
+    }
+
+
+    /* =========================================================
+       LOAD PRODUCTS FROM SUPABASE
+       ========================================================= */
+
+    async function loadCatalogueProducts() {
+
+        console.log(
+            "Elite Gadgets: loading products..."
+        );
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("products")
+            .select("*")
+            .eq("active", true)
+            .order(
+                "sort_order",
+                {
+                    ascending: true
+                }
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        /* =====================================================
+           SUPABASE ERROR
+           ===================================================== */
+
+        if (error) {
+
+            console.error(
+                "Elite Gadgets catalogue error:",
+                error
+            );
+
+            /*
+             * IMPORTANT:
+             * We do NOT remove the existing hardcoded
+             * catalogue if Supabase fails.
+             *
+             * This keeps the website working as a fallback.
+             */
+
+            return;
+        }
+
+
+        console.log(
+            "Elite Gadgets products loaded:",
+            data
+        );
+
+
+        /* =====================================================
+           SUPABASE WORKED
+           Remove old hardcoded cards.
+           ===================================================== */
+
+        catalogueGrid.innerHTML = "";
+
+
+        /* =====================================================
+           NO PRODUCTS
+           ===================================================== */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            noProducts.textContent =
+                "No products found in our collection.";
+
+            noProducts.style.display =
+                "block";
+
+            return;
+        }
+
+
+        noProducts.style.display =
+            "none";
+
+
+        /* =====================================================
+           DISPLAY SUPABASE PRODUCTS
+           ===================================================== */
+
+        data.forEach(function(product) {
+
+            const card =
+                createProductCard(product);
+
+            catalogueGrid.appendChild(
+                card
+            );
+
+        });
+
+
+        console.log(
+            "Elite Gadgets catalogue displayed successfully."
+        );
+    }
+
+
+    /* =========================================================
+       CATEGORY FILTER
+       ========================================================= */
+
+    function filterCatalogue(
+        selectedCategory
+    ) {
 
         const catalogueCards =
-            document.querySelectorAll(".catalogue-card");
-
-        const noProducts =
-            document.getElementById("no-products");
-
-
-        filterButtons.forEach(function(button) {
-
-            button.addEventListener("click", function() {
-
-                const selectedCategory =
-                    button.dataset.category;
+            document.querySelectorAll(
+                ".catalogue-card"
+            );
 
 
-                filterButtons.forEach(function(btn) {
-
-                    btn.classList.remove("active");
-
-                });
+        let visibleProducts = 0;
 
 
-                button.classList.add("active");
+        catalogueCards.forEach(
+            function(card) {
+
+                const cardCategory =
+                    (
+                        card.dataset.category ||
+                        ""
+                    )
+                        .toLowerCase()
+                        .trim();
 
 
-                let visibleProducts = 0;
+                /*
+                 * ALL
+                 */
+
+                if (
+                    selectedCategory === "all"
+                ) {
+
+                    card.style.display = "";
+
+                    visibleProducts++;
+
+                    return;
+                }
 
 
-                catalogueCards.forEach(function(card) {
+                /*
+                 * MATCHING CATEGORY
+                 */
 
-                    const cardCategory =
-                        card.dataset.category;
+                if (
+                    cardCategory ===
+                    selectedCategory
+                ) {
 
+                    card.style.display = "";
 
-                    if (
-                        selectedCategory === "all" ||
-                        cardCategory === selectedCategory
-                    ) {
-
-                        card.style.display = "";
-
-                        visibleProducts++;
-
-                    } else {
-
-                        card.style.display = "none";
-
-                    }
-
-                });
-
-
-                if (visibleProducts === 0) {
-
-                    noProducts.style.display = "block";
+                    visibleProducts++;
 
                 } else {
 
-                    noProducts.style.display = "none";
-
+                    card.style.display =
+                        "none";
                 }
 
-            });
+            }
+        );
 
-        });
+
+        /* =====================================================
+           EMPTY STATE
+           ===================================================== */
+
+        if (
+            visibleProducts === 0
+        ) {
+
+            noProducts.textContent =
+                "No products found in this category.";
+
+            noProducts.style.display =
+                "block";
+
+        } else {
+
+            noProducts.style.display =
+                "none";
+        }
+    }
+
+
+    /* =========================================================
+       FILTER BUTTONS
+       ========================================================= */
+
+    filterButtons.forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const selectedCategory =
+                        (
+                            button.dataset.category ||
+                            "all"
+                        )
+                            .toLowerCase()
+                            .trim();
+
+
+                    /* Remove active state */
+
+                    filterButtons.forEach(
+                        function(btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    /* Activate clicked button */
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    /* Filter catalogue */
+
+                    filterCatalogue(
+                        selectedCategory
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       START CATALOGUE
+       ========================================================= */
+
+    loadCatalogueProducts();
+
 
     </script>
 
