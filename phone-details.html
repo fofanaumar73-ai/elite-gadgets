@@ -587,527 +587,261 @@
 
 
 
-    <!-- =================================
-         JAVASCRIPT
-    ================================= -->
+<!-- =================================
+     JAVASCRIPT
+================================= -->
 
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
 
-        /*
-        ==================================================
-        ELITE GADGETS PRODUCT DATABASE
-        ==================================================
+    const SUPABASE_URL =
+        "https://qimgbjtotjmhsczhfylu.supabase.co";
 
-        THIS IS THE MAIN AREA YOU WILL EDIT LATER.
+    const SUPABASE_KEY =
+        "sb_publishable_JTNZLbqNhUk6PQ14D6hQzg_TUgWYbkm";
 
-        Each product has:
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-        brand
-        name
-        description
-        image1
-        image2
-        image3
-        about
-        camera
-        durability
-        storage
-        battery
-        features
 
-        To add another product, copy one product block
-        and give it a unique product key.
-        ==================================================
-        */
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
+    const productKey =
+        params.get("product");
 
-        const products = {
 
+    const detailsMain =
+        document.getElementById("details-main");
 
-            /* ==========================================
-               IPHONE 17 PRO
-            ========================================== */
 
-            "iphone-17-pro": {
+    function showDeviceNotFound() {
 
-                brand: "APPLE",
+        detailsMain.innerHTML = `
 
-                name: "iPhone 17 Pro",
+            <div class="device-not-found">
 
-                description:
-                    "A powerful Pro iPhone built for advanced photography, demanding performance and a premium everyday experience.",
+                <p class="eyebrow">
+                    ELITE GADGETS
+                </p>
 
-                image1:
-                    "image/iphone-17-pro.jpg",
+                <h1>
+                    Device Not Found
+                </h1>
 
-                image2:
-                    "",
+                <p>
+                    The product you selected could
+                    not be found in our collection.
+                </p>
 
-                image3:
-                    "",
+                <a
+                    href="catalogue.html"
+                    class="btn btn-primary"
+                >
+                    Back to Collection
+                </a>
 
-                about:
-                    "iPhone 17 Pro combines Apple's Pro performance with an advanced camera system, premium construction and a high-performance display. It is designed for users who want strong performance for photography, video, gaming and everyday use.",
+            </div>
 
-                camera:
-                    "48MP Pro Fusion camera system with 48MP Main, 48MP Ultra Wide and 48MP Fusion Telephoto cameras. It supports 4x optical zoom, 8x optical-quality zoom and up to 40x digital zoom.",
+        `;
+    }
 
-                durability:
-                    "Built with a premium design and rated IP68 for splash, water and dust resistance. The rating does not mean the phone is drop-proof, so a protective case is still recommended.",
 
-                storage:
-                    "Available storage options include 256GB, 512GB and 1TB.",
+    async function loadProductDetails() {
 
-                battery:
-                    "Apple rates iPhone 17 Pro for up to 33 hours of video playback. It also supports fast charging with compatible charging equipment.",
+        if (!productKey) {
 
-                features:
-                    "A19 Pro performance, advanced Pro camera capabilities, USB-C connectivity, Face ID and Apple's latest-generation features make it a strong choice for users who want a premium Pro smartphone."
+            showDeviceNotFound();
 
-            },
+            return;
+        }
 
 
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("products")
+            .select("*")
+            .eq("slug", productKey)
+            .eq("active", true)
+            .maybeSingle();
 
-            /* ==========================================
-               IPHONE 16
-            ========================================== */
 
-            "iphone-16": {
+        if (error) {
 
-                brand: "APPLE",
+            console.error(
+                "Product loading error:",
+                error
+            );
 
-                name: "iPhone 16",
+            showDeviceNotFound();
 
-                description:
-                    "A modern iPhone combining the A18 chip, advanced photography, Camera Control and a premium everyday design.",
+            return;
+        }
 
-                image1:
-                    "",
 
-                image2:
-                    "",
+        if (!data) {
 
-                image3:
-                    "",
+            showDeviceNotFound();
 
-                about:
-                    "iPhone 16 is designed for everyday performance with Apple's A18 chip, a 6.1-inch Super Retina XDR display and a modern camera system. It also introduces Camera Control and the Action button.",
+            return;
+        }
 
-                camera:
-                    "Advanced dual-camera system featuring a 48MP Fusion Main camera and a 12MP Ultra Wide camera. The Main camera also provides a 2x Telephoto option and the Ultra Wide camera supports macro photography.",
 
-                durability:
-                    "The aluminium design uses Ceramic Shield on the front and is rated IP68 for splash, water and dust resistance. Real-world drop resistance can vary, so protection is recommended.",
+        document.getElementById(
+            "device-brand"
+        ).textContent =
+            data.brand || "";
 
-                storage:
-                    "Available in 128GB, 256GB and 512GB storage configurations.",
 
-                battery:
-                    "Apple rates iPhone 16 for up to 22 hours of video playback.",
+        document.getElementById(
+            "device-name"
+        ).textContent =
+            data.name || "";
 
-                features:
-                    "A18 chip, Camera Control, Action button, Dynamic Island, USB-C connectivity, Apple Intelligence support and a 6.1-inch Super Retina XDR display."
 
-            },
+        document.getElementById(
+            "device-description"
+        ).textContent =
+            data.description ||
+            "Contact us for more details.";
 
 
+        document.getElementById(
+            "about"
+        ).textContent =
+            data.about ||
+            "No additional information available.";
 
-            /* ==========================================
-               IPHONE 15 PRO
-            ========================================== */
 
-            "iphone-15-pro": {
+        document.getElementById(
+            "camera"
+        ).textContent =
+            data.camera ||
+            "Not provided.";
 
-                brand: "APPLE",
 
-                name: "iPhone 15 Pro",
+        document.getElementById(
+            "durability"
+        ).textContent =
+            data.durability ||
+            "Not provided.";
 
-                description:
-                    "A titanium Pro iPhone combining powerful A17 Pro performance with a versatile professional camera system.",
 
-                image1:
-                    "",
+        document.getElementById(
+            "storage"
+        ).textContent =
+            data.storage ||
+            "Not provided.";
 
-                image2:
-                    "",
 
-                image3:
-                    "",
+        document.getElementById(
+            "battery"
+        ).textContent =
+            data.battery ||
+            "Not provided.";
 
-                about:
-                    "iPhone 15 Pro features a titanium design, Ceramic Shield front, A17 Pro chip and a 6.1-inch Super Retina XDR display. It was built for users who want strong performance, photography and gaming capabilities.",
 
-                camera:
-                    "Pro camera system with a 48MP Main camera, 12MP Ultra Wide camera and 12MP 3x Telephoto camera. It supports macro photography, Night mode and up to 15x digital zoom.",
+        document.getElementById(
+            "features"
+        ).textContent =
+            data.features ||
+            "Not provided.";
 
-                durability:
-                    "Titanium construction with a Ceramic Shield front and IP68 splash, water and dust resistance. IP68 is not a guarantee against damage from drops or impacts.",
 
-                storage:
-                    "Available in 128GB, 256GB, 512GB and 1TB.",
+        /* IMAGE 1 */
 
-                battery:
-                    "Designed for all-day use with Apple's built-in rechargeable lithium-ion battery and USB-C charging.",
+        const image1 =
+            document.getElementById("image-1");
 
-                features:
-                    "A17 Pro chip, titanium construction, Action button, USB-C with USB 3 support, Pro camera system, ProMotion display and strong gaming performance."
 
-            },
+        if (data.image1) {
 
+            image1.src =
+                data.image1;
 
+            image1.alt =
+                data.name || "Product image";
 
-            /* ==========================================
-               SAMSUNG S26 ULTRA
-            ========================================== */
+            image1.style.display =
+                "block";
 
-            "samsung-s26-ultra": {
+        } else {
 
-                brand: "SAMSUNG",
+            image1.style.display =
+                "none";
+        }
 
-                name: "Galaxy S26 Ultra",
 
-                description:
-                    "Samsung's flagship Galaxy smartphone with a 200MP camera, large display, powerful processor and built-in Privacy Display.",
+        /* IMAGE 2 */
 
-                image1:
-                    "",
-
-                image2:
-                    "",
-
-                image3:
-                    "",
-
-                about:
-                    "Galaxy S26 Ultra is Samsung's flagship S-series smartphone, combining a 6.9-inch display, advanced Galaxy AI features, powerful processing and an advanced multi-camera system. It also introduces a built-in Privacy Display.",
-
-                camera:
-                    "Rear camera system includes a 200MP Wide camera, 50MP Ultra Wide camera, 50MP Telephoto camera with 5x optical zoom and 10MP Telephoto camera with 3x optical zoom. It also has a 12MP front camera.",
-
-                durability:
-                    "The phone is built as a premium flagship device with a slim 7.9mm design and weighs about 214g. For protection against everyday accidents, a quality case and screen protector are still recommended.",
-
-                storage:
-                    "Available in 256GB, 512GB and 1TB. The 1TB version comes with 16GB memory, while the 256GB and 512GB versions come with 12GB memory.",
-
-                battery:
-                    "A 5,000mAh typical battery provides up to 31 hours of video playback. Samsung also states that Super Fast Charging 3.0 can charge the device to up to 75% in around 30 minutes with compatible equipment.",
-
-                features:
-                    "6.9-inch display, built-in Privacy Display, Snapdragon 8 Elite Gen 5 for Galaxy, S Pen, Galaxy AI features, advanced cooling and a high-end camera system."
-
-            },
-
-
-
-            /* ==========================================
-               JBL SPEAKERS
-            ========================================== */
-
-            "jbl-speakers": {
-
-                brand: "JBL",
-
-                name: "JBL Speakers",
-
-                description:
-                    "Premium JBL speakers designed to deliver powerful sound, portability and enjoyable listening wherever you go.",
-
-                image1:
-                    "",
-
-                image2:
-                    "",
-
-                image3:
-                    "",
-
-                about:
-                    "Explore JBL's range of portable speakers for music, entertainment and everyday listening. Different models offer different combinations of sound output, portability, battery life and water or dust protection.",
-
-                camera:
-                    "Not applicable. JBL speakers are audio devices rather than smartphones.",
-
-                durability:
-                    "Durability depends on the JBL model. Many portable JBL speakers offer water and dust resistance, while selected models also provide drop protection. Check the exact model for its official protection rating.",
-
-                storage:
-                    "Not applicable. JBL portable speakers generally stream audio from connected devices rather than using phone-style internal storage.",
-
-                battery:
-                    "Battery life varies by model. Current JBL portable speakers offer different playtime ratings, ranging from compact models to larger speakers designed for extended listening.",
-
-                features:
-                    "JBL Pro Sound, Bluetooth connectivity and portable designs are common across the range. Specific features such as Auracast, powerbank functionality, app support and waterproofing depend on the model."
-
-            },
-
-
-
-            /* ==========================================
-               PLAYSTATION
-            ========================================== */
-
-            "playstation": {
-
-                brand: "SONY",
-
-                name: "PlayStation",
-
-                description:
-                    "PlayStation gaming systems designed for immersive gaming, high-quality graphics and entertainment.",
-
-                image1:
-                    "",
-
-                image2:
-                    "",
-
-                image3:
-                    "",
-
-                about:
-                    "Explore PlayStation consoles and gaming products available through Elite Gadgets. The catalogue can be expanded later to list specific generations such as PS3, PS4 and PS5 separately.",
-
-                camera:
-                    "Not applicable. PlayStation is a gaming console rather than a camera-equipped smartphone.",
-
-                durability:
-                    "PlayStation consoles are designed for home entertainment use. Keep the console properly ventilated and protected from liquid, excessive dust and physical impact.",
-
-                storage:
-                    "Storage depends on the specific PlayStation model. Current PS5 versions use a custom SSD, with storage capacity varying by edition and model.",
-
-                battery:
-                    "The console itself is powered from an electrical outlet rather than a built-in rechargeable battery.",
-
-                features:
-                    "PS5 systems use an AMD Zen 2 CPU, AMD Radeon RDNA-based graphics technology and 16GB GDDR6 memory. Features include high-speed SSD storage, 4K gaming support on compatible displays and Tempest 3D AudioTech."
-
-            }
-
-        };
-
-
-
-        /* ==========================================
-           READ PRODUCT FROM URL
-        ========================================== */
-
-
-        const params =
-            new URLSearchParams(
-                window.location.search
+        const imageSpace2 =
+            document.getElementById(
+                "image-space-2"
             );
 
 
-        const productKey =
-            params.get("product");
+        if (data.image2) {
 
+            imageSpace2.innerHTML = `
 
-        const product =
-            products[productKey];
-
-
-
-        /* ==========================================
-           CHECK PRODUCT
-        ========================================== */
-
-
-        if (!product) {
-
-            document.getElementById(
-                "details-main"
-            ).innerHTML = `
-
-                <div class="device-not-found">
-
-                    <p class="eyebrow">
-                        ELITE GADGETS
-                    </p>
-
-                    <h1>
-                        Device Not Found
-                    </h1>
-
-                    <p>
-                        The product you selected could
-                        not be found in our collection.
-                    </p>
-
-                    <a
-                        href="catalogue.html"
-                        class="btn btn-primary"
-                    >
-                        Back to Collection
-                    </a>
-
-                </div>
+                <img
+                    src="${data.image2}"
+                    alt="${data.name || "Product image"}"
+                >
 
             `;
 
+        } else {
+
+            imageSpace2.innerHTML =
+                "INSERT IMAGE 2";
         }
 
 
-        else {
+        /* IMAGE 3 */
 
-
-            /* ==========================================
-               TEXT INFORMATION
-            ========================================== */
-
-
+        const imageSpace3 =
             document.getElementById(
-                "device-brand"
-            ).textContent =
-                product.brand;
+                "image-space-3"
+            );
 
 
-            document.getElementById(
-                "device-name"
-            ).textContent =
-                product.name;
+        if (data.image3) {
 
+            imageSpace3.innerHTML = `
 
-            document.getElementById(
-                "device-description"
-            ).textContent =
-                product.description;
+                <img
+                    src="${data.image3}"
+                    alt="${data.name || "Product image"}"
+                >
 
+            `;
 
-            document.getElementById(
-                "about"
-            ).textContent =
-                product.about;
+        } else {
 
-
-            document.getElementById(
-                "camera"
-            ).textContent =
-                product.camera;
-
-
-            document.getElementById(
-                "durability"
-            ).textContent =
-                product.durability;
-
-
-            document.getElementById(
-                "storage"
-            ).textContent =
-                product.storage;
-
-
-            document.getElementById(
-                "battery"
-            ).textContent =
-                product.battery;
-
-
-            document.getElementById(
-                "features"
-            ).textContent =
-                product.features;
-
-
-
-            /* ==========================================
-               IMAGE 1
-            ========================================== */
-
-
-            const image1 =
-                document.getElementById(
-                    "image-1"
-                );
-
-
-            if (product.image1) {
-
-                image1.src =
-                    product.image1;
-
-                image1.alt =
-                    product.name;
-
-            }
-            else {
-
-                image1.style.display =
-                    "none";
-
-            }
-
-
-
-            /* ==========================================
-               IMAGE 2
-            ========================================== */
-
-
-            const imageSpace2 =
-                document.getElementById(
-                    "image-space-2"
-                );
-
-
-            if (product.image2) {
-
-                imageSpace2.innerHTML = `
-
-                    <img
-                        src="${product.image2}"
-                        alt="${product.name}"
-                    >
-
-                `;
-
-            }
-
-
-
-            /* ==========================================
-               IMAGE 3
-            ========================================== */
-
-
-            const imageSpace3 =
-                document.getElementById(
-                    "image-space-3"
-                );
-
-
-            if (product.image3) {
-
-                imageSpace3.innerHTML = `
-
-                    <img
-                        src="${product.image3}"
-                        alt="${product.name}"
-                    >
-
-                `;
-
-            }
-
-
-
-            /* ==========================================
-               PAGE TITLE
-            ========================================== */
-
-
-            document.title =
-                product.name +
-                " | Elite Gadgets";
-
+            imageSpace3.innerHTML =
+                "INSERT IMAGE 3";
         }
 
 
-    </script>
+        document.title =
+            (data.name || "Device Details") +
+            " | Elite Gadgets";
+
+    }
+
+
+    loadProductDetails();
+
+</script>
 
 
 </body>
