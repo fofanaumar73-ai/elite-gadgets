@@ -112,7 +112,7 @@
         }
 
         .logout-btn {
-            background: #fff;
+            background: white;
             color: #111;
             border: none;
             padding: 9px 15px;
@@ -276,7 +276,7 @@
         }
 
         /* =========================
-           FORM BUTTONS
+           BUTTONS
         ========================= */
 
         .form-buttons {
@@ -381,18 +381,12 @@
             color: white;
         }
 
-        #dashboardMessage {
-            margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-        }
-
         /* =========================
            MOBILE
         ========================= */
 
         @media (max-width: 768px) {
+
             header {
                 padding: 15px;
             }
@@ -437,9 +431,10 @@
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      LOGIN SCREEN
-========================= -->
+===================================================== -->
 
 <div id="loginScreen">
 
@@ -481,9 +476,9 @@
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      DASHBOARD
-========================= -->
+===================================================== -->
 
 <div id="dashboard">
 
@@ -503,23 +498,24 @@
 
     <main class="container">
 
-        <div id="dashboardMessage"></div>
 
-
-        <!-- =========================
+        <!-- =================================================
              ADD / EDIT PRODUCT
-        ========================= -->
+        ================================================= -->
 
         <section class="section">
 
-            <h2 id="formTitle">Add New Product</h2>
+            <h2 id="formTitle">
+                Add New Product
+            </h2>
+
 
             <form id="productForm">
 
                 <div class="form-grid">
 
 
-                    <!-- PRODUCT NAME -->
+                    <!-- NAME -->
 
                     <div class="form-group">
 
@@ -621,7 +617,7 @@
 
                         <textarea
                             id="productDescription"
-                            placeholder="Short description of the product..."
+                            placeholder="Short description..."
                         ></textarea>
 
                     </div>
@@ -669,7 +665,7 @@
 
                         <textarea
                             id="productDurability"
-                            placeholder="Durability / protection details..."
+                            placeholder="Durability / protection..."
                         ></textarea>
 
                     </div>
@@ -686,7 +682,7 @@
                         <input
                             type="text"
                             id="productStorage"
-                            placeholder="e.g. 256GB / 512GB / 1TB"
+                            placeholder="256GB / 512GB / 1TB"
                         >
 
                     </div>
@@ -719,7 +715,7 @@
 
                         <textarea
                             id="productFeatures"
-                            placeholder="List the important features..."
+                            placeholder="Important features..."
                         ></textarea>
 
                     </div>
@@ -742,7 +738,9 @@
                     </div>
 
 
-                    <!-- IMAGE UPLOAD -->
+                    <!-- =================================================
+                         IMAGE UPLOAD
+                    ================================================= -->
 
                     <div class="form-group full">
 
@@ -777,7 +775,9 @@
                             style="display:none;"
                         >
 
-                            <h3>Current Images</h3>
+                            <h3>
+                                Current Images
+                            </h3>
 
                             <div
                                 id="existingImageGrid"
@@ -842,6 +842,7 @@
                         Save Product
                     </button>
 
+
                     <button
                         type="button"
                         class="cancel-btn"
@@ -858,9 +859,9 @@
         </section>
 
 
-        <!-- =========================
-             PRODUCTS
-        ========================= -->
+        <!-- =================================================
+             PRODUCTS LIST
+        ================================================= -->
 
         <section class="section">
 
@@ -872,9 +873,7 @@
                 id="productsList"
                 class="products-list"
             >
-
                 Loading products...
-
             </div>
 
         </section>
@@ -886,197 +885,119 @@
 
 <script>
 
-    /* =====================================================
-       SUPABASE
-    ===================================================== */
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
 
-    const SUPABASE_URL =
-        "https://qimgbjtotjmhsczhfylu.supabase.co";
+const SUPABASE_URL =
+    "https://qimgbjtotjmhsczhfylu.supabase.co";
 
-    const SUPABASE_KEY =
-        "sb_publishable_JTNZLbqNhUk6PQ14D6hQzg_TUgWYbkm";
+const SUPABASE_KEY =
+    "sb_publishable_JTNZLbqNhUk6PQ14D6hQzg_TUgWYbkm";
 
-    const STORAGE_BUCKET =
-        "product-images";
-
-
-    const supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
+const STORAGE_BUCKET =
+    "product-images";
 
 
-    /* =====================================================
-       VARIABLES
-    ===================================================== */
-
-    let editingProductId = null;
-
-    let existingImageUrls = [];
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+/* =========================================================
+   VARIABLES
+========================================================= */
 
-    const loginScreen =
-        document.getElementById("loginScreen");
+let editingProductId = null;
 
-    const dashboard =
-        document.getElementById("dashboard");
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const loginMessage =
-        document.getElementById("loginMessage");
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-    const productForm =
-        document.getElementById("productForm");
-
-    const productImages =
-        document.getElementById("productImages");
-
-    const imagePreview =
-        document.getElementById("imagePreview");
-
-    const existingImages =
-        document.getElementById("existingImages");
-
-    const existingImageGrid =
-        document.getElementById("existingImageGrid");
-
-    const uploadStatus =
-        document.getElementById("uploadStatus");
-
-    const productsList =
-        document.getElementById("productsList");
-
-    const formTitle =
-        document.getElementById("formTitle");
-
-    const saveProductBtn =
-        document.getElementById("saveProductBtn");
-
-    const cancelEditBtn =
-        document.getElementById("cancelEditBtn");
+let existingImageUrls = [];
 
 
-    /* =====================================================
-       CHECK ADMIN
-    ===================================================== */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-    async function verifyAdmin() {
+const loginScreen =
+    document.getElementById("loginScreen");
 
-        const {
-            data: {
-                user
-            }
-        } = await supabaseClient.auth.getUser();
+const dashboard =
+    document.getElementById("dashboard");
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginMessage =
+    document.getElementById("loginMessage");
+
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
+const productForm =
+    document.getElementById("productForm");
+
+const productImages =
+    document.getElementById("productImages");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+const existingImages =
+    document.getElementById("existingImages");
+
+const existingImageGrid =
+    document.getElementById("existingImageGrid");
+
+const uploadStatus =
+    document.getElementById("uploadStatus");
+
+const productsList =
+    document.getElementById("productsList");
+
+const formTitle =
+    document.getElementById("formTitle");
+
+const saveProductBtn =
+    document.getElementById("saveProductBtn");
+
+const cancelEditBtn =
+    document.getElementById("cancelEditBtn");
 
 
-        if (!user) {
+/* =========================================================
+   LOGIN
+========================================================= */
 
-            return false;
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
 
-        }
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        loginMessage.textContent =
+            "Logging in...";
 
 
         const {
             data,
             error
-        } = await supabaseClient
-
-            .from("admins")
-
-            .select("user_id")
-
-            .eq("user_id", user.id)
-
-            .maybeSingle();
-
-
-        if (error) {
-
-            console.error(
-                "Admin verification error:",
-                error
-            );
-
-            return false;
-
-        }
-
-
-        return !!data;
-
-    }
-
-
-    /* =====================================================
-       SHOW DASHBOARD
-    ===================================================== */
-
-    async function showDashboard() {
-
-        const isAdmin =
-            await verifyAdmin();
-
-
-        if (!isAdmin) {
-
-            await supabaseClient.auth.signOut();
-
-            loginScreen.style.display = "flex";
-
-            dashboard.style.display = "none";
-
-            loginMessage.textContent =
-                "You are not authorized to access this dashboard.";
-
-            return;
-
-        }
-
-
-        loginScreen.style.display = "none";
-
-        dashboard.style.display = "block";
-
-        await loadProducts();
-
-    }
-
-
-    /* =====================================================
-       LOGIN
-    ===================================================== */
-
-    loginForm.addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-
-            loginMessage.textContent =
-                "Logging in...";
-
-
-            const {
-                error
-            } = await supabaseClient.auth.signInWithPassword({
+        } = await supabaseClient.auth
+            .signInWithPassword({
 
                 email: email,
 
@@ -1085,129 +1006,153 @@
             });
 
 
-            if (error) {
+        if (error) {
 
-                loginMessage.textContent =
-                    error.message;
+            loginMessage.textContent =
+                error.message;
 
-                return;
-
-            }
-
-
-            loginMessage.textContent = "";
-
-            await showDashboard();
+            return;
 
         }
-    );
 
 
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
+        /* LOGIN SUCCESS */
 
-    logoutBtn.addEventListener(
-        "click",
-        async function() {
+        loginMessage.textContent = "";
 
-            await supabaseClient.auth.signOut();
+        loginScreen.style.display = "none";
 
-            dashboard.style.display = "none";
+        dashboard.style.display = "block";
 
-            loginScreen.style.display = "flex";
+        await loadProducts();
 
-            loginForm.reset();
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+logoutBtn.addEventListener(
+    "click",
+    async function() {
+
+        await supabaseClient.auth.signOut();
+
+        dashboard.style.display =
+            "none";
+
+        loginScreen.style.display =
+            "flex";
+
+        loginForm.reset();
+
+    }
+);
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+productImages.addEventListener(
+    "change",
+    function() {
+
+        imagePreview.innerHTML = "";
+
+        uploadStatus.textContent = "";
+
+
+        const files =
+            Array.from(
+                productImages.files
+            );
+
+
+        if (files.length > 3) {
+
+            alert(
+                "Please select a maximum of 3 images."
+            );
+
+            productImages.value = "";
+
+            return;
 
         }
-    );
 
 
-    /* =====================================================
-       IMAGE PREVIEW
-    ===================================================== */
-
-    productImages.addEventListener(
-        "change",
-        function() {
-
-            imagePreview.innerHTML = "";
-
-            uploadStatus.textContent = "";
+        for (const file of files) {
 
 
-            const files =
-                Array.from(productImages.files);
+            const allowedTypes = [
+
+                "image/jpeg",
+
+                "image/jpg",
+
+                "image/png",
+
+                "image/webp"
+
+            ];
 
 
-            if (files.length > 3) {
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
 
                 alert(
-                    "Please select a maximum of 3 images."
+                    file.name +
+                    " is not a supported image type."
                 );
 
                 productImages.value = "";
 
+                imagePreview.innerHTML = "";
+
                 return;
 
             }
 
 
-            for (const file of files) {
+            /* 5MB MAX */
+
+            if (
+                file.size >
+                5 * 1024 * 1024
+            ) {
+
+                alert(
+                    file.name +
+                    " is larger than 5MB."
+                );
+
+                productImages.value = "";
+
+                imagePreview.innerHTML = "";
+
+                return;
+
+            }
 
 
-                /* FILE TYPE */
-
-                const allowedTypes = [
-                    "image/jpeg",
-                    "image/jpg",
-                    "image/png",
-                    "image/webp"
-                ];
+            const reader =
+                new FileReader();
 
 
-                if (!allowedTypes.includes(file.type)) {
-
-                    alert(
-                        file.name +
-                        " is not a supported image type."
-                    );
-
-                    productImages.value = "";
-
-                    imagePreview.innerHTML = "";
-
-                    return;
-
-                }
-
-
-                /* FILE SIZE */
-
-                if (file.size > 5 * 1024 * 1024) {
-
-                    alert(
-                        file.name +
-                        " is larger than 5MB."
-                    );
-
-                    productImages.value = "";
-
-                    imagePreview.innerHTML = "";
-
-                    return;
-
-                }
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload = function(e) {
+            reader.onload =
+                function(e) {
 
                     const card =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
+
 
                     card.className =
                         "preview-card";
@@ -1227,502 +1172,717 @@
                     `;
 
 
-                    imagePreview.appendChild(card);
+                    imagePreview.appendChild(
+                        card
+                    );
 
                 };
 
 
-                reader.readAsDataURL(file);
-
-            }
+            reader.readAsDataURL(file);
 
         }
-    );
+
+    }
+);
 
 
-    /* =====================================================
-       UPLOAD IMAGE
-    ===================================================== */
+/* =========================================================
+   UPLOAD IMAGE
+========================================================= */
 
-    async function uploadImage(
-        file,
-        slug,
-        number
-    ) {
-
-
-        const extension =
-            file.name
-                .split(".")
-                .pop()
-                .toLowerCase();
+async function uploadImage(
+    file,
+    slug,
+    number
+) {
 
 
-        const safeSlug =
-            slug
-                .toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "");
+    const extension =
+        file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
 
 
-        const fileName =
-            `${safeSlug}-${number}-${Date.now()}.${extension}`;
+    const safeSlug =
+        slug
 
+            .toLowerCase()
 
-        const filePath =
-            `products/${fileName}`;
+            .trim()
 
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
 
-        const {
-            error
-        } = await supabaseClient.storage
-
-            .from(STORAGE_BUCKET)
-
-            .upload(
-                filePath,
-                file,
-                {
-                    cacheControl: "3600",
-                    upsert: false
-                }
+            .replace(
+                /^-+|-+$/g,
+                ""
             );
 
 
-        if (error) {
-
-            throw error;
-
-        }
+    const fileName =
+        `${safeSlug}-${number}-${Date.now()}.${extension}`;
 
 
-        const {
-            data
-        } = supabaseClient.storage
+    const filePath =
+        `products/${fileName}`;
+
+
+    const {
+        error
+    } = await supabaseClient.storage
+
+        .from(STORAGE_BUCKET)
+
+        .upload(
+            filePath,
+            file,
+            {
+                cacheControl: "3600",
+                upsert: false
+            }
+        );
+
+
+    if (error) {
+
+        throw error;
+
+    }
+
+
+    const {
+        data
+    } =
+        supabaseClient.storage
 
             .from(STORAGE_BUCKET)
 
             .getPublicUrl(filePath);
 
 
-        return data.publicUrl;
+    return data.publicUrl;
+
+}
+
+
+/* =========================================================
+   GET STORAGE PATH
+========================================================= */
+
+function getStoragePath(url) {
+
+    if (!url) {
+
+        return null;
 
     }
 
 
-    /* =====================================================
-       GET STORAGE PATH FROM URL
-    ===================================================== */
-
-    function getStoragePath(url) {
-
-        if (!url) {
-
-            return null;
-
-        }
+    const marker =
+        `/storage/v1/object/public/${STORAGE_BUCKET}/`;
 
 
-        const marker =
-            `/storage/v1/object/public/${STORAGE_BUCKET}/`;
+    const index =
+        url.indexOf(marker);
 
 
-        const index =
-            url.indexOf(marker);
+    if (index === -1) {
+
+        return null;
+
+    }
 
 
-        if (index === -1) {
+    return decodeURIComponent(
+        url.substring(
+            index + marker.length
+        )
+    );
 
-            return null;
-
-        }
+}
 
 
-        return decodeURIComponent(
-            url.substring(
-                index + marker.length
+/* =========================================================
+   DELETE STORAGE IMAGES
+========================================================= */
+
+async function deleteStorageImages(
+    urls
+) {
+
+    const paths =
+        urls
+
+            .map(
+                getStoragePath
             )
+
+            .filter(Boolean);
+
+
+    if (!paths.length) {
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await supabaseClient.storage
+
+        .from(STORAGE_BUCKET)
+
+        .remove(paths);
+
+
+    if (error) {
+
+        console.warn(
+            "Storage image deletion failed:",
+            error
         );
 
     }
 
-
-    /* =====================================================
-       DELETE STORAGE IMAGES
-    ===================================================== */
-
-    async function deleteStorageImages(
-        urls
-    ) {
-
-        const paths =
-            urls
-
-                .map(
-                    getStoragePath
-                )
-
-                .filter(Boolean);
+}
 
 
-        if (!paths.length) {
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
 
-            return;
+productForm.addEventListener(
+    "submit",
+    async function(event) {
 
-        }
-
-
-        const {
-            error
-        } = await supabaseClient.storage
-
-            .from(STORAGE_BUCKET)
-
-            .remove(paths);
+        event.preventDefault();
 
 
-        if (error) {
+        saveProductBtn.disabled =
+            true;
 
-            console.warn(
-                "Could not delete storage images:",
-                error
-            );
-
-        }
-
-    }
+        saveProductBtn.textContent =
+            "Saving...";
 
 
-    /* =====================================================
-       SAVE PRODUCT
-    ===================================================== */
-
-    productForm.addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
+        try {
 
 
-            saveProductBtn.disabled = true;
-
-            saveProductBtn.textContent =
-                "Saving...";
-
-
-            try {
+            const name =
+                document
+                    .getElementById("productName")
+                    .value
+                    .trim();
 
 
-                const name =
+            const brand =
+                document
+                    .getElementById("productBrand")
+                    .value
+                    .trim();
+
+
+            const category =
+                document
+                    .getElementById("productCategory")
+                    .value;
+
+
+            const slug =
+                document
+                    .getElementById("productSlug")
+                    .value
+                    .trim();
+
+
+            const description =
+                document
+                    .getElementById("productDescription")
+                    .value
+                    .trim();
+
+
+            const about =
+                document
+                    .getElementById("productAbout")
+                    .value
+                    .trim();
+
+
+            const camera =
+                document
+                    .getElementById("productCamera")
+                    .value
+                    .trim();
+
+
+            const durability =
+                document
+                    .getElementById("productDurability")
+                    .value
+                    .trim();
+
+
+            const storage =
+                document
+                    .getElementById("productStorage")
+                    .value
+                    .trim();
+
+
+            const battery =
+                document
+                    .getElementById("productBattery")
+                    .value
+                    .trim();
+
+
+            const features =
+                document
+                    .getElementById("productFeatures")
+                    .value
+                    .trim();
+
+
+            const sortOrder =
+                parseInt(
                     document
-                        .getElementById("productName")
+                        .getElementById(
+                            "productSortOrder"
+                        )
                         .value
-                        .trim();
+                ) || 0;
 
 
-                const brand =
-                    document
-                        .getElementById("productBrand")
-                        .value
-                        .trim();
+            const featured =
+                document
+                    .getElementById(
+                        "productFeatured"
+                    )
+                    .checked;
 
 
-                const category =
-                    document
-                        .getElementById("productCategory")
-                        .value;
+            const active =
+                document
+                    .getElementById(
+                        "productActive"
+                    )
+                    .checked;
 
 
-                const slug =
-                    document
-                        .getElementById("productSlug")
-                        .value
-                        .trim();
+            const files =
+                Array.from(
+                    productImages.files
+                );
 
 
-                const description =
-                    document
-                        .getElementById("productDescription")
-                        .value
-                        .trim();
+            let imageUrls =
+                [...existingImageUrls];
 
 
-                const about =
-                    document
-                        .getElementById("productAbout")
-                        .value
-                        .trim();
+            /* =============================================
+               UPLOAD NEW IMAGES
+            ============================================= */
 
+            if (files.length > 0) {
 
-                const camera =
-                    document
-                        .getElementById("productCamera")
-                        .value
-                        .trim();
+                uploadStatus.textContent =
+                    "Uploading images...";
 
 
-                const durability =
-                    document
-                        .getElementById("productDurability")
-                        .value
-                        .trim();
+                const newImages = [];
 
 
-                const storage =
-                    document
-                        .getElementById("productStorage")
-                        .value
-                        .trim();
-
-
-                const battery =
-                    document
-                        .getElementById("productBattery")
-                        .value
-                        .trim();
-
-
-                const features =
-                    document
-                        .getElementById("productFeatures")
-                        .value
-                        .trim();
-
-
-                const sortOrder =
-                    parseInt(
-                        document
-                            .getElementById("productSortOrder")
-                            .value
-                    ) || 0;
-
-
-                const featured =
-                    document
-                        .getElementById("productFeatured")
-                        .checked;
-
-
-                const active =
-                    document
-                        .getElementById("productActive")
-                        .checked;
-
-
-                const files =
-                    Array.from(productImages.files);
-
-
-                /* =========================
-                   UPLOAD NEW IMAGES
-                ========================= */
-
-                let imageUrls =
-                    [...existingImageUrls];
-
-
-                if (files.length > 0) {
-
-                    uploadStatus.textContent =
-                        "Uploading images...";
-
-
-                    const newImages = [];
-
-
-                    for (
-                        let i = 0;
-                        i < files.length;
-                        i++
-                    ) {
-
-                        uploadStatus.textContent =
-                            `Uploading image ${i + 1} of ${files.length}...`;
-
-
-                        const url =
-                            await uploadImage(
-                                files[i],
-                                slug,
-                                i + 1
-                            );
-
-
-                        newImages.push(url);
-
-                    }
-
-
-                    imageUrls =
-                        newImages;
-
-
-                    uploadStatus.textContent =
-                        "Images uploaded successfully.";
-
-                }
-
-
-                /* =========================
-                   PRODUCT DATA
-                ========================= */
-
-                const productData = {
-
-                    name: name,
-
-                    brand: brand,
-
-                    category: category,
-
-                    slug: slug,
-
-                    description: description,
-
-                    about: about,
-
-                    camera: camera,
-
-                    durability: durability,
-
-                    storage: storage,
-
-                    battery: battery,
-
-                    features: features,
-
-                    image1:
-                        imageUrls[0] || null,
-
-                    image2:
-                        imageUrls[1] || null,
-
-                    image3:
-                        imageUrls[2] || null,
-
-                    featured: featured,
-
-                    active: active,
-
-                    sort_order: sortOrder
-
-                };
-
-
-                let result;
-
-
-                /* =========================
-                   UPDATE
-                ========================= */
-
-                if (editingProductId) {
-
-                    result =
-                        await supabaseClient
-
-                            .from("products")
-
-                            .update(productData)
-
-                            .eq(
-                                "id",
-                                editingProductId
-                            );
-
-
-                }
-
-                /* =========================
-                   INSERT
-                ========================= */
-
-                else {
-
-                    result =
-                        await supabaseClient
-
-                            .from("products")
-
-                            .insert(
-                                productData
-                            );
-
-                }
-
-
-                if (result.error) {
-
-                    throw result.error;
-
-                }
-
-
-                /* =========================
-                   DELETE OLD IMAGES
-                   WHEN REPLACED
-                ========================= */
-
-                if (
-                    editingProductId &&
-                    files.length > 0 &&
-                    existingImageUrls.length > 0
+                for (
+                    let i = 0;
+                    i < files.length;
+                    i++
                 ) {
 
-                    await deleteStorageImages(
-                        existingImageUrls
-                    );
+                    uploadStatus.textContent =
+                        `Uploading image ${i + 1} of ${files.length}...`;
+
+
+                    const url =
+                        await uploadImage(
+                            files[i],
+                            slug,
+                            i + 1
+                        );
+
+
+                    newImages.push(url);
 
                 }
 
 
-                alert(
-                    editingProductId
-                        ? "Product updated successfully!"
-                        : "Product added successfully!"
-                );
-
-
-                resetForm();
-
-                await loadProducts();
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "Error: " +
-                    error.message
-                );
+                imageUrls =
+                    newImages;
 
 
                 uploadStatus.textContent =
-                    "";
+                    "Images uploaded successfully.";
 
             }
 
 
-            saveProductBtn.disabled = false;
+            /* =============================================
+               PRODUCT DATA
+            ============================================= */
 
-            saveProductBtn.textContent =
-                "Save Product";
+            const productData = {
+
+                name: name,
+
+                brand: brand,
+
+                category: category,
+
+                slug: slug,
+
+                description: description,
+
+                about: about,
+
+                camera: camera,
+
+                durability: durability,
+
+                storage: storage,
+
+                battery: battery,
+
+                features: features,
+
+                image1:
+                    imageUrls[0] || null,
+
+                image2:
+                    imageUrls[1] || null,
+
+                image3:
+                    imageUrls[2] || null,
+
+                featured: featured,
+
+                active: active,
+
+                sort_order: sortOrder
+
+            };
+
+
+            let result;
+
+
+            /* =============================================
+               UPDATE
+            ============================================= */
+
+            if (editingProductId) {
+
+                result =
+                    await supabaseClient
+
+                        .from("products")
+
+                        .update(
+                            productData
+                        )
+
+                        .eq(
+                            "id",
+                            editingProductId
+                        );
+
+            }
+
+
+            /* =============================================
+               INSERT
+            ============================================= */
+
+            else {
+
+                result =
+                    await supabaseClient
+
+                        .from("products")
+
+                        .insert(
+                            productData
+                        );
+
+            }
+
+
+            if (result.error) {
+
+                throw result.error;
+
+            }
+
+
+            /* DELETE OLD IMAGES
+               ONLY AFTER SUCCESSFUL UPDATE */
+
+            if (
+                editingProductId &&
+                files.length > 0 &&
+                existingImageUrls.length > 0
+            ) {
+
+                await deleteStorageImages(
+                    existingImageUrls
+                );
+
+            }
+
+
+            alert(
+                editingProductId
+                    ? "Product updated successfully!"
+                    : "Product added successfully!"
+            );
+
+
+            resetForm();
+
+            await loadProducts();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Error: " +
+                error.message
+            );
+
+
+            uploadStatus.textContent =
+                "";
+
+        }
+
+
+        saveProductBtn.disabled =
+            false;
+
+        saveProductBtn.textContent =
+            "Save Product";
+
+    }
+);
+
+
+/* =========================================================
+   LOAD PRODUCTS
+========================================================= */
+
+async function loadProducts() {
+
+
+    productsList.innerHTML =
+        "Loading products...";
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("products")
+
+        .select("*")
+
+        .order(
+            "sort_order",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        productsList.innerHTML =
+            `
+                <p>
+                    Could not load products.
+                    ${escapeHtml(error.message)}
+                </p>
+            `;
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        productsList.innerHTML =
+            `
+                <p>
+                    No products yet.
+                </p>
+            `;
+
+        return;
+
+    }
+
+
+    productsList.innerHTML =
+        "";
+
+
+    data.forEach(
+        product => {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            const image =
+                product.image1 ||
+                product.image2 ||
+                product.image3;
+
+
+            card.innerHTML = `
+
+                ${
+                    image
+                        ? `
+                            <img
+                                src="${escapeHtml(image)}"
+                                alt="${escapeHtml(product.name)}"
+                            >
+                          `
+                        : `
+                            <div
+                                style="
+                                    height:180px;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    background:#f5f5f5;
+                                    border-radius:8px;
+                                    margin-bottom:12px;
+                                "
+                            >
+                                No Image
+                            </div>
+                          `
+                }
+
+
+                <h3>
+                    ${escapeHtml(product.name)}
+                </h3>
+
+
+                <p>
+                    <strong>Brand:</strong>
+                    ${escapeHtml(product.brand || "")}
+                </p>
+
+
+                <p>
+                    <strong>Category:</strong>
+                    ${escapeHtml(product.category || "")}
+                </p>
+
+
+                <p>
+                    <strong>Slug:</strong>
+                    ${escapeHtml(product.slug || "")}
+                </p>
+
+
+                ${
+                    product.featured
+                        ? `
+                            <span class="badge featured">
+                                Featured
+                            </span>
+                          `
+                        : ""
+                }
+
+
+                ${
+                    product.active
+                        ? `
+                            <span class="badge">
+                                Active
+                            </span>
+                          `
+                        : `
+                            <span class="badge inactive">
+                                Inactive
+                            </span>
+                          `
+                }
+
+
+                <div class="product-actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editProduct('${product.id}')"
+                    >
+                        Edit
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProduct('${product.id}')"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            `;
+
+
+            productsList.appendChild(
+                card
+            );
 
         }
     );
 
-
-    /* =====================================================
-       LOAD PRODUCTS
-    ===================================================== */
-
-    async function loadProducts() {
+}
 
 
-        productsList.innerHTML =
-            "Loading products...";
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+window.editProduct =
+    async function(id) {
 
 
         const {
@@ -1734,183 +1894,233 @@
 
             .select("*")
 
-            .order(
-                "sort_order",
-                {
-                    ascending: true
-                }
-            );
+            .eq("id", id)
+
+            .single();
 
 
         if (error) {
 
-            console.error(error);
-
-            productsList.innerHTML =
-                `
-                    <p>
-                        Could not load products.
-                        ${escapeHtml(error.message)}
-                    </p>
-                `;
+            alert(
+                error.message
+            );
 
             return;
 
         }
 
 
-        if (!data || data.length === 0) {
-
-            productsList.innerHTML =
-                `
-                    <p>
-                        No products yet.
-                    </p>
-                `;
-
-            return;
-
-        }
+        editingProductId =
+            id;
 
 
-        productsList.innerHTML = "";
+        existingImageUrls =
+            [
+                data.image1,
+                data.image2,
+                data.image3
+            ].filter(Boolean);
 
 
-        data.forEach(
-            product => {
-
-                const card =
-                    document.createElement("div");
-
-
-                card.className =
-                    "product-card";
+        document
+            .getElementById("productName")
+            .value =
+            data.name || "";
 
 
-                const image =
-                    product.image1 ||
-                    product.image2 ||
-                    product.image3;
+        document
+            .getElementById("productBrand")
+            .value =
+            data.brand || "";
 
 
-                card.innerHTML = `
-
-                    ${
-                        image
-                            ? `
-                                <img
-                                    src="${escapeHtml(image)}"
-                                    alt="${escapeHtml(product.name)}"
-                                >
-                              `
-                            : `
-                                <div
-                                    style="
-                                        height:180px;
-                                        display:flex;
-                                        align-items:center;
-                                        justify-content:center;
-                                        background:#f5f5f5;
-                                        border-radius:8px;
-                                        margin-bottom:12px;
-                                    "
-                                >
-                                    No Image
-                                </div>
-                              `
-                    }
+        document
+            .getElementById("productCategory")
+            .value =
+            data.category || "";
 
 
-                    <h3>
-                        ${escapeHtml(product.name)}
-                    </h3>
+        document
+            .getElementById("productSlug")
+            .value =
+            data.slug || "";
 
 
-                    <p>
-                        <strong>Brand:</strong>
-                        ${escapeHtml(product.brand || "")}
-                    </p>
+        document
+            .getElementById("productDescription")
+            .value =
+            data.description || "";
 
 
-                    <p>
-                        <strong>Category:</strong>
-                        ${escapeHtml(product.category || "")}
-                    </p>
+        document
+            .getElementById("productAbout")
+            .value =
+            data.about || "";
 
 
-                    <p>
-                        <strong>Slug:</strong>
-                        ${escapeHtml(product.slug || "")}
-                    </p>
+        document
+            .getElementById("productCamera")
+            .value =
+            data.camera || "";
 
 
-                    ${
-                        product.featured
-                            ? `
-                                <span class="badge featured">
-                                    Featured
-                                </span>
-                              `
-                            : ""
-                    }
+        document
+            .getElementById("productDurability")
+            .value =
+            data.durability || "";
 
 
-                    ${
-                        product.active
-                            ? `
-                                <span class="badge">
-                                    Active
-                                </span>
-                              `
-                            : `
-                                <span class="badge inactive">
-                                    Inactive
-                                </span>
-                              `
-                    }
+        document
+            .getElementById("productStorage")
+            .value =
+            data.storage || "";
 
 
-                    <div class="product-actions">
-
-                        <button
-                            class="edit-btn"
-                            onclick="editProduct('${product.id}')"
-                        >
-                            Edit
-                        </button>
+        document
+            .getElementById("productBattery")
+            .value =
+            data.battery || "";
 
 
-                        <button
-                            class="delete-btn"
-                            onclick="deleteProduct('${product.id}')"
-                        >
-                            Delete
-                        </button>
-
-                    </div>
-
-                `;
+        document
+            .getElementById("productFeatures")
+            .value =
+            data.features || "";
 
 
-                productsList.appendChild(card);
+        document
+            .getElementById("productSortOrder")
+            .value =
+            data.sort_order ?? 0;
 
-            }
-        );
+
+        document
+            .getElementById("productFeatured")
+            .checked =
+            !!data.featured;
+
+
+        document
+            .getElementById("productActive")
+            .checked =
+            data.active !== false;
+
+
+        productImages.value =
+            "";
+
+
+        imagePreview.innerHTML =
+            "";
+
+
+        showExistingImages();
+
+
+        formTitle.textContent =
+            "Edit Product";
+
+
+        saveProductBtn.textContent =
+            "Update Product";
+
+
+        cancelEditBtn.style.display =
+            "block";
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    };
+
+
+/* =========================================================
+   SHOW EXISTING IMAGES
+========================================================= */
+
+function showExistingImages() {
+
+
+    if (
+        !existingImageUrls.length
+    ) {
+
+        existingImages.style.display =
+            "none";
+
+        return;
 
     }
 
 
-    /* =====================================================
-       EDIT PRODUCT
-    ===================================================== */
+    existingImages.style.display =
+        "block";
 
-    window.editProduct =
-        async function(id) {
+
+    existingImageGrid.innerHTML =
+        "";
+
+
+    existingImageUrls.forEach(
+        url => {
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+
+            img.src =
+                url;
+
+
+            img.alt =
+                "Current product image";
+
+
+            existingImageGrid.appendChild(
+                img
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+window.deleteProduct =
+    async function(id) {
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this product?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        try {
 
 
             const {
-                data,
-                error
+                data: product,
+                error: fetchError
             } = await supabaseClient
 
                 .from("products")
@@ -1922,477 +2132,257 @@
                 .single();
 
 
-            if (error) {
+            if (fetchError) {
 
-                alert(
-                    error.message
-                );
-
-                return;
+                throw fetchError;
 
             }
 
 
-            editingProductId =
-                id;
-
-
-            existingImageUrls =
+            const imageUrls =
                 [
-                    data.image1,
-                    data.image2,
-                    data.image3
+                    product.image1,
+                    product.image2,
+                    product.image3
                 ].filter(Boolean);
 
 
-            document
-                .getElementById("productName")
-                .value =
-                data.name || "";
+            const {
+                error
+            } = await supabaseClient
+
+                .from("products")
+
+                .delete()
+
+                .eq("id", id);
 
 
-            document
-                .getElementById("productBrand")
-                .value =
-                data.brand || "";
+            if (error) {
+
+                throw error;
+
+            }
 
 
-            document
-                .getElementById("productCategory")
-                .value =
-                data.category || "";
+            await deleteStorageImages(
+                imageUrls
+            );
 
 
-            document
-                .getElementById("productSlug")
-                .value =
-                data.slug || "";
+            alert(
+                "Product deleted successfully."
+            );
 
 
-            document
-                .getElementById("productDescription")
-                .value =
-                data.description || "";
+            await loadProducts();
 
 
-            document
-                .getElementById("productAbout")
-                .value =
-                data.about || "";
+        } catch (error) {
 
+            console.error(error);
 
-            document
-                .getElementById("productCamera")
-                .value =
-                data.camera || "";
-
-
-            document
-                .getElementById("productDurability")
-                .value =
-                data.durability || "";
-
-
-            document
-                .getElementById("productStorage")
-                .value =
-                data.storage || "";
-
-
-            document
-                .getElementById("productBattery")
-                .value =
-                data.battery || "";
-
-
-            document
-                .getElementById("productFeatures")
-                .value =
-                data.features || "";
-
-
-            document
-                .getElementById("productSortOrder")
-                .value =
-                data.sort_order ?? 0;
-
-
-            document
-                .getElementById("productFeatured")
-                .checked =
-                !!data.featured;
-
-
-            document
-                .getElementById("productActive")
-                .checked =
-                data.active !== false;
-
-
-            productImages.value = "";
-
-            imagePreview.innerHTML = "";
-
-
-            showExistingImages();
-
-
-            formTitle.textContent =
-                "Edit Product";
-
-
-            saveProductBtn.textContent =
-                "Update Product";
-
-
-            cancelEditBtn.style.display =
-                "block";
-
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        };
-
-
-    /* =====================================================
-       SHOW EXISTING IMAGES
-    ===================================================== */
-
-    function showExistingImages() {
-
-
-        if (!existingImageUrls.length) {
-
-            existingImages.style.display =
-                "none";
-
-            return;
+            alert(
+                "Error deleting product: " +
+                error.message
+            );
 
         }
 
-
-        existingImages.style.display =
-            "block";
+    };
 
 
-        existingImageGrid.innerHTML =
-            "";
+/* =========================================================
+   CANCEL EDIT
+========================================================= */
+
+cancelEditBtn.addEventListener(
+    "click",
+    function() {
+
+        resetForm();
+
+    }
+);
 
 
-        existingImageUrls.forEach(
-            url => {
+/* =========================================================
+   RESET FORM
+========================================================= */
 
-                const img =
-                    document.createElement("img");
-
-
-                img.src =
-                    url;
+function resetForm() {
 
 
-                img.alt =
-                    "Current product image";
+    productForm.reset();
 
 
-                existingImageGrid.appendChild(
-                    img
-                );
+    document
+        .getElementById("productActive")
+        .checked = true;
 
-            }
-        );
+
+    editingProductId =
+        null;
+
+
+    existingImageUrls =
+        [];
+
+
+    imagePreview.innerHTML =
+        "";
+
+
+    existingImageGrid.innerHTML =
+        "";
+
+
+    existingImages.style.display =
+        "none";
+
+
+    uploadStatus.textContent =
+        "";
+
+
+    formTitle.textContent =
+        "Add New Product";
+
+
+    saveProductBtn.textContent =
+        "Save Product";
+
+
+    cancelEditBtn.style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
 
     }
 
 
-    /* =====================================================
-       DELETE PRODUCT
-    ===================================================== */
+    return String(value)
 
-    window.deleteProduct =
-        async function(id) {
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
 
 
-            const confirmed =
-                confirm(
-                    "Are you sure you want to delete this product?"
-                );
+/* =========================================================
+   AUTO SLUG
+========================================================= */
 
+document
+    .getElementById("productName")
+    .addEventListener(
+        "input",
+        function() {
 
-            if (!confirmed) {
+            if (editingProductId) {
 
                 return;
 
             }
 
 
-            try {
+            const slug =
+                this.value
+
+                    .toLowerCase()
+
+                    .trim()
+
+                    .replace(
+                        /[^a-z0-9]+/g,
+                        "-"
+                    )
+
+                    .replace(
+                        /^-+|-+$/g,
+                        ""
+                    );
 
 
-                /* GET PRODUCT FIRST */
-
-                const {
-                    data: product,
-                    error: fetchError
-                } = await supabaseClient
-
-                    .from("products")
-
-                    .select("*")
-
-                    .eq("id", id)
-
-                    .single();
-
-
-                if (fetchError) {
-
-                    throw fetchError;
-
-                }
-
-
-                const imageUrls =
-                    [
-                        product.image1,
-                        product.image2,
-                        product.image3
-                    ].filter(Boolean);
-
-
-                /* DELETE DATABASE RECORD */
-
-                const {
-                    error
-                } = await supabaseClient
-
-                    .from("products")
-
-                    .delete()
-
-                    .eq("id", id);
-
-
-                if (error) {
-
-                    throw error;
-
-                }
-
-
-                /* DELETE IMAGES */
-
-                await deleteStorageImages(
-                    imageUrls
-                );
-
-
-                alert(
-                    "Product deleted successfully."
-                );
-
-
-                await loadProducts();
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "Error deleting product: " +
-                    error.message
-                );
-
-            }
-
-        };
-
-
-    /* =====================================================
-       CANCEL EDIT
-    ===================================================== */
-
-    cancelEditBtn.addEventListener(
-        "click",
-        function() {
-
-            resetForm();
+            document
+                .getElementById(
+                    "productSlug"
+                )
+                .value =
+                slug;
 
         }
     );
 
 
-    /* =====================================================
-       RESET FORM
-    ===================================================== */
+/* =========================================================
+   CHECK EXISTING SESSION
+========================================================= */
 
-    function resetForm() {
-
-
-        productForm.reset();
+async function checkSession() {
 
 
-        document
-            .getElementById("productActive")
-            .checked = true;
+    const {
+        data
+    } =
+        await supabaseClient.auth
+            .getSession();
 
 
-        editingProductId =
-            null;
+    if (
+        data.session
+    ) {
 
-
-        existingImageUrls =
-            [];
-
-
-        imagePreview.innerHTML =
-            "";
-
-
-        existingImageGrid.innerHTML =
-            "";
-
-
-        existingImages.style.display =
+        loginScreen.style.display =
             "none";
 
+        dashboard.style.display =
+            "block";
 
-        uploadStatus.textContent =
-            "";
-
-
-        formTitle.textContent =
-            "Add New Product";
-
-
-        saveProductBtn.textContent =
-            "Save Product";
-
-
-        cancelEditBtn.style.display =
-            "none";
+        await loadProducts();
 
     }
 
-
-    /* =====================================================
-       ESCAPE HTML
-    ===================================================== */
-
-    function escapeHtml(value) {
-
-        if (value === null ||
-            value === undefined) {
-
-            return "";
-
-        }
+}
 
 
-        return String(value)
-
-            .replace(/&/g, "&amp;")
-
-            .replace(/</g, "&lt;")
-
-            .replace(/>/g, "&gt;")
-
-            .replace(/"/g, "&quot;")
-
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* =====================================================
-       AUTO SLUG
-    ===================================================== */
-
-    document
-        .getElementById("productName")
-        .addEventListener(
-            "input",
-            function() {
-
-                if (editingProductId) {
-
-                    return;
-
-                }
-
-
-                const slug =
-                    this.value
-
-                        .toLowerCase()
-
-                        .trim()
-
-                        .replace(
-                            /[^a-z0-9]+/g,
-                            "-"
-                        )
-
-                        .replace(
-                            /^-+|-+$/g,
-                            ""
-                        );
-
-
-                document
-                    .getElementById("productSlug")
-                    .value =
-                    slug;
-
-            }
-        );
-
-
-    /* =====================================================
-       CHECK EXISTING SESSION
-    ===================================================== */
-
-    async function checkSession() {
-
-
-        const {
-            data
-        } = await supabaseClient.auth.getSession();
-
-
-        if (data.session) {
-
-            await showDashboard();
-
-        }
-
-    }
-
-
-    checkSession();
-
-
-    /* =====================================================
-       AUTH STATE
-    ===================================================== */
-
-    supabaseClient.auth.onAuthStateChange(
-        async function(event, session) {
-
-            if (
-                event === "SIGNED_IN" &&
-                session
-            ) {
-
-                await showDashboard();
-
-            }
-
-        }
-    );
+checkSession();
 
 </script>
 
