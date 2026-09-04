@@ -1402,13 +1402,13 @@ textarea {
 
 
 /* =========================================
-   FOOTER
-========================================= */
-/* =========================================
    ELITE GADGETS PREMIUM FOOTER
 ========================================= */
 
 .site-footer {
+    width: 100%;
+    box-sizing: border-box;
+
     background: #0b0b0f;
     color: #ffffff;
 
@@ -1416,15 +1416,19 @@ textarea {
 
     margin-top: 60px;
 
-    border-top:
-        1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    overflow: hidden;
 }
 
 
 .footer-content {
+    width: 100%;
     max-width: 1200px;
 
     margin: 0 auto;
+
+    box-sizing: border-box;
 }
 
 
@@ -1450,6 +1454,8 @@ textarea {
 
 .footer-logo img {
     width: 150px;
+    max-width: 100%;
+    height: auto;
 
     max-height: 70px;
 
@@ -1480,17 +1486,16 @@ textarea {
     display: grid;
 
     grid-template-columns:
-        1.2fr
-        1fr
-        1fr
-        1fr;
+        minmax(0, 1.2fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
     gap: 50px;
 
     padding-bottom: 55px;
 
-    border-bottom:
-        1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 
@@ -1499,6 +1504,8 @@ textarea {
 ========================================= */
 
 .footer-column {
+    min-width: 0;
+
     display: flex;
 
     flex-direction: column;
@@ -1508,8 +1515,7 @@ textarea {
 
 
 .footer-column h4 {
-    margin:
-        0 0 22px;
+    margin: 0 0 22px;
 
     font-size: 0.72rem;
 
@@ -1539,8 +1545,7 @@ textarea {
 .footer-column a:hover {
     color: #ffffff;
 
-    transform:
-        translateX(3px);
+    transform: translateX(3px);
 }
 
 
@@ -1551,8 +1556,11 @@ textarea {
 
     line-height: 1.7;
 
-    margin:
-        0 0 10px;
+    margin: 0 0 10px;
+
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1569,11 +1577,14 @@ textarea {
 
     gap: 30px;
 
-    padding:
-        35px 0;
+    padding: 35px 0;
 
-    border-bottom:
-        1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+
+.footer-delivery > div {
+    min-width: 0;
 }
 
 
@@ -1602,6 +1613,8 @@ textarea {
     margin: 0;
 
     max-width: 650px;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1614,11 +1627,11 @@ textarea {
 
     white-space: nowrap;
 
-    padding:
-        13px 22px;
+    flex-shrink: 0;
 
-    border:
-        1px solid rgba(255,255,255,0.18);
+    padding: 13px 22px;
+
+    border: 1px solid rgba(255,255,255,0.18);
 
     border-radius: 999px;
 
@@ -1644,8 +1657,7 @@ textarea {
 
     color: #0b0b0f;
 
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 }
 
 
@@ -1662,8 +1674,7 @@ textarea {
 
     gap: 30px;
 
-    padding:
-        30px 0;
+    padding: 30px 0;
 }
 
 
@@ -1677,12 +1688,10 @@ textarea {
     letter-spacing: 1.5px;
 
     margin: 0;
+
+    overflow-wrap: anywhere;
 }
 
-
-/* =========================================
-   CONTACT ACTIONS
-========================================= */
 
 .footer-contact-actions {
     display: flex;
@@ -1690,6 +1699,8 @@ textarea {
     align-items: center;
 
     gap: 25px;
+
+    min-width: 0;
 }
 
 
@@ -1711,8 +1722,7 @@ textarea {
 .whatsapp-footer:hover {
     opacity: 0.7;
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -1723,8 +1733,9 @@ textarea {
 
     font-size: 13px;
 
-    transition:
-        color 0.25s ease;
+    overflow-wrap: anywhere;
+
+    transition: color 0.25s ease;
 }
 
 
@@ -1748,8 +1759,7 @@ textarea {
 
     padding-top: 25px;
 
-    border-top:
-        1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 
@@ -1772,18 +1782,19 @@ textarea {
     font-size: 12px;
 
     margin: 0;
+
+    text-align: right;
 }
 
 
 /* =========================================
-   MOBILE
+   TABLET
 ========================================= */
 
 @media (max-width: 900px) {
 
     .site-footer {
-        padding:
-            55px 25px 25px;
+        padding: 55px 25px 25px;
     }
 
 
@@ -1799,6 +1810,11 @@ textarea {
         align-items: flex-start;
 
         flex-direction: column;
+    }
+
+
+    .footer-order-button {
+        width: auto;
     }
 
 
@@ -1820,18 +1836,22 @@ textarea {
         flex-direction: column;
     }
 
+
+    .footer-copy {
+        text-align: left;
+    }
+
 }
 
 
 /* =========================================
-   SMALL MOBILE
+   MOBILE
 ========================================= */
 
 @media (max-width: 600px) {
 
     .site-footer {
-        padding:
-            45px 20px 25px;
+        padding: 45px 20px 25px;
 
         margin-top: 40px;
     }
@@ -1869,25 +1889,27 @@ textarea {
 
 
     .footer-delivery {
-        padding:
-            30px 0;
+        padding: 30px 0;
     }
 
 
     .footer-order-button {
         width: 100%;
+
+        box-sizing: border-box;
     }
 
 
     .footer-connect {
-        padding:
-            25px 0;
+        padding: 25px 0;
 
         gap: 20px;
     }
 
 
     .footer-contact-actions {
+        width: 100%;
+
         flex-direction: column;
 
         align-items: flex-start;
@@ -1896,10 +1918,20 @@ textarea {
     }
 
 
+    .footer-email {
+        max-width: 100%;
+    }
+
+
     .footer-bottom {
         padding-top: 22px;
 
         gap: 10px;
+    }
+
+
+    .footer-copy {
+        text-align: left;
     }
 
 }
