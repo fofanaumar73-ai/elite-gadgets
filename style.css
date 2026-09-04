@@ -1404,124 +1404,265 @@ textarea {
 /* =========================================
    FOOTER
 ========================================= */
-/* =========================
+/* =========================================
    ELITE GADGETS FOOTER
-========================= */
+========================================= */
 
 .site-footer {
     background: #f5b800;
     color: #111;
     text-align: center;
-    padding: 50px 20px 30px;
+    padding: 60px 20px 30px;
     margin-top: 60px;
 }
 
 .footer-content {
-    max-width: 800px;
-    margin: auto;
+    max-width: 900px;
+    margin: 0 auto;
 }
+
+
+/* =========================================
+   FOOTER LOGO
+========================================= */
 
 .footer-logo {
     display: inline-block;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .footer-logo img {
-    width: 140px;
-    max-height: 70px;
+    width: 150px;
+    max-height: 75px;
     object-fit: contain;
     display: block;
 }
 
+
+/* =========================================
+   FOOTER HEADING
+========================================= */
+
 .footer-content h3 {
-    font-size: 24px;
+    font-size: 25px;
     margin: 10px 0 15px;
+    font-weight: 800;
 }
 
+
+/* =========================================
+   FOOTER MESSAGE
+========================================= */
+
 .footer-message {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto 25px;
-    line-height: 1.7;
+    line-height: 1.8;
     font-size: 16px;
 }
 
-.footer-links-title {
-    font-weight: bold;
-    margin-bottom: 12px;
+
+/* =========================================
+   ELITE GADGETS SERVICES
+========================================= */
+
+.footer-services {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 750px;
+    margin: 35px auto;
 }
 
-/* SOCIAL MEDIA TEXT */
+.footer-service {
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+    padding: 18px 12px;
+    transition: 0.3s ease;
+}
+
+.footer-service:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.55);
+}
+
+.footer-service strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.footer-service span {
+    display: block;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.footer-location {
+    max-width: 650px;
+    margin: 35px auto 25px;
+    padding: 22px;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.footer-location-title {
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.footer-location p {
+    margin: 0;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   NATIONWIDE DELIVERY
+========================================= */
+
+.footer-delivery {
+    max-width: 650px;
+    margin: 25px auto;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.footer-delivery strong {
+    font-weight: 800;
+}
+
+
+/* =========================================
+   SOCIAL MEDIA
+========================================= */
+
+.footer-links-title {
+    font-weight: 800;
+    margin: 30px 0 12px;
+}
 
 .social-text-links {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    margin-bottom: 25px;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
 }
 
 .social-text-links a {
     color: #111;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     transition: 0.3s ease;
 }
 
 .social-text-links a:hover {
+    transform: translateY(-3px);
     text-decoration: underline;
-    transform: translateY(-2px);
 }
 
-/* WHATSAPP */
+
+/* =========================================
+   WHATSAPP BUTTON
+========================================= */
 
 .whatsapp-footer {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: #111;
+    background: rgba(255,255,255,0.45);
+    border: 1px solid rgba(0,0,0,0.12);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 13px 24px;
+    border-radius: 999px;
     margin-bottom: 18px;
     transition: 0.3s ease;
 }
 
 .whatsapp-footer:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    background: #fff;
 }
 
-/* EMAIL */
+
+/* =========================================
+   EMAIL
+========================================= */
 
 .footer-email {
     display: block;
     color: #111;
     text-decoration: none;
     font-size: 14px;
-    margin-bottom: 20px;
+    font-weight: 600;
+    margin-bottom: 25px;
 }
 
 .footer-email:hover {
     text-decoration: underline;
 }
 
-/* TAGLINE */
+
+/* =========================================
+   MOTTO
+========================================= */
 
 .footer-tagline {
-    font-weight: bold;
-    margin: 15px 0 8px;
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 1px;
+    margin: 25px 0 10px;
+    text-transform: uppercase;
 }
 
-/* COPYRIGHT */
+
+/* =========================================
+   COPYRIGHT
+========================================= */
 
 .footer-copy {
     font-size: 13px;
     margin: 0;
-    opacity: 0.8;
+    opacity: 0.75;
 }
 
-/* MOBILE */
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .footer-services {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+}
+
 
 @media (max-width: 600px) {
 
     .site-footer {
-        padding: 40px 18px 25px;
+        padding: 45px 18px 25px;
+        margin-top: 45px;
+    }
+
+    .footer-logo img {
+        width: 135px;
     }
 
     .footer-content h3 {
@@ -1530,12 +1671,53 @@ textarea {
 
     .footer-message {
         font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .footer-services {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 28px auto;
+    }
+
+    .footer-service {
+        padding: 16px 10px;
+    }
+
+    .footer-service strong {
+        font-size: 14px;
+    }
+
+    .footer-service span {
+        font-size: 12px;
+    }
+
+    .footer-location {
+        padding: 20px 12px;
+        margin: 28px auto 22px;
+    }
+
+    .footer-location p {
+        font-size: 13px;
+    }
+
+    .footer-delivery {
+        font-size: 14px;
     }
 
     .social-text-links {
         gap: 18px;
-        flex-wrap: wrap;
     }
+
+    .footer-tagline {
+        font-size: 14px;
+        letter-spacing: 0.7px;
+    }
+
+    .footer-copy {
+        font-size: 12px;
+    }
+
 
 }
 
