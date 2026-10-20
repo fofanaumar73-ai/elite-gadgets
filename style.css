@@ -3446,3 +3446,29 @@ background:
     width: 36px;
     height: 36px;
 }
+
+/* White footer design */
+footer,
+.site-footer {
+    background: #ffffff;
+    color: #222222;
+    border-top: 1px solid #eeeeee;
+}
+
+footer h2,
+footer h3,
+footer p,
+footer a,
+footer span,
+.site-footer h2,
+.site-footer h3,
+.site-footer p,
+.site-footer a,
+.site-footer span {
+    color: #222222;
+}
+
+footer a:hover,
+.site-footer a:hover {
+    color: #25D366;
+}
