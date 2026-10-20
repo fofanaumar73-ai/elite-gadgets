@@ -3401,16 +3401,17 @@ background:
   z-index: 1;
 }
 
+
 @media (max-width: 768px) {
-  .hero {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(7, 7, 8, 0.82) 0%,
-        rgba(7, 7, 8, 0.92) 65%,
-        rgba(7, 7, 8, 0.98) 100%
-      ),
-      url("image/elite-store-hero.png") 62% center / cover no-repeat;
-  }
+    .hero {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(7, 7, 8, 0.78) 0%,
+                rgba(7, 7, 8, 0.91) 55%,
+                rgba(7, 7, 8, 0.98) 100%
+            ),
+            url("image/elite-store-hero.png") 62% center / cover no-repeat;
+    }
 }
 
