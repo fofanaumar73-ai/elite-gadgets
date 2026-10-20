@@ -3435,3 +3435,14 @@ background:
     }
 }
 
+.floating-contact a .contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-contact a .contact-icon svg {
+    display: block;
+    width: 36px;
+    height: 36px;
+}
