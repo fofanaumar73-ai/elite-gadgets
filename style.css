@@ -3397,16 +3397,18 @@ summary::after {
     align-items: center;
     justify-content: flex-start;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(7, 7, 8, 0.96) 0%,
-            rgba(7, 7, 8, 0.86) 35%,
-            rgba(7, 7, 8, 0.45) 68%,
-            rgba(7, 7, 8, 0.18) 100%
-        ),
-        url("image/elite-store-hero.png")
-        center / cover no-repeat;
+    
+background:
+    linear-gradient(
+        90deg,
+        rgba(7, 7, 8, 0.96) 0%,
+        rgba(7, 7, 8, 0.86) 38%,
+        rgba(7, 7, 8, 0.45) 72%,
+        rgba(7, 7, 8, 0.25) 100%
+    ),
+    url("https://images.pexels.com/photos/11297769/pexels-photo-11297769.jpeg")
+    center / cover no-repeat;
+
 }
 
 .hero-content {
