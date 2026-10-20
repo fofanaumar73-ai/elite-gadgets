@@ -3378,40 +3378,65 @@ summary::after {
 }
 
 
-/* Elite Gadgets luxury showroom hero */
+
+/* ELITE GADGETS FULL-WIDTH SHOWROOM HERO */
+
 .hero {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  
-background:
-    linear-gradient(
-        90deg,
-        rgba(7, 7, 8, 0.97) 0%,
-        rgba(7, 7, 8, 0.88) 35%,
-        rgba(7, 7, 8, 0.50) 65%,
-        rgba(7, 7, 8, 0.25) 100%
-    ),
-    url("image/elite-store-hero.png") center 45% / cover no-repeat;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
 
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+
+    padding: 150px max(20px, calc((100% - 1200px) / 2)) 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 7, 8, 0.96) 0%,
+            rgba(7, 7, 8, 0.86) 35%,
+            rgba(7, 7, 8, 0.45) 68%,
+            rgba(7, 7, 8, 0.18) 100%
+        ),
+        url("image/elite-store-hero.png")
+        center / cover no-repeat;
 }
 
-.hero > * {
-  position: relative;
-  z-index: 1;
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 650px;
 }
 
-
+/* MOBILE SHOWROOM HERO */
 @media (max-width: 768px) {
     .hero {
+        width: 100%;
+        min-height: auto;
+        padding: 125px 20px 70px;
+
         background:
             linear-gradient(
                 180deg,
-                rgba(7, 7, 8, 0.78) 0%,
-                rgba(7, 7, 8, 0.91) 55%,
-                rgba(7, 7, 8, 0.98) 100%
+                rgba(7, 7, 8, 0.76) 0%,
+                rgba(7, 7, 8, 0.88) 55%,
+                rgba(7, 7, 8, 0.97) 100%
             ),
-            url("image/elite-store-hero.png") 62% center / cover no-repeat;
+            url("image/elite-store-hero.png")
+            62% center / cover no-repeat;
+    }
+
+    .hero-content {
+        max-width: 100%;
     }
 }
+
 
